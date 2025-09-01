@@ -11,7 +11,7 @@
         </router-link>
 
         <!-- Desktop Navigation -->
-        <div class="hidden md:flex items-center space-x-8">
+        <div class="hidden md:flex items-center space-x-6">
           <router-link 
             v-for="link in navLinks" 
             :key="link.name"
@@ -22,6 +22,11 @@
             {{ link.name }}
             <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-nuclear-glow transition-all duration-300 group-hover:w-full"></span>
           </router-link>
+          <!-- Theme toggle -->
+          <button @click="toggleTheme" class="px-3 py-2 rounded border bg-card-bg/80 text-sm text-gray-200">
+            <span v-if="theme === 'dark'">🌙</span>
+            <span v-else>☀️</span>
+          </button>
         </div>
 
         <!-- Mobile menu button -->
@@ -50,6 +55,12 @@
           >
             {{ link.name }}
           </router-link>
+          <div class="px-4">
+            <button @click="toggleTheme" class="w-full text-left px-3 py-2 rounded border bg-card-bg/80 text-sm text-gray-200">
+              <span v-if="theme === 'dark'">Switch to Light</span>
+              <span v-else>Switch to Dark</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -57,9 +68,30 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const mobileMenuOpen = ref(false)
+const theme = ref('dark')
+
+const applyTheme = (t) => {
+  try {
+    const root = document.documentElement
+    if (t === 'dark') root.classList.add('dark')
+    else root.classList.remove('dark')
+    theme.value = t
+    localStorage.setItem('theme', t)
+  } catch (e) {
+    // ignore
+  }
+}
+
+const toggleTheme = () => applyTheme(theme.value === 'dark' ? 'light' : 'dark')
+
+onMounted(() => {
+  const stored = localStorage.getItem('theme')
+  if (stored === 'light' || stored === 'dark') applyTheme(stored)
+  else applyTheme((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light')
+})
 
 const navLinks = [
   { name: 'Home', path: '/' },

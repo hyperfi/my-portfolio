@@ -30,7 +30,7 @@
                     </template>
                   </div>
                 </div>
-                <div class="flex items-center gap-2">
+                <div v-if="session" class="flex items-center gap-2">
                   <button @click="startEdit(post)" class="text-sm px-3 py-1 bg-nuclear-blue/20 rounded text-nuclear-glow">Edit</button>
                   <button @click="promptDelete(post)" class="text-sm px-3 py-1 bg-red-600/80 rounded text-white">Delete</button>
                 </div>
@@ -108,7 +108,10 @@
 import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabase'
 import { marked } from 'marked'
-import DOMPurify from 'dompurify'
+import { sanitizeHTML } from '../lib/sanitize'
+
+// Auth state
+const session = ref(null)
 
 // Blog posts state
 const posts = ref([])
@@ -128,10 +131,15 @@ const deleteTarget = ref(null)
 const isDeleting = ref(false)
 const deleteErrorMessage = ref('')
 
-const render = (md) => DOMPurify.sanitize(marked.parse(md || ''))
+const render = (md) => sanitizeHTML(marked.parse(md || ''))
 const formatDate = (iso) => new Date(iso).toLocaleDateString()
 
 onMounted(async () => {
+  const { data } = await supabase.auth.getSession()
+  session.value = data.session
+  supabase.auth.onAuthStateChange((_event, newSession) => {
+    session.value = newSession
+  })
   await fetchPosts()
 })
 
@@ -147,6 +155,11 @@ const fetchPosts = async () => {
 }
 
 const startEdit = (post) => {
+  if (!session.value) {
+    editMessage.value = 'Please log in to edit posts.'
+    editError.value = true
+    return
+  }
   editingId.value = post.id
   editTitle.value = post.title
   editTags.value = (post.tags || []).join(',')
@@ -166,6 +179,11 @@ const cancelEdit = () => {
 
 const saveEdit = async (post) => {
   if (!editingId.value) return
+  if (!session.value) {
+    editMessage.value = 'Please log in to save changes.'
+    editError.value = true
+    return
+  }
   isSaving.value = true
   editMessage.value = ''
   editError.value = false
@@ -196,6 +214,11 @@ const saveEdit = async (post) => {
 }
 
 const promptDelete = (post) => {
+  if (!session.value) {
+    deleteErrorMessage.value = 'Please log in to delete posts.'
+    showDeleteModal.value = false
+    return
+  }
   deleteTarget.value = post
   deleteErrorMessage.value = ''
   showDeleteModal.value = true
@@ -209,6 +232,10 @@ const cancelDelete = () => {
 
 const confirmDelete = async () => {
   if (!deleteTarget.value) return
+  if (!session.value) {
+    deleteErrorMessage.value = 'Please log in to delete posts.'
+    return
+  }
   isDeleting.value = true
   deleteErrorMessage.value = ''
 

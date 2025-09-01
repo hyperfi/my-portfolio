@@ -1,6 +1,6 @@
 # HOWTO: Deploy the Nuclear Physicist Portfolio (Vue 3 + Vite) on Vercel with Supabase
 
-This guide walks you through deploying your Vue 3 + Vite site to Vercel and configuring Supabase (auth + a posts table) so the Blog and Admin pages work in production.
+This guide walks you through deploying your Vue 3 + Vite site to Vercel and configuring Supabase (auth + a posts table + storage for media) so the Blog and Admin pages work in production.
 
 Project snapshot
 - Frontend: Vue 3, Vite, Tailwind, Vue Router (history mode)
@@ -85,6 +85,12 @@ using (author_id = auth.uid());
 1.6 Create an admin user (to log into /admin)
 - Option A (Dashboard): Authentication > Users > Add User. Provide an email and password. If confirmations are enabled, complete the confirmation flow.
 - Option B (App sign-up): Temporarily add a “Sign up” form in your app (or use Supabase Auth UI) to create the first user, then remove it later.
+
+1.7 Create a public Storage bucket for media (images/videos)
+- Storage > Buckets > New bucket
+- Name: media
+- Public bucket: Enabled (or keep private and use Signed URLs; this guide assumes public)
+- After creating, you can optionally make folders; the app will upload to paths like <user-id>/<timestamp>-<filename>.
 
 ---
 

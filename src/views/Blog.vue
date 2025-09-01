@@ -31,23 +31,12 @@
                   </div>
                 </div>
                 <div v-if="session" class="flex items-center gap-2">
-                  <button @click="startEdit(post)" class="text-sm px-3 py-1 bg-nuclear-blue/20 rounded text-nuclear-glow">Edit</button>
+                  <router-link :to="`/admin/edit/${post.id}`" class="text-sm px-3 py-1 bg-nuclear-blue/20 rounded text-nuclear-glow">Edit</router-link>
                   <button @click="promptDelete(post)" class="text-sm px-3 py-1 bg-red-600/80 rounded text-white">Delete</button>
                 </div>
               </div>
 
-              <div v-if="editingId === post.id" class="space-y-4">
-                <input v-model="editTitle" class="w-full px-4 py-2 bg-card-bg border border-nuclear-blue/30 rounded text-white" />
-                <input v-model="editTags" placeholder="comma,separated,tags" class="w-full px-4 py-2 bg-card-bg border border-nuclear-blue/30 rounded text-white" />
-                <textarea v-model="editContent" rows="10" class="w-full px-4 py-2 bg-card-bg border border-nuclear-blue/30 rounded text-white"></textarea>
-                <div class="flex gap-3">
-                  <button @click="saveEdit(post)" :disabled="isSaving" class="btn-glow">{{ isSaving ? 'Saving...' : 'Save' }}</button>
-                  <button @click="cancelEdit" class="px-4 py-2 border rounded text-gray-300">Cancel</button>
-                </div>
-                <p v-if="editMessage" :class="editError ? 'text-red-400' : 'text-nuclear-glow'">{{ editMessage }}</p>
-              </div>
-
-              <div v-else class="prose prose-invert max-w-none" v-html="render(post.content)"></div>
+              <div class="prose prose-invert max-w-none" v-html="render(post.content)"></div>
             </article>
           </div>
         </div>
@@ -107,39 +96,26 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabase'
-import { marked } from 'marked'
-import { sanitizeHTML } from '../lib/sanitize'
+import { useAuth } from '../lib/auth'
+import { renderMarkdownToSafeHtml } from '../lib/markdown'
 
-// Auth state
-const session = ref(null)
+// Auth state (shared)
+const { session } = useAuth()
 
 // Blog posts state
 const posts = ref([])
 const loading = ref(true)
 
-// Edit/Delete state
-const editingId = ref(null)
-const editTitle = ref('')
-const editTags = ref('')
-const editContent = ref('')
-const isSaving = ref(false)
-const editMessage = ref('')
-const editError = ref(false)
 // Delete modal state
 const showDeleteModal = ref(false)
 const deleteTarget = ref(null)
 const isDeleting = ref(false)
 const deleteErrorMessage = ref('')
 
-const render = (md) => sanitizeHTML(marked.parse(md || ''))
+const render = (md) => renderMarkdownToSafeHtml(md || '')
 const formatDate = (iso) => new Date(iso).toLocaleDateString()
 
 onMounted(async () => {
-  const { data } = await supabase.auth.getSession()
-  session.value = data.session
-  supabase.auth.onAuthStateChange((_event, newSession) => {
-    session.value = newSession
-  })
   await fetchPosts()
 })
 
@@ -154,64 +130,6 @@ const fetchPosts = async () => {
   loading.value = false
 }
 
-const startEdit = (post) => {
-  if (!session.value) {
-    editMessage.value = 'Please log in to edit posts.'
-    editError.value = true
-    return
-  }
-  editingId.value = post.id
-  editTitle.value = post.title
-  editTags.value = (post.tags || []).join(',')
-  editContent.value = post.content
-  editMessage.value = ''
-  editError.value = false
-}
-
-const cancelEdit = () => {
-  editingId.value = null
-  editTitle.value = ''
-  editTags.value = ''
-  editContent.value = ''
-  editMessage.value = ''
-  editError.value = false
-}
-
-const saveEdit = async (post) => {
-  if (!editingId.value) return
-  if (!session.value) {
-    editMessage.value = 'Please log in to save changes.'
-    editError.value = true
-    return
-  }
-  isSaving.value = true
-  editMessage.value = ''
-  editError.value = false
-
-  const updated = {
-    title: editTitle.value,
-    content: editContent.value,
-    tags: editTags.value ? editTags.value.split(',').map(t => t.trim()).filter(Boolean) : []
-  }
-
-  const { data, error } = await supabase
-    .from('posts')
-    .update(updated)
-    .eq('id', post.id)
-
-  if (error) {
-    editMessage.value = error.message || 'Failed to save.'
-    editError.value = true
-  } else {
-    // optimistic update
-    const idx = posts.value.findIndex(p => p.id === post.id)
-    if (idx !== -1) posts.value[idx] = { ...posts.value[idx], ...updated }
-    editMessage.value = 'Saved successfully.'
-    setTimeout(cancelEdit, 800)
-  }
-
-  isSaving.value = false
-}
 
 const promptDelete = (post) => {
   if (!session.value) {

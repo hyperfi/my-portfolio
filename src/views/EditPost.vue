@@ -7,7 +7,7 @@
           <h1 class="text-3xl font-bold text-white mb-6">Admin</h1>
 
           <div v-if="!session">
-            <p class="text-gray-300 mb-6">Log in to create and manage blog posts.</p>
+            <p class="text-gray-300 mb-6">Log in to edit blog posts.</p>
             <form @submit.prevent="handleLogin" class="space-y-4">
               <input
                 v-model="email"
@@ -39,17 +39,17 @@
         </div>
       </section>
 
-      <!-- New Post Section -->
+      <!-- Edit Post Section -->
       <section v-if="session">
         <div class="bg-card-bg p-8 rounded-xl border border-nuclear-blue/20">
-          <h2 class="text-2xl font-bold text-white mb-6">Create New Post</h2>
-          <form @submit.prevent="handleCreatePost" class="space-y-4">
+          <h2 class="text-2xl font-bold text-white mb-6">Edit Post</h2>
+          <form @submit.prevent="handleUpdatePost" class="space-y-4">
             <div>
               <label class="block text-sm text-gray-400 mb-1">Title</label>
               <input v-model="title" type="text" required class="w-full px-4 py-3 bg-dark-bg border border-nuclear-blue/30 rounded-lg text-white focus:outline-none focus:border-nuclear-glow focus:ring-1 focus:ring-nuclear-glow" />
             </div>
             <div>
-              <label class="block text-sm text-gray-400 mb-1">Slug (auto-generated, you can edit)</label>
+              <label class="block text-sm text-gray-400 mb-1">Slug</label>
               <input v-model="slug" type="text" required class="w-full px-4 py-3 bg-dark-bg border border-nuclear-blue/30 rounded-lg text-white focus:outline-none focus:border-nuclear-glow focus:ring-1 focus:ring-nuclear-glow" />
             </div>
             <div>
@@ -97,10 +97,10 @@
             </div>
 
             <div class="flex items-center gap-4">
-              <button type="submit" class="btn-glow" :disabled="creating">
-                {{ creating ? 'Publishing...' : 'Publish Post' }}
+              <button type="submit" class="btn-glow" :disabled="saving">
+                {{ saving ? 'Saving...' : 'Save Changes' }}
               </button>
-              <span v-if="createMessage" class="text-sm" :class="createSuccess ? 'text-nuclear-glow' : 'text-red-400'">{{ createMessage }}</span>
+              <span v-if="saveMessage" class="text-sm" :class="saveSuccess ? 'text-nuclear-glow' : 'text-red-400'">{{ saveMessage }}</span>
             </div>
           </form>
 
@@ -116,10 +116,14 @@
 </template>
 
 <script setup>
-import { ref, computed, watchEffect } from 'vue'
+import { ref, computed, onMounted, watchEffect } from 'vue'
+import { useRoute } from 'vue-router'
 import { supabase } from '../lib/supabase'
-import { useAuth, signOut } from '../lib/auth'
+import { useAuth } from '../lib/auth'
 import { renderMarkdownToSafeHtml } from '../lib/markdown'
+
+const route = useRoute()
+const postId = ref(route.params.id)
 
 const { session } = useAuth()
 const email = ref('')
@@ -132,9 +136,9 @@ const slug = ref('')
 const tagsInput = ref('')
 const content = ref('')
 const contentTextarea = ref(null)
-const creating = ref(false)
-const createMessage = ref('')
-const createSuccess = ref(false)
+const saving = ref(false)
+const saveMessage = ref('')
+const saveSuccess = ref(false)
 
 // Media helpers state
 const mediaUploading = ref(false)
@@ -155,7 +159,7 @@ const slugify = (text) =>
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-')
 
-// Auto-generate slug from title
+// Auto-generate slug from title only if slug is empty (won't override loaded slug)
 watchEffect(() => {
   if (title.value && !slug.value) {
     slug.value = slugify(title.value)
@@ -178,38 +182,54 @@ const handleLogin = async () => {
 }
 
 const handleLogout = async () => {
-  await signOut()
+  await supabase.auth.signOut()
 }
 
-const handleCreatePost = async () => {
-  creating.value = true
-  createMessage.value = ''
-  createSuccess.value = false
-  
+const loadPost = async () => {
+  if (!postId.value) return
+  const { data, error } = await supabase
+    .from('posts')
+    .select('*')
+    .eq('id', postId.value)
+    .single()
+  if (!error && data) {
+    title.value = data.title || ''
+    slug.value = data.slug || ''
+    tagsInput.value = Array.isArray(data.tags) ? data.tags.join(',') : ''
+    content.value = data.content || ''
+  } else if (error) {
+    saveMessage.value = error.message
+    saveSuccess.value = false
+  }
+}
+
+const handleUpdatePost = async () => {
+  if (!postId.value) return
+  saving.value = true
+  saveMessage.value = ''
+  saveSuccess.value = false
+
   const tags = tagsInput.value
     ? tagsInput.value.split(',').map(t => t.trim()).filter(Boolean)
     : []
 
-  const { error } = await supabase.from('posts').insert({
-    title: title.value,
-    slug: slug.value,
-    content: content.value,
-    tags,
-    author_id: session.value?.user?.id || null,
-  })
+  const { error } = await supabase
+    .from('posts')
+    .update({
+      title: title.value,
+      slug: slug.value,
+      content: content.value,
+      tags,
+    })
+    .eq('id', postId.value)
 
-  creating.value = false
+  saving.value = false
   if (error) {
-    createMessage.value = error.message
-    createSuccess.value = false
+    saveMessage.value = error.message || 'Failed to save changes.'
+    saveSuccess.value = false
   } else {
-    createMessage.value = 'Post published successfully!'
-    createSuccess.value = true
-    // Reset form
-    title.value = ''
-    slug.value = ''
-    tagsInput.value = ''
-    content.value = ''
+    saveMessage.value = 'Post updated successfully!'
+    saveSuccess.value = true
   }
 }
 
@@ -300,11 +320,11 @@ const insertVideoByUrl = () => {
   const yt = toYouTubeEmbed(url)
   const vm = toVimeoEmbed(url)
   if (yt) {
-    snippet = `\n<iframe width="560" height="315" src="${yt}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\n`
+    snippet = `\n<iframe width=\"560\" height=\"315\" src=\"${yt}\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n`
   } else if (vm) {
-    snippet = `\n<iframe src="${vm}" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>\n`
+    snippet = `\n<iframe src=\"${vm}\" width=\"640\" height=\"360\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture\" allowfullscreen></iframe>\n`
   } else if (/\.(mp4|webm|ogg)(\?.*)?$/i.test(url)) {
-    snippet = `\n<video controls src="${url}"></video>\n`
+    snippet = `\n<video controls src=\"${url}\"></video>\n`
   } else {
     mediaMessage.value = 'Unsupported video URL. Provide YouTube/Vimeo link or a direct MP4/WebM/Ogg file.'
     mediaError.value = true
@@ -342,4 +362,8 @@ const toVimeoEmbed = (url) => {
   return null
 }
 
+onMounted(async () => {
+  await loadPost()
+})
 </script>
+

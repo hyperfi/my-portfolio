@@ -14,10 +14,9 @@
         <div class="space-y-8">
           <!-- Profile Image Placeholder -->
           <div class="flex justify-center">
-            <div class="w-32 h-32 rounded-full bg-gradient-to-r from-nuclear-blue to-nuclear-glow p-1 animate-pulse-glow">
-              <div class="w-full h-full rounded-full bg-card-bg flex items-center justify-center">
-                <!-- TODO: Replace with your actual photo -->
-                <span class="text-4xl">👨‍🔬</span>
+            <div class="w-64 h-64 rounded-full bg-gradient-to-r from-nuclear-blue to-nuclear-glow p-1 animate-pulse-glow">
+              <div class="w-full h-full rounded-full bg-card-bg overflow-hidden">
+                <img :src="'/images/Abhishek.png'" alt="Dr Abhishek" class="w-full h-full object-cover" />
               </div>
             </div>
           </div>
@@ -25,8 +24,8 @@
           <!-- Main Heading -->
           <div class="space-y-4">
             <h1 class="text-5xl md:text-7xl font-bold">
-              <span class="text-white">Dr.</span>
-              <span class="glow-text animate-pulse">Your Name</span>
+              <span class="text-white">Dr </span>
+              <span class="glow-text animate-pulse">Abhishek</span>
             </h1>
             <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
               Nuclear Physicist & Quantum Researcher

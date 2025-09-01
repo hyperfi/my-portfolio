@@ -4,9 +4,7 @@
       <div class="flex justify-between items-center h-16">
         <!-- Logo/Name -->
         <router-link to="/" class="flex items-center space-x-2 group">
-          <div class="w-10 h-10 rounded-full bg-gradient-to-r from-nuclear-blue to-nuclear-glow flex items-center justify-center animate-pulse-glow">
-            <span class="text-lg font-bold">⚛️</span>
-          </div>
+          <img :src="'/images/logo.png'" alt="Site logo" class="w-10 h-10 rounded-full" />
           <span class="text-xl font-bold text-nuclear-glow group-hover:text-white transition-colors">
             Nuclear Physicist
           </span>

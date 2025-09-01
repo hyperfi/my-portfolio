@@ -1,0 +1,110 @@
+
+
+Dr Abhishek
+#abi00779@gmail.com÷hyperfiïbegood
+Employment History
+Sept 2024 – Present]Guest ResearcherSchool of Mathematics and Physics, University of Surrey,
+Guildford, UK.
+May 2025 – Aug 2025]Research AssistantDepartment of Physics, IIT Roorkee.
+Jan 2023 – Sept 2024]Post Doc.School of Mathematics and Physics, University of Surrey, Guildford,
+UK.
+Education
+2017 – 2022]Ph.D., IIT RoorkeeDepartment of Physics.
+Thesis title:Microscopic Description of Giant Dipole Resonances.
+2015 – 2017]M.Sc. Physics, NIT Jalandhar. CGPA8.37
+Thesis title:Anti Kaon condensation in Neutron Stars.
+2012 – 2015]B.Sc. Non Medical, University College, Kurukshetra
+Percentage74.44%
+2011 – 2012]Class 12
+th
+Non Medical- HBSE
+Percentage89%
+2009 – 2010]Class 10
+th
+Science, Maths, English- HBSE
+Percentage90.8%
+Research Publications
+Journal Articles
+1
+M. K. Bairwa,Abhishek, R. Balasubramanian, and P. Arumugam, “Integrating physics insights into
+machine learning: a case study with giant dipole resonance”, Physica Scripta100, 056010 (2025).
+2J. Henderson, J. Heery, M. Rocchini, M. Siciliano, N. Sensharma, A. D. Ayangeakaa, R. V. F. Janssens,
+T. M. Kowalewski,Abhishek, P. D. Stevenson, E. Yüksel, B. A. Brown, and et al., “Deformation and
+collectivity in doubly magic
+208
+Pb”, Phys. Rev. Lett.134, 062502 (2025).
+3
+S. Pascu, E. Yüksel,Abhishek, P. Stevenson, G. H. Bhat, R. N. Mao, K. Nomura, C. Costache, Z. P. Li,
+N. M ărginean, C. Mihai, T. Naz, N. Paar, Z. Podolyák, P. H. Regan, A. E. Turturic ă, R. Borcea,
+M. Boromiza, D. Bucurescu, S. C ălinescu, C. Clisu, A. Coman, I. Dinescu, S. Doshi, D. Filipescu,
+N. M. Florea, A. Gandhi, I. Gheorghe, A. Ionescu, R. Lic ă, R. M ărginean, R. E. Mihai, A. Mitu, N. Nazir,
+A. Negret, C. R. Ni ţ ă, E. B. O’Sullivan, C. Petrone, S. E. Poulton, J. A. Sheikh, H. K. Singh, L. Stan,
+S. Toma, G. Turturic ă, and S. Ujeniuc, “Collective excitations in
+150
+Gd”, Phys. Rev. C111, 034302 (2025).
+
+4S. Pascu, E. Yüksel,Abhishek, P. Stevenson, G. H. Bhat, R. N. Mao, K. Nomura, C. Costache, Z. P. Li,
+N. M ărginean, C. Mihai, T. Naz, Z. Podolyák, P. H. Regan, A. E. Turturic ă, R. Borcea, M. Boromiza,
+D. Bucurescu, S. C ălinescu, C. Clisu, A. Coman, I. Dinescu, S. Doshi, D. Filipescu, N. M. Florea,
+A. Gandhi, I. Gheorghe, A. Ionescu, R. Lic ă, R. M ărginean, R. E. Mihai, A. Mitu, N. Nazir, A. Negret,
+C. R. Ni ţ ă, E. B. O’Sullivan, C. Petrone, S. E. Poulton, J. A. Sheikh, H. K. Singh, L. Stan, S. Toma,
+G. Turturic ă, and S. Ujeniuc, “Increasing octupole collectivity across theZ= 64isotopic chain: b(e3)
+values in
+150
+Gd”, Phys. Rev. Lett.134, 092501 (2025).
+5N. Singh,Abhishek, and P. Arumugam, “A quantum algorithm for the linear response of nuclei”,
+Indian Journal of Physics (2025).
+6Abhishek, P. Stevenson, Y. Shi, E. Yüksel, and A. Umar, “The tdhf code sky3d version 1.2”, Computer
+Physics Communications301, 109239 (2024).
+7Abhishek, P. Arumugam, and A. K. R. Kumar, “Giant dipole resonance and its fine structures in
+144-152nd,152sm studied within the linear response theory”, Physica Scripta98, 035303 (2023).
+8Abhishek, “Iscovector giant dipole resonance in
+175
+Luwithin the linear response theory”, J. Nucl.
+Phys. Mat. Sci. Rad. A.10, 11 (2022).
+Conference Proceedings
+1N. Singh,Abhishek, P. Siwach, and P. Arumugam, “Quantum simulation of nuclear linear response”, in
+2024 ieee international conference on quantum computing and engineering (qce), Vol. 02 (2024),
+pp. 367–369.
+2P. D. Stevenson,Abhishek, and Y. Shi, “Isoscalar giant monopole resonance in mo 100: tdhf
+calculations and ground state deformation”, in Proceedings of the 7th international conference on
+collective motion in nuclei under extreme conditions (2024), p. 26.
+3N. Singh,Abhishek, P. Siwach, A. Singh, and P. Arumugam, “Excitations in qubit space using
+single-particle dipole operator”, in Proceedings of the dae symposium on nuclear physics, 67th edition
+(2023), p. 67.
+4M. K. Bairwa,Abhishek, and P. Arumugam, “Machine learning approaches for giant dipole resonance
+parameters”, in Proceedings of the dae symposium on nuclear physics, 66th edition (2022), p. 332.
+5
+A. Gupta, N. Singh, A. Singh,Abhishek, P. Siwach, and P. Arumugam, “Quantum adiabatic
+optimization for nuclear ground state”, in Proceedings of the dae symposium on nuclear physics, 66th
+edition (2022), p. 86.
+6A. Singh, N. Singh, P. Siwach,Abhishek, and P. Arumugam, “Quantum simulation through variational
+approach involving linear combination of unitary operators”, in Proceedings of the dae symposium on
+nuclear physics, 66th edition (2022), p. 92.
+7
+N. Singh,Abhishek, P. Siwach, V. Aggarwal, and P. Arumugam, “Linear response on a quantum
+computer”, in Proceedings of the dae symposium on nuclear physics, 66th edition (2022), p. 328.
+8Abhishek, P. Arumugam, and A. K. R. Kumar, “A linear response theory for gdr”, in Proceedings of the
+dae symposium on nuclear physics, 65th edition (2021), p. 28.
+9J. Singha, A. Kumar,Abhishek, S. Modi, and P. Arumugam, “The hyperonic volume of msp
+j0740+6620”, in Proceedings of the dae symposium on nuclear physics, 64th edition (2019), p. 616.
+Skills
+Languages]Strong reading, writing and speaking competencies for English, Hindi.
+Coding]FORTRAN Python, Java,sql, C, L
+A
+T
+E
+X, ...
+
+Skills (continued)
+Databases]Mysql, Postgresql
+Web Dev]Html, css, JavaScript, Vue, FLASK.
+Misc.]Academic research, teaching, training, consultation, Blender, Animations, Illustrations.
+Miscellaneous Experience
+Awards and Achievements
+2017]JRF Physical Sciences, Rank 16.
+]GATE Physics, Score 561.
+2020]GATE Physics, Score 481.
+2025]GATE Data Data Science and Artificial Intelligence, Score 389.
+References
+Available on Request

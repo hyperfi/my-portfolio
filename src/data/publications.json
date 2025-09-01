@@ -1,0 +1,106 @@
+{
+  "generatedAt": "2025-09-01T12:29:36.911Z",
+  "journal_articles": [
+    {
+      "raw": "M. K. Bairwa,Abhishek, R. Balasubramanian, and P. Arumugam, “Integrating physics insights into machine learning: a case study with giant dipole resonance”, Physica Scripta100, 056010 (2025).",
+      "doi": "10.1088/1402-4896/adc5b5",
+      "url": "https://doi.org/10.1088/1402-4896/adc5b5",
+      "year": 2025,
+      "journal": "Physica Scripta",
+      "title": "Integrating physics insights into machine learning: a case study with giant dipole resonance"
+    },
+    {
+      "raw": "J. Henderson, J. Heery, M. Rocchini, M. Siciliano, N. Sensharma, A. D. Ayangeakaa, R. V. F. Janssens, T. M. Kowalewski,Abhishek, P. D. Stevenson, E. Yüksel, B. A. Brown, and et al., “Deformation and collectivity in doubly magic",
+      "doi": "10.1103/physrevlett.134.062502",
+      "url": "https://doi.org/10.1103/physrevlett.134.062502",
+      "year": 2025,
+      "journal": "Physical Review Letters",
+      "title": "Deformation and Collectivity in Doubly Magic \n<mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mml:mrow><mml:mmultiscripts><mml:mrow><mml:mi>Pb</mml:mi></mml:mrow><mml:mprescripts/><mml:none/><mml:mrow><mml:mn>208</mml:mn></mml:mrow></mml:mmultiscripts></mml:mrow></mml:math>"
+    },
+    {
+      "raw": "S. Pascu, E. Yüksel,Abhishek, P. Stevenson, G. H. Bhat, R. N. Mao, K. Nomura, C. Costache, Z. P. Li, N. M ărginean, C. Mihai, T. Naz, N. Paar, Z. Podolyák, P. H. Regan, A. E. Turturic ă, R. Borcea, M. Boromiza, D. Bucurescu, S. C ălinescu, C. Clisu, A. Coman, I. Dinescu, S. Doshi, D. Filipescu, N. M. Florea, A. Gandhi, I. Gheorghe, A. Ionescu, R. Lic ă, R. M ărginean, R. E. Mihai, A. Mitu, N. Nazir, A. Negret, C. R. Ni ţ ă, E. B. O’Sullivan, C. Petrone, S. E. Poulton, J. A. Sheikh, H. K. Singh, L. Stan, S. Toma, G. Turturic ă, and S. Ujeniuc, “Collective excitations in",
+      "doi": "10.1103/physrevc.111.034302",
+      "url": "https://doi.org/10.1103/physrevc.111.034302",
+      "year": 2025,
+      "journal": "Physical Review C",
+      "title": "Collective excitations in \n<mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\"><mml:mmultiscripts><mml:mi>Gd</mml:mi><mml:mprescripts/><mml:none/><mml:mn>150</mml:mn></mml:mmultiscripts></mml:math>"
+    },
+
+    {
+      "raw": "S. Pascu, E. Yüksel,Abhishek, P. Stevenson, G. H. Bhat, R. N. Mao, K. Nomura, C. Costache, Z. P. Li, N. M ărginean, C. Mihai, T. Naz, Z. Podolyák, P. H. Regan, A. E. Turturic ă, R. Borcea, M. Boromiza, D. Bucurescu, S. C ălinescu, C. Clisu, A. Coman, I. Dinescu, S. Doshi, D. Filipescu, N. M. Florea, A. Gandhi, I. Gheorghe, A. Ionescu, R. Lic ă, R. M ărginean, R. E. Mihai, A. Mitu, N. Nazir, A. Negret, C. R. Ni ţ ă, E. B. O’Sullivan, C. Petrone, S. E. Poulton, J. A. Sheikh, H. K. Singh, L. Stan, S. Toma, G. Turturic ă, and S. Ujeniuc, “Increasing octupole collectivity across theZ= 64isotopic chain: b(e3) values in",
+      "doi": "10.1103/physrevlett.134.092501",
+      "url": "https://doi.org/10.1103/physrevlett.134.092501",
+      "year": 2025,
+      "journal": "Physical Review Letters",
+      "title": "Increasing Octupole Collectivity across the \n<mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mml:mi>Z</mml:mi><mml:mo>=</mml:mo><mml:mn>64</mml:mn></mml:math>\n Isotopic Chain: B(E3) Values in \n<mml:math xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" display=\"inline\"><mml:mrow><mml:mmultiscripts><mml:mrow><mml:mi>Gd</mml:mi></mml:mrow><mml:mprescripts/><mml:none/><mml:mrow><mml:mn>150</mml:mn></mml:mrow></mml:mmultiscripts></mml:mrow></mml:math>"
+    },
+
+    {
+      "raw": "N. Singh,Abhishek, and P. Arumugam, “A quantum algorithm for the linear response of nuclei”, Indian Journal of Physics (2025).",
+      "doi": "10.1007/s12648-025-03627-8",
+      "url": "https://doi.org/10.1007/s12648-025-03627-8",
+      "year": 2025,
+      "journal": "Indian Journal of Physics",
+      "title": "A quantum algorithm for the linear response of nuclei"
+    },
+    {
+      "raw": "Abhishek, P. Stevenson, Y. Shi, E. Yüksel, and A. Umar, “The tdhf code sky3d version 1.2”, Computer Physics Communications301, 109239 (2024).",
+      "doi": "10.1016/j.cpc.2024.109239",
+      "url": "https://doi.org/10.1016/j.cpc.2024.109239",
+      "year": 2024,
+      "journal": "Computer Physics Communications",
+      "title": "The TDHF code Sky3D version 1.2"
+    },
+    {
+      "raw": "Abhishek, P. Arumugam, and A. K. R. Kumar, “Giant dipole resonance and its fine structures in -152nd,152sm studied within the linear response theory”, Physica Scripta98, 035303 (2023).",
+      "doi": "10.1088/1402-4896/acb23f",
+      "url": "https://doi.org/10.1088/1402-4896/acb23f",
+      "year": 2023,
+      "journal": "Physica Scripta",
+      "title": "Giant dipole resonance and its fine structures in <sup>144−152</sup>Nd,<sup>152</sup>Sm studied within the linear response theory"
+    },
+
+    {
+      "raw": "Abhishek, “Iscovector giant dipole resonance in",
+      "doi": "10.1088/1402-4896/adc5b5",
+      "url": "https://doi.org/10.1088/1402-4896/adc5b5",
+      "year": 2025,
+      "journal": "Physica Scripta",
+      "title": "Integrating physics insights into machine learning: a case study with giant dipole resonance"
+    }
+  ],
+  "conference_proceedings": [
+    {
+      "raw": "N. Singh, Abhishek, P. Siwach, and P. Arumugam, “Quantum simulation of nuclear linear response”, in",
+      "doi": "10.1109/qce60285.2024.10308",
+      "url": "https://doi.org/10.1109/qce60285.2024.10308",
+      "year": 2024,
+      "journal": "2024 IEEE International Conference on Quantum Computing and Engineering (QCE)",
+      "title": "Quantum Simulation of Nuclear Linear Response"
+    },
+    {
+      "raw": "Abhishek, “A linear response theory for GDR”, in 65th DAE Nuclear Physics Symposium (2021).",
+      "doi": null,
+      "url": null,
+      "year": 2021,
+      "journal": "65th DAE Nuclear Physics Symposium",
+      "title": "A linear response theory for GDR"
+    },
+    {
+      "raw": "Abhishek, “The hyperonic volume of MSP J0740+6620”, DAE Symposium on Nuclear Physics (2019).",
+      "doi": null,
+      "url": null,
+      "year": 2019,
+      "journal": "DAE Symposium on Nuclear Physics",
+      "title": "The hyperonic volume of MSP J0740+6620"
+    },
+    {
+      "raw": "Abhishek, “Limiting mass of fastest spinning neutron stars”, DAE Symposium on Nuclear Physics (2018).",
+      "doi": null,
+      "url": null,
+      "year": 2018,
+      "journal": "DAE Symposium on Nuclear Physics",
+      "title": "Limiting mass of fastest spinning neutron stars"
+    }
+  ]
+}

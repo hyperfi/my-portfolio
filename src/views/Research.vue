@@ -6,10 +6,14 @@
         <h1 class="text-5xl font-bold text-white mb-6">
           My <span class="glow-text">Research</span>
         </h1>
-        <p class="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-          <!-- TODO: Customize your research overview -->
-          Advancing our understanding of nuclear physics through theoretical analysis, 
-          experimental investigation, and computational modeling of atomic nuclei and their interactions.
+        <p class="text-xl text-gray-300 max-w-5xl mx-auto leading-relaxed">
+          My research tackles core problems in nuclear many‑body physics using complementary classical and
+          quantum techniques. On the classical side, I develop microscopic descriptions of collective
+          excitations (giant dipole/monopole resonances) with linear‑response theory and TDHF (Sky3D),
+          benchmarked against RPA and experimental data. On the quantum side, I designed a first‑of‑its‑kind
+          algorithm for nuclear linear response that maps fermionic operators to qubits (Jordan–Wigner),
+          prepares time‑dependent states, and employs the SWAP test—achieving O(N) scaling and excellent
+          agreement with data on  <sup>120</sup>Sn and <sup>208</sup>Pb, with careful NISQ noise studies and mitigation.
         </p>
       </div>
 
@@ -26,27 +30,50 @@
         </div>
       </section>
 
-      <!-- Featured Publications -->
+      <!-- Publications -->
       <section class="mb-20">
-        <h2 class="text-3xl font-bold text-nuclear-glow mb-12 text-center">Featured Publications</h2>
-        <div class="space-y-6">
-          <!-- TODO: Replace with your actual publications -->
-          <div v-for="paper in featuredPapers" :key="paper.title" class="bg-card-bg p-6 rounded-xl border border-nuclear-blue/20 card-hover">
-            <div class="flex flex-col md:flex-row md:items-start gap-4">
-              <div class="flex-1">
-                <h3 class="text-lg font-bold text-white mb-2">{{ paper.title }}</h3>
-                <p class="text-nuclear-glow text-sm mb-2">{{ paper.journal }} • {{ paper.year }}</p>
-                <p class="text-gray-300 text-sm leading-relaxed mb-4">{{ paper.abstract }}</p>
-                <div class="flex flex-wrap gap-2">
-                  <span v-for="tag in paper.tags" :key="tag" class="px-3 py-1 bg-nuclear-blue/20 text-nuclear-glow text-xs rounded-full">
-                    {{ tag }}
-                  </span>
+        <h2 class="text-3xl font-bold text-nuclear-glow mb-12 text-center">Publications</h2>
+        <div class="space-y-12">
+          <!-- Journal Articles -->
+          <div>
+            <h3 class="text-2xl font-semibold text-white mb-6 text-center">Journal Articles ({{ journalArticles.length }})</h3>
+            <div class="space-y-6">
+              <div v-for="(paper, idx) in journalArticles" :key="'j-' + idx" class="bg-card-bg p-6 rounded-xl border border-nuclear-blue/20 card-hover">
+                <div class="flex flex-col md:flex-row md:items-start gap-4">
+                  <div class="flex-1">
+                    <h4 class="text-lg font-bold text-white mb-2" v-html="paper.title || paper.raw"></h4>
+                    <p class="text-nuclear-glow text-sm mb-2" v-if="paper.journal || paper.year">
+                      {{ [paper.journal, paper.year].filter(Boolean).join(' • ') }}
+                    </p>
+                  </div>
+                  <div class="flex-shrink-0" v-if="paper.url">
+                    <a :href="paper.url" target="_blank" rel="noopener" class="btn-glow text-sm">
+                      Read Paper
+                    </a>
+                  </div>
                 </div>
               </div>
-              <div class="flex-shrink-0">
-                <a :href="paper.link" target="_blank" class="btn-glow text-sm">
-                  Read Paper
-                </a>
+            </div>
+          </div>
+
+          <!-- Conference Proceedings -->
+          <div v-if="conferenceProceedings.length">
+            <h3 class="text-2xl font-semibold text-white mb-6 text-center">Conference Proceedings ({{ conferenceProceedings.length }})</h3>
+            <div class="space-y-6">
+              <div v-for="(paper, idx) in conferenceProceedings" :key="'c-' + idx" class="bg-card-bg p-6 rounded-xl border border-nuclear-blue/20 card-hover">
+                <div class="flex flex-col md:flex-row md:items-start gap-4">
+                  <div class="flex-1">
+                    <h4 class="text-lg font-bold text-white mb-2" v-html="paper.title || paper.raw"></h4>
+                    <p class="text-nuclear-glow text-sm mb-2" v-if="paper.journal || paper.year">
+                      {{ [paper.journal, paper.year].filter(Boolean).join(' • ') }}
+                    </p>
+                  </div>
+                  <div class="flex-shrink-0" v-if="paper.url">
+                    <a :href="paper.url" target="_blank" rel="noopener" class="btn-glow text-sm">
+                      Read Paper
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -83,7 +110,7 @@
             I'm always open to discussing research opportunities, academic partnerships, 
             and innovative projects in nuclear physics and related fields.
           </p>
-          <a href="mailto:your.email@university.edu" class="btn-glow">
+          <a href="mailto:abi00779@gmail.com" class="btn-glow">
             Get In Touch
           </a>
         </div>
@@ -94,94 +121,65 @@
 
 <script setup>
 import { ref } from 'vue'
+import publications from '../data/publications.json'
 
-// TODO: Replace with your actual research areas
+// Research areas sourced from provided text
 const researchAreas = ref([
   {
-    icon: '⚛️',
-    title: 'Nuclear Structure',
-    description: 'Investigating the properties and behavior of atomic nuclei using advanced theoretical models and experimental techniques.'
+    icon: '🧮',
+    title: 'Quantum Linear Response (GDR)',
+    description: 'First‑of‑its‑kind quantum algorithm for nuclear linear response using Jordan–Wigner mapping, time‑dependent state prep, SWAP test, and O(N) scaling.'
   },
   {
-    icon: '🌊',
-    title: 'Quantum Mechanics',
-    description: 'Exploring quantum phenomena in nuclear systems and developing new approaches to understanding quantum interactions.'
+    icon: '🧭',
+    title: 'Microscopic GDR in Deformed Nuclei',
+    description: 'Linear‑response theory with triaxial Woods–Saxon potential; wavelet analysis; improved fits vs macroscopic models for Nd/Sm isotopes.'
   },
   {
-    icon: '💥',
-    title: 'Particle Physics',
-    description: 'Studying fundamental particles and their interactions, particularly in high-energy nuclear collisions.'
+    icon: '🌀',
+    title: 'TDHF / Sky3D',
+    description: 'Development of Sky3D v1.2 for external multipole boosts and strength functions; benchmarking vs RPA and applications to collectivity studies.'
   },
   {
-    icon: '🖥️',
-    title: 'Computational Physics',
-    description: 'Developing and implementing numerical methods and simulations for complex nuclear physics problems.'
+    icon: '⚙️',
+    title: 'RPA & Density Functionals',
+    description: 'Random Phase Approximation and Skyrme energy‑density functionals for nuclear structure and dynamics.'
   },
   {
-    icon: '🔍',
-    title: 'Experimental Methods',
-    description: 'Designing and conducting experiments using state-of-the-art detection systems and analysis techniques.'
-  },
-  {
-    icon: '📊',
-    title: 'Data Analysis',
-    description: 'Advanced statistical analysis and machine learning applications in nuclear physics research.'
+    icon: '🔗',
+    title: 'Hybrid Quantum‑Classical',
+    description: 'Combining quantum algorithms with classical microscopic models to push precision and scalability.'
   }
 ])
 
-// TODO: Replace with your actual publications
-const featuredPapers = ref([
-  {
-    title: 'Quantum Effects in Heavy Nuclei: A Computational Approach',
-    journal: 'Physical Review C',
-    year: '2024',
-    abstract: 'This study presents a novel computational framework for analyzing quantum effects in heavy atomic nuclei, revealing new insights into nuclear stability and decay processes.',
-    tags: ['Quantum Mechanics', 'Heavy Nuclei', 'Computational Physics'],
-    link: '#' // Replace with actual DOI or link
-  },
-  {
-    title: 'Nuclear Structure Analysis Using Machine Learning Techniques',
-    journal: 'Nature Physics',
-    year: '2023',
-    abstract: 'We demonstrate the application of advanced machine learning algorithms to predict nuclear properties and identify patterns in nuclear structure data.',
-    tags: ['Machine Learning', 'Nuclear Structure', 'Data Analysis'],
-    link: '#' // Replace with actual DOI or link
-  },
-  {
-    title: 'Experimental Investigation of Rare Nuclear Decay Modes',
-    journal: 'Journal of Physics G',
-    year: '2023',
-    abstract: 'Detailed experimental study of rare nuclear decay processes using high-precision detection systems and novel analysis methods.',
-    tags: ['Experimental Physics', 'Nuclear Decay', 'Detection Systems'],
-    link: '#' // Replace with actual DOI or link
-  }
-])
-
-// TODO: Replace with your actual current projects
+// Publications data from generated JSON
+const journalArticles = ref((publications && publications.journal_articles) ? publications.journal_articles : [])
+const conferenceProceedings = ref((publications && publications.conference_proceedings) ? publications.conference_proceedings : [])
+// Current projects and directions
 const currentProjects = ref([
   {
-    icon: '🚀',
-    title: 'Next-Generation Nuclear Detector',
-    description: 'Developing advanced detection systems for measuring nuclear properties with unprecedented precision and sensitivity.',
-    status: 'In Progress'
-  },
-  {
     icon: '🧮',
-    title: 'Quantum Simulation Platform',
-    description: 'Building a comprehensive simulation framework for modeling complex nuclear interactions using quantum mechanical principles.',
-    status: 'Design Phase'
-  },
-  {
-    icon: '🤝',
-    title: 'International Collaboration',
-    description: 'Leading a multi-institutional research initiative focused on understanding exotic nuclear matter under extreme conditions.',
+    title: 'Refining Quantum Linear‑Response Algorithms',
+    description: 'Extend to broader multipoles and open‑shell systems; optimize circuits; systematic NISQ noise mitigation.',
     status: 'Active'
   },
   {
-    icon: '📖',
-    title: 'Nuclear Physics Textbook',
-    description: 'Authoring a comprehensive textbook on modern nuclear physics for graduate students and researchers.',
-    status: 'Writing'
+    icon: '🔗',
+    title: 'Hybrid Quantum‑Classical Frameworks',
+    description: 'Bridge TDHF/DFT with quantum subroutines to accelerate many‑body response calculations.',
+    status: 'Design Phase'
+  },
+  {
+    icon: '🌀',
+    title: 'Sky3D Enhancements',
+    description: 'New external fields, improved strength‑function analysis, and validation against RPA/experiment.',
+    status: 'Development'
+  },
+  {
+    icon: '📊',
+    title: 'Deformation & Fine‑Structure Systematics',
+    description: 'Microscopic studies of GDR/ISM in deformed nuclei with wavelet analysis and comparisons to data.',
+    status: 'In Progress'
   }
 ])
 </script>

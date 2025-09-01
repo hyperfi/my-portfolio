@@ -30,10 +30,11 @@
             <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
               Nuclear Physicist & Quantum Researcher
             </p>
-            <p class="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
-              <!-- TODO: Customize this description -->
-              Investigating the fundamental properties of atomic nuclei and their interactions, 
-              pushing the boundaries of our understanding of matter and energy at the quantum level.
+            <p class="text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed">
+              I address fundamental challenges in nuclear many‑body physics using advanced theoretical and
+              computational methods. My work spans microscopic models (linear‑response theory, TDHF/Sky3D,
+              RPA and density‑functional approaches) and pioneering quantum algorithms for nuclear structure
+              and dynamics, with an emphasis on giant resonances and deformed nuclei.
             </p>
           </div>
 

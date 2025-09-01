@@ -7,9 +7,7 @@
           Beyond <span class="glow-text">Physics</span>
         </h1>
         <p class="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-          <!-- TODO: Customize your hobbies overview -->
-          When I'm not exploring the mysteries of the atomic nucleus, I find inspiration and balance 
-          through various creative and adventurous pursuits that keep me grounded and energized.
+          When I'm not exploring the atomic nucleus, I create — I photograph the night sky and urban scenes, build 3D models and visualizations, and publish open-source code on GitHub. Follow my photography on Instagram and check my projects on GitHub.
         </p>
       </div>
 
@@ -31,6 +29,28 @@
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- Instagram Profiles -->
+      <section class="mb-20">
+        <h2 class="text-3xl font-bold text-nuclear-glow mb-6 text-center">Instagram</h2>
+        <p class="text-center text-gray-300 mb-6">Follow my photography and 3D work on Instagram.</p>
+  <div class="flex justify-center gap-6">
+          <a href="https://www.instagram.com/hyperfinephotos" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 bg-card-bg px-4 py-3 rounded-lg border border-nuclear-blue/20 hover:scale-[1.02] transition-transform">
+            <svg class="h-5 w-5 text-pink-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10zM12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9zm0 2a2.5 2.5 0 110 5 2.5 2.5 0 010-5zM17.5 6a.9.9 0 11-.001 1.8A.9.9 0 0117.5 6z"/></svg>
+            <span class="text-sm text-gray-200">@hyperfinephotos</span>
+          </a>
+
+          <a href="https://www.instagram.com/hyperfine3d" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 bg-card-bg px-4 py-3 rounded-lg border border-nuclear-blue/20 hover:scale-[1.02] transition-transform">
+            <svg class="h-5 w-5 text-pink-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10zM12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9zm0 2a2.5 2.5 0 110 5 2.5 2.5 0 010-5zM17.5 6a.9.9 0 11-.001 1.8A.9.9 0 0117.5 6z"/></svg>
+            <span class="text-sm text-gray-200">@hyperfine3d</span>
+          </a>
+          
+          <a href="https://github.com/hyperfi" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 bg-card-bg px-4 py-3 rounded-lg border border-nuclear-blue/20 hover:scale-[1.02] transition-transform">
+            <svg class="h-5 w-5 text-gray-200" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.38 7.86 10.89.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.25 3.33.96.1-.75.4-1.25.73-1.54-2.56-.29-5.26-1.28-5.26-5.69 0-1.26.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.92 10.92 0 012.87-.39c.98 0 1.97.13 2.87.39 2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.73.8 1.18 1.82 1.18 3.08 0 4.42-2.71 5.39-5.29 5.67.41.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56A11.5 11.5 0 0023.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
+            <span class="text-sm text-gray-200">github.com/hyperfi</span>
+          </a>
         </div>
       </section>
 
@@ -122,8 +142,8 @@ const hobbies = ref([
   {
     icon: '📸',
     title: 'Photography',
-    description: 'Capturing the beauty of nature and urban landscapes, with a special interest in astrophotography and long-exposure techniques.',
-    tags: ['Astrophotography', 'Landscapes', 'Long Exposure']
+  description: 'Capturing nature and urban landscapes with a focus on astrophotography and long exposures — many images are shared on my Instagram @hyperfinephotos.',
+  tags: ['Astrophotography', 'Landscapes', 'Long Exposure']
   },
   {
     icon: '🥾',
@@ -134,8 +154,8 @@ const hobbies = ref([
   {
     icon: '💻',
     title: 'Coding Projects',
-    description: 'Building web applications, data visualization tools, and automation scripts that combine my love for technology with problem-solving.',
-    tags: ['Web Development', 'Data Viz', 'Python']
+  description: 'Building web apps, data-visualization tools, simulation engines, and open-source libraries — code and releases are on my GitHub profile.',
+  tags: ['Web Development', 'Data Viz', 'Python']
   },
   {
     icon: '🔭',
@@ -146,8 +166,8 @@ const hobbies = ref([
   {
     icon: '📚',
     title: 'Science Communication',
-    description: 'Writing articles and giving talks to make complex physics concepts accessible to the general public.',
-    tags: ['Writing', 'Public Speaking', 'Education']
+  description: 'Writing articles and giving public talks to make physics accessible — I publish writeups and notebooks alongside code on GitHub.',
+  tags: ['Writing', 'Public Speaking', 'Education']
   },
   {
     icon: '🎵',
@@ -164,21 +184,21 @@ const personalProjects = ref([
     title: 'Astrophotography Gallery',
     description: 'A curated collection of my astrophotography work, featuring deep-sky objects, planetary photography, and time-lapse sequences of celestial events. Each image tells a story of patience, precision, and the beauty of our universe.',
     tags: ['Photography', 'Astronomy', 'Art'],
-    link: '#' // Replace with actual link
+  link: 'https://github.com/hyperfi' // points to GitHub profile
   },
   {
     icon: '🏔️',
     title: 'Mountain Peak Challenge',
     description: 'Documenting my journey to climb the highest peaks in each state, combining my love for adventure with physical fitness. Currently at 15/50 peaks, with detailed trail guides and photography from each summit.',
     tags: ['Adventure', 'Fitness', 'Travel'],
-    link: '#' // Replace with actual link
+  link: 'https://github.com/hyperfi' // points to GitHub profile
   },
   {
     icon: '🛠️',
     title: 'Physics Simulation Engine',
     description: 'An open-source JavaScript library for creating interactive physics simulations in the browser. Perfect for educational purposes and making complex concepts visually accessible.',
     tags: ['JavaScript', 'Education', 'Open Source'],
-    link: '#' // Replace with actual link
+  link: 'https://github.com/hyperfi' // points to GitHub profile
   }
 ])
 

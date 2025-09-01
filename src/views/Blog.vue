@@ -20,18 +20,52 @@
           </div>
           <div v-else class="space-y-8">
             <article v-for="post in posts" :key="post.id" class="bg-card-bg p-8 rounded-xl border border-nuclear-blue/20 card-hover">
-              <h2 class="text-2xl font-bold text-white mb-2">{{ post.title }}</h2>
-              <div class="text-sm text-gray-400 mb-4">
-                {{ formatDate(post.created_at) }}
-                <template v-if="post.tags && post.tags.length">
-                  • <span v-for="(tag, i) in post.tags" :key="tag">{{ tag }}<span v-if="i < post.tags.length-1">, </span></span>
-                </template>
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h2 class="text-2xl font-bold text-white mb-2">{{ post.title }}</h2>
+                  <div class="text-sm text-gray-400">
+                    {{ formatDate(post.created_at) }}
+                    <template v-if="post.tags && post.tags.length">
+                      • <span v-for="(tag, i) in post.tags" :key="tag">{{ tag }}<span v-if="i < post.tags.length-1">, </span></span>
+                    </template>
+                  </div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button @click="startEdit(post)" class="text-sm px-3 py-1 bg-nuclear-blue/20 rounded text-nuclear-glow">Edit</button>
+                  <button @click="promptDelete(post)" class="text-sm px-3 py-1 bg-red-600/80 rounded text-white">Delete</button>
+                </div>
               </div>
-              <div class="prose prose-invert max-w-none" v-html="render(post.content)"></div>
+
+              <div v-if="editingId === post.id" class="space-y-4">
+                <input v-model="editTitle" class="w-full px-4 py-2 bg-card-bg border border-nuclear-blue/30 rounded text-white" />
+                <input v-model="editTags" placeholder="comma,separated,tags" class="w-full px-4 py-2 bg-card-bg border border-nuclear-blue/30 rounded text-white" />
+                <textarea v-model="editContent" rows="10" class="w-full px-4 py-2 bg-card-bg border border-nuclear-blue/30 rounded text-white"></textarea>
+                <div class="flex gap-3">
+                  <button @click="saveEdit(post)" :disabled="isSaving" class="btn-glow">{{ isSaving ? 'Saving...' : 'Save' }}</button>
+                  <button @click="cancelEdit" class="px-4 py-2 border rounded text-gray-300">Cancel</button>
+                </div>
+                <p v-if="editMessage" :class="editError ? 'text-red-400' : 'text-nuclear-glow'">{{ editMessage }}</p>
+              </div>
+
+              <div v-else class="prose prose-invert max-w-none" v-html="render(post.content)"></div>
             </article>
           </div>
         </div>
       </section>
+
+      <!-- Delete confirmation modal -->
+      <div v-if="showDeleteModal" class="fixed inset-0 z-50 flex items-center justify-center">
+        <div class="absolute inset-0 bg-black/50" aria-hidden="true"></div>
+        <div class="relative bg-card-bg p-6 rounded-lg border border-nuclear-blue/30 max-w-lg mx-4">
+          <h3 class="text-xl font-bold text-white mb-2">Confirm delete</h3>
+          <p class="text-sm text-gray-300 mb-4">Are you sure you want to delete "<span class="font-semibold text-white">{{ deleteTarget?.title }}</span>"? This action cannot be undone.</p>
+          <p v-if="deleteErrorMessage" class="text-sm text-red-400 mb-2">{{ deleteErrorMessage }}</p>
+          <div class="flex justify-end gap-3">
+            <button @click="cancelDelete" class="px-4 py-2 border rounded text-gray-300">Cancel</button>
+            <button @click="confirmDelete" :disabled="isDeleting" class="btn-glow">{{ isDeleting ? 'Deleting...' : 'Delete forever' }}</button>
+          </div>
+        </div>
+      </div>
 
       <!-- Newsletter Signup -->
       <div class="bg-gradient-to-r from-nuclear-blue/10 to-nuclear-glow/10 p-8 rounded-xl border border-nuclear-blue/30">
@@ -80,10 +114,29 @@ import DOMPurify from 'dompurify'
 const posts = ref([])
 const loading = ref(true)
 
+// Edit/Delete state
+const editingId = ref(null)
+const editTitle = ref('')
+const editTags = ref('')
+const editContent = ref('')
+const isSaving = ref(false)
+const editMessage = ref('')
+const editError = ref(false)
+// Delete modal state
+const showDeleteModal = ref(false)
+const deleteTarget = ref(null)
+const isDeleting = ref(false)
+const deleteErrorMessage = ref('')
+
 const render = (md) => DOMPurify.sanitize(marked.parse(md || ''))
 const formatDate = (iso) => new Date(iso).toLocaleDateString()
 
 onMounted(async () => {
+  await fetchPosts()
+})
+
+const fetchPosts = async () => {
+  loading.value = true
   const { data, error } = await supabase
     .from('posts')
     .select('*')
@@ -91,7 +144,94 @@ onMounted(async () => {
 
   if (!error && data) posts.value = data
   loading.value = false
-})
+}
+
+const startEdit = (post) => {
+  editingId.value = post.id
+  editTitle.value = post.title
+  editTags.value = (post.tags || []).join(',')
+  editContent.value = post.content
+  editMessage.value = ''
+  editError.value = false
+}
+
+const cancelEdit = () => {
+  editingId.value = null
+  editTitle.value = ''
+  editTags.value = ''
+  editContent.value = ''
+  editMessage.value = ''
+  editError.value = false
+}
+
+const saveEdit = async (post) => {
+  if (!editingId.value) return
+  isSaving.value = true
+  editMessage.value = ''
+  editError.value = false
+
+  const updated = {
+    title: editTitle.value,
+    content: editContent.value,
+    tags: editTags.value ? editTags.value.split(',').map(t => t.trim()).filter(Boolean) : []
+  }
+
+  const { data, error } = await supabase
+    .from('posts')
+    .update(updated)
+    .eq('id', post.id)
+
+  if (error) {
+    editMessage.value = error.message || 'Failed to save.'
+    editError.value = true
+  } else {
+    // optimistic update
+    const idx = posts.value.findIndex(p => p.id === post.id)
+    if (idx !== -1) posts.value[idx] = { ...posts.value[idx], ...updated }
+    editMessage.value = 'Saved successfully.'
+    setTimeout(cancelEdit, 800)
+  }
+
+  isSaving.value = false
+}
+
+const promptDelete = (post) => {
+  deleteTarget.value = post
+  deleteErrorMessage.value = ''
+  showDeleteModal.value = true
+}
+
+const cancelDelete = () => {
+  deleteTarget.value = null
+  deleteErrorMessage.value = ''
+  showDeleteModal.value = false
+}
+
+const confirmDelete = async () => {
+  if (!deleteTarget.value) return
+  isDeleting.value = true
+  deleteErrorMessage.value = ''
+
+  const post = deleteTarget.value
+  const original = [...posts.value]
+  posts.value = posts.value.filter(p => p.id !== post.id)
+
+  const { error } = await supabase
+    .from('posts')
+    .delete()
+    .eq('id', post.id)
+
+  if (error) {
+    posts.value = original
+    deleteErrorMessage.value = error.message || 'Failed to delete.'
+    isDeleting.value = false
+  } else {
+    // success
+    isDeleting.value = false
+    showDeleteModal.value = false
+    deleteTarget.value = null
+  }
+}
 
 // Newsletter subscription state (demo only)
 const email = ref('')

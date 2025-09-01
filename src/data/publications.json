@@ -81,7 +81,7 @@
     {
       "raw": "Abhishek, “A linear response theory for GDR”, in 65th DAE Nuclear Physics Symposium (2021).",
       "doi": null,
-      "url": null,
+      "url": "https://sympnp.org/proceedings/65/A3.pdf",
       "year": 2021,
       "journal": "65th DAE Nuclear Physics Symposium",
       "title": "A linear response theory for GDR"
@@ -89,7 +89,7 @@
     {
       "raw": "Abhishek, “The hyperonic volume of MSP J0740+6620”, DAE Symposium on Nuclear Physics (2019).",
       "doi": null,
-      "url": null,
+      "url": "https://sympnp.org/proceedings/64/C24.pdf",
       "year": 2019,
       "journal": "DAE Symposium on Nuclear Physics",
       "title": "The hyperonic volume of MSP J0740+6620"
@@ -97,10 +97,71 @@
     {
       "raw": "Abhishek, “Limiting mass of fastest spinning neutron stars”, DAE Symposium on Nuclear Physics (2018).",
       "doi": null,
-      "url": null,
+      "url": "https://sympnp.org/proceedings/63/C14.pdf",
       "year": 2018,
       "journal": "DAE Symposium on Nuclear Physics",
       "title": "Limiting mass of fastest spinning neutron stars"
+    }
+    ,
+    {
+      "raw": "P. D. Stevenson, Abhishek, Y. Shi, 'Isoscalar giant monopole resonance in Mo 100: TDHF calculations and ground state deformation', Proceedings of the 7th International Conference on Collective Motion in Nuclei under Extreme Conditions, Catania, Italy.",
+      "doi": "10.1393/ncc/i2024-24026-y",
+      "url": "http://dx.doi.org/10.1393/ncc/i2024-24026-y",
+      "year": 2024,
+      "journal": "Proceedings of the 7th International Conference on Collective Motion in Nuclei under Extreme Conditions",
+      "title": "Isoscalar giant monopole resonance in Mo 100: TDHF calculations and ground state deformation",
+      "pages": "26",
+      "address": "Catania, Italy"
+    },
+    {
+      "raw": "Aman Gupta, Nifeeya Singh, Ashutosh Singh, Abhishek, Pooja Siwach, P. Arumugam, 'Quantum adiabatic optimization for nuclear ground state', Proceedings of the DAE Symposium on Nuclear Physics, 66th edition, Guwahati (2022).",
+      "doi": null,
+      "url": "https://sympnp.org/proceedings/66/A17.pdf",
+      "year": 2022,
+      "journal": "Proceedings of the DAE Symposium on Nuclear Physics, 66th edition",
+      "title": "Quantum adiabatic optimization for nuclear ground state",
+      "pages": "86",
+      "address": "Guwahati"
+    },
+    {
+      "raw": "Ashutosh Singh, Nifeeya Singh, Pooja Siwach, Abhishek, P. Arumugam, 'Quantum simulation through variational approach involving linear combination of unitary operators', Proceedings of the DAE Symposium on Nuclear Physics, 66th edition, Guwahati (2022).",
+      "doi": null,
+      "url": "https://sympnp.org/proceedings/66/A20.pdf",
+      "year": 2022,
+      "journal": "Proceedings of the DAE Symposium on Nuclear Physics, 66th edition",
+      "title": "Quantum simulation through variational approach involving linear combination of unitary operators",
+      "pages": "92",
+      "address": "Guwahati"
+    },
+    {
+      "raw": "Nifeeeya Singh, Abhishek, Pooja Siwach, Vidisha Aggarwal, P. Arumugam, 'Linear response on a quantum computer', Proceedings of the DAE Symposium on Nuclear Physics, 66th edition, Guwahati (2022).",
+      "doi": null,
+      "url": "https://sympnp.org/proceedings/66/A138.pdf",
+      "year": 2022,
+      "journal": "Proceedings of the DAE Symposium on Nuclear Physics, 66th edition",
+      "title": "Linear response on a quantum computer",
+      "pages": "328",
+      "address": "Guwahati"
+    },
+    {
+      "raw": "Manish Kumar Bairwa, Abhishek, P. Arumugam, 'Machine learning approaches for giant dipole resonance parameters', Proceedings of the DAE Symposium on Nuclear Physics, 66th edition, Guwahati (2022).",
+      "doi": null,
+      "url": "https://sympnp.org/proceedings/66/A140.pdf",
+      "year": 2022,
+      "journal": "Proceedings of the DAE Symposium on Nuclear Physics, 66th edition",
+      "title": "Machine learning approaches for giant dipole resonance parameters",
+      "pages": "332",
+      "address": "Guwahati"
+    },
+    {
+      "raw": "Nifeeya Singh, Abhishek, Pooja Siwach, Ashutosh Singh, P. Arumugam, 'Excitations in Qubit Space using Single-Particle Dipole Operator', Proceedings of the DAE Symposium on Nuclear Physics, 67th edition, Indore (2023).",
+      "doi": null,
+      "url": "https://sympnp.org/proceedings/67/A16",
+      "year": 2023,
+      "journal": "Proceedings of the DAE Symposium on Nuclear Physics, 67th edition",
+      "title": "Excitations in Qubit Space using Single-Particle Dipole Operator",
+      "pages": "67",
+      "address": "Indore"
     }
   ]
 }

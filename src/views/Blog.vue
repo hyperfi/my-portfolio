@@ -19,7 +19,7 @@
             No posts yet. Log in via the Admin page to publish your first article.
           </div>
           <div v-else class="space-y-8">
-            <article v-for="post in posts" :key="post.id" class="bg-card-bg p-8 rounded-xl border border-nuclear-blue/20 card-hover">
+            <article v-for="post in posts" :key="post.id" @click="openPost(post)" tabindex="0" @keydown.enter="openPost(post)" class="bg-card-bg p-8 rounded-xl border border-nuclear-blue/20 card-hover cursor-pointer">
               <div class="flex justify-between items-start mb-4">
                 <div>
                   <h2 class="text-2xl font-bold text-white mb-2">{{ post.title }}</h2>
@@ -31,8 +31,8 @@
                   </div>
                 </div>
                 <div v-if="session" class="flex items-center gap-2">
-                  <router-link :to="`/admin/edit/${post.id}`" class="text-sm px-3 py-1 bg-nuclear-blue/20 rounded text-nuclear-glow">Edit</router-link>
-                  <button @click="promptDelete(post)" class="text-sm px-3 py-1 bg-red-600/80 rounded text-white">Delete</button>
+                  <router-link @click.stop :to="`/admin/edit/${post.id}`" class="text-sm px-3 py-1 bg-nuclear-blue/20 rounded text-nuclear-glow">Edit</router-link>
+                  <button @click.stop="promptDelete(post)" class="text-sm px-3 py-1 bg-red-600/80 rounded text-white">Delete</button>
                 </div>
               </div>
 
@@ -43,6 +43,12 @@
                 </div>
               </div>
             </article>
+          </div>
+          <div class="text-center mt-6">
+            <button v-if="!allLoaded" @click="loadMore" :disabled="loading" class="btn-glow">
+              {{ loading ? 'Loading...' : 'Load more' }}
+            </button>
+            <div v-else class="text-sm text-gray-400 mt-2">No more posts.</div>
           </div>
         </div>
       </section>
@@ -100,16 +106,21 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../lib/auth'
 import { renderMarkdownToSafeHtml } from '../lib/markdown'
 
 // Auth state (shared)
 const { session } = useAuth()
+const router = useRouter()
 
 // Blog posts state
 const posts = ref([])
 const loading = ref(true)
+const pageSize = ref(5)
+const page = ref(0)
+const allLoaded = ref(false)
 
 // Delete modal state
 const showDeleteModal = ref(false)
@@ -131,18 +142,39 @@ const excerpt = (md, length = 300) => {
 }
 
 onMounted(async () => {
-  await fetchPosts()
+  page.value = 0
+  allLoaded.value = false
+  await fetchPosts(0, false)
 })
 
-const fetchPosts = async () => {
+const fetchPosts = async (p = 0, append = false) => {
   loading.value = true
+  const start = p * pageSize.value
+  const end = start + pageSize.value - 1
   const { data, error } = await supabase
     .from('posts')
     .select('*')
     .order('created_at', { ascending: false })
+    .range(start, end)
 
-  if (!error && data) posts.value = data
+  if (!error && data) {
+    if (append) posts.value = posts.value.concat(data)
+    else posts.value = data
+    if (data.length < pageSize.value) allLoaded.value = true
+  }
   loading.value = false
+}
+
+const loadMore = async () => {
+  if (loading.value || allLoaded.value) return
+  page.value += 1
+  await fetchPosts(page.value, true)
+}
+
+const openPost = (post) => {
+  // navigate to post detail
+  if (!post || !post.id) return
+  router.push({ name: 'PostDetail', params: { id: post.id } })
 }
 
 

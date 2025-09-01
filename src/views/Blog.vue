@@ -36,7 +36,12 @@
                 </div>
               </div>
 
-              <div class="prose prose-invert max-w-none" v-html="render(post.content)"></div>
+              <div class="prose prose-invert max-w-none">
+                <div v-html="render(excerpt(post.content))"></div>
+                <div class="mt-4">
+                  <router-link :to="`/blog/${post.id}`" class="text-nuclear-glow hover:underline">Read full post →</router-link>
+                </div>
+              </div>
             </article>
           </div>
         </div>
@@ -114,6 +119,16 @@ const deleteErrorMessage = ref('')
 
 const render = (md) => renderMarkdownToSafeHtml(md || '')
 const formatDate = (iso) => new Date(iso).toLocaleDateString()
+
+const excerpt = (md, length = 300) => {
+  if (!md) return ''
+  // strip markdown to plain text then truncate
+  const html = renderMarkdownToSafeHtml(md)
+  const div = document.createElement('div')
+  div.innerHTML = html
+  const text = div.textContent || div.innerText || ''
+  return text.length > length ? text.slice(0, length).trim() + '…' : text
+}
 
 onMounted(async () => {
   await fetchPosts()

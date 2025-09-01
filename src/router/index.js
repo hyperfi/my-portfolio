@@ -5,6 +5,7 @@ import Hobbies from '../views/Hobbies.vue'
 import Blog from '../views/Blog.vue'
 import Admin from '../views/Admin.vue'
 import EditPost from '../views/EditPost.vue'
+import PostDetail from '../views/PostDetail.vue'
 import { supabase } from '../lib/supabase'
 
 const routes = [
@@ -27,6 +28,11 @@ const routes = [
     path: '/blog',
     name: 'Blog',
     component: Blog
+  },
+  {
+    path: '/blog/:id',
+    name: 'PostDetail',
+    component: PostDetail
   },
   {
     path: '/admin',

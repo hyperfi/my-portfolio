@@ -61,14 +61,24 @@ const setMeta = (post) => {
     el.setAttribute('content', value)
   }
 
-  // generate a short plain-text description from markdown
+
+  // generate a short plain-text description from available sources with fallbacks
   let description = ''
-  try {
-    const tmp = document.createElement('div')
-    tmp.innerHTML = renderMarkdownToSafeHtml(post.content || '')
-    description = (tmp.textContent || tmp.innerText || '').trim().replace(/\s+/g, ' ').slice(0, 200)
-  } catch (e) {
-    description = (post.content || '').slice(0, 200)
+  // prefer explicit excerpt field if available
+  if (post.excerpt && post.excerpt.trim()) {
+    description = post.excerpt.trim().slice(0, 200)
+  } else {
+    try {
+      const tmp = document.createElement('div')
+      tmp.innerHTML = renderMarkdownToSafeHtml(post.content || '')
+      description = (tmp.textContent || tmp.innerText || '').trim().replace(/\s+/g, ' ').slice(0, 200)
+    } catch (e) {
+      description = (post.content || '').slice(0, 200)
+    }
+  }
+  // final fallback: use title if still empty
+  if (!description || !description.trim()) {
+    description = `${post.title} — ${siteName}`
   }
 
   const siteName = 'Nuclear Physicist'

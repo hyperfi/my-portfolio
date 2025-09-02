@@ -92,7 +92,7 @@
             <h3 class="text-xl font-bold text-nuclear-glow mb-4 text-center">Publications</h3>
             <p class="text-gray-300 text-center">
               <!-- TODO: Add your publication count -->
-              25+ peer-reviewed papers in top-tier physics journals
+              8+ peer-reviewed papers in top-tier physics journals
             </p>
             <div class="mt-6 text-center">
               <router-link to="/research" class="text-nuclear-glow hover:text-white transition-colors">

@@ -32,6 +32,22 @@
         </div>
       </section>
 
+      <!-- GitHub Projects -->
+      <section class="mb-16">
+        <h2 class="text-3xl font-bold text-nuclear-glow mb-4 text-center">GitHub Projects</h2>
+        <div class="max-w-4xl mx-auto bg-card-bg p-6 rounded-xl border border-nuclear-blue/20">
+          <p class="text-gray-300 leading-relaxed mb-4">
+            My GitHub hosts a mix of simulation code, teaching resources, and tooling for research reproducibility. You'll find high-performance FORTRAN simulation code, Python packages and notebooks for analysis and visualization, small web demos and data-visualization projects, and experimental quantum/ML code.
+          </p>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            Browse the full list of repositories to explore code, example notebooks, and project READMEs. I keep most projects open-source and add documentation and examples to make them easy to try.
+          </p>
+          <div class="text-right">
+            <a href="https://github.com/hyperfi?tab=repositories" target="_blank" rel="noopener noreferrer" class="btn-glow">View my repositories</a>
+          </div>
+        </div>
+      </section>
+
       <!-- Instagram Profiles -->
       <section class="mb-20">
         <h2 class="text-3xl font-bold text-nuclear-glow mb-6 text-center">Instagram</h2>
@@ -47,41 +63,11 @@
             <span class="text-sm text-gray-200">@hyperfine3d</span>
           </a>
           
-          <a href="https://github.com/hyperfi" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 bg-card-bg px-4 py-3 rounded-lg border border-nuclear-blue/20 hover:scale-[1.02] transition-transform">
-            <svg class="h-5 w-5 text-gray-200" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.38 7.86 10.89.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.25 3.33.96.1-.75.4-1.25.73-1.54-2.56-.29-5.26-1.28-5.26-5.69 0-1.26.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.18a10.92 10.92 0 012.87-.39c.98 0 1.97.13 2.87.39 2.19-1.49 3.15-1.18 3.15-1.18.62 1.58.23 2.75.11 3.04.73.8 1.18 1.82 1.18 3.08 0 4.42-2.71 5.39-5.29 5.67.41.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.68.8.56A11.5 11.5 0 0023.5 12C23.5 5.73 18.27.5 12 .5z"/></svg>
-            <span class="text-sm text-gray-200">github.com/hyperfi</span>
-          </a>
+          
         </div>
       </section>
 
-      <!-- Featured Projects/Achievements -->
-      <section class="mb-20">
-        <h2 class="text-3xl font-bold text-nuclear-glow mb-12 text-center">Personal Projects & Achievements</h2>
-        <div class="space-y-8">
-          <!-- TODO: Replace with your actual projects and achievements -->
-          <div v-for="project in personalProjects" :key="project.title" class="bg-card-bg p-8 rounded-xl border border-nuclear-blue/20 card-hover">
-            <div class="flex flex-col lg:flex-row gap-6">
-              <div class="lg:w-1/3">
-                <div class="aspect-video bg-gradient-to-br from-nuclear-blue/20 to-nuclear-glow/20 rounded-lg flex items-center justify-center">
-                  <span class="text-4xl">{{ project.icon }}</span>
-                </div>
-              </div>
-              <div class="lg:w-2/3">
-                <h3 class="text-2xl font-bold text-white mb-4">{{ project.title }}</h3>
-                <p class="text-gray-300 leading-relaxed mb-6">{{ project.description }}</p>
-                <div class="flex flex-wrap gap-2 mb-4">
-                  <span v-for="tag in project.tags" :key="tag" class="px-3 py-1 bg-nuclear-blue/20 text-nuclear-glow text-xs rounded-full">
-                    {{ tag }}
-                  </span>
-                </div>
-                <a v-if="project.link" :href="project.link" target="_blank" class="btn-glow text-sm">
-                  View Project
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+  <!-- Personal Projects & Achievements section intentionally hidden -->
 
       <!-- Skills & Interests -->
       <section class="mb-20">
@@ -118,18 +104,25 @@
       </section>
 
       <!-- Fun Facts -->
-      <section class="text-center">
-        <div class="bg-gradient-to-r from-nuclear-blue/10 to-nuclear-glow/10 p-12 rounded-2xl border border-nuclear-blue/30">
-          <h2 class="text-3xl font-bold text-white mb-8">Fun Facts About Me</h2>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- TODO: Add your actual fun facts -->
-            <div v-for="fact in funFacts" :key="fact.icon" class="text-center">
-              <div class="text-4xl mb-3">{{ fact.icon }}</div>
-              <p class="text-gray-300 text-sm">{{ fact.text }}</p>
-            </div>
-          </div>
+      <!-- Science Communication & Other -->
+      <!-- <section class="mb-12">
+        <div class="bg-card-bg p-8 rounded-xl border border-nuclear-blue/20">
+          <h2 class="text-3xl font-bold text-nuclear-glow mb-4">Science Communication & Other</h2>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            Abhishek is a brilliant, inquisitive mind at the intersection of nuclear physics and quantum computing. With a keen focus on simulating atomic nuclei under extreme conditions, Abhishek has mastered the art of blending complex computer simulations with cutting-edge physics. A true innovator, they’ve developed powerful tools in FORTRAN and Python to predict nuclear phenomena like Giant Dipole Resonances and designed a high-performance quantum algorithm for studying the linear response of atomic nuclei.
+          </p>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            But it's not just about raw science. Abhishek's teaching style is equally compelling. They create interactive resources, making Python feel like a breeze for students, and infuse fun and engagement into every lesson. Whether it's through hands-on coding tutorials or 3D physics animations made in Blender, they make complex concepts digestible without compromising depth.
+          </p>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            On top of their technical prowess, Abhishek’s curiosity is boundless. Whether it's exploring the mysteries of evaporation, the physiology of yeast fermentation, or delving into the nature of chemical bonds, they ask questions that challenge conventional thinking and push the boundaries of understanding.
+          </p>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            When they’re not developing quantum algorithms or creating mind-bending simulations, Abhishek is brainstorming game concepts to teach programming or contemplating the quirks of everyday physics. Curious, driven, and never satisfied with surface-level answers — that’s Abhishek in a nutshell!
+          </p>
         </div>
-      </section>
+      </section> -->
+      
     </div>
   </div>
 </template>
@@ -166,14 +159,8 @@ const hobbies = ref([
   {
     icon: '📚',
     title: 'Science Communication',
-  description: 'Writing articles and giving public talks to make physics accessible — I publish writeups and notebooks alongside code on GitHub.',
+  description: "Abhishek blends deep technical work with clear, engaging teaching. They write articles, build interactive Python resources, and create 3D animations to make complex physics accessible without losing depth.",
   tags: ['Writing', 'Public Speaking', 'Education']
-  },
-  {
-    icon: '🎵',
-    title: 'Music',
-    description: 'Playing guitar and piano, appreciating how mathematical patterns in music mirror the elegance found in physics.',
-    tags: ['Guitar', 'Piano', 'Composition']
   }
 ])
 
@@ -204,30 +191,23 @@ const personalProjects = ref([
 
 // TODO: Add your actual technical skills
 const technicalSkills = ref([
-  'Python', 'C++', 'MATLAB', 'R',
-  'Vue.js', 'JavaScript', 'Git', 'Linux',
-  'ROOT', 'Geant4', 'LaTeX', 'Docker'
+  'Python', 'Fortran', 'C++', 'MATLAB', 'R',
+  'NumPy', 'SciPy', 'Pandas',
+  'Vue.js', 'JavaScript', 'TypeScript', 'Git', 'Linux',
+  'Qiskit/Quantum Algorithms', 'TensorFlow / PyTorch', 'Machine Learning',
+  'HPC / MPI', 'Docker', 'LaTeX', 'ROOT', 'Geant4'
 ])
 
 // TODO: Add your actual creative interests
 const creativeInterests = ref([
-  'Photography', 'Guitar', 'Piano', 'Writing',
-  'Sketching', 'Woodworking', 'Cooking', 'Gardening'
+  'Astrophotography',
+  '3D Modeling & Animation (Blender)',
+  'Game Design for Education',
+  'Guitar', 'Piano',
+  'Creative Coding / Data Viz',
+  'Writing & Science Communication',
+  'Instrument Building & DIY Electronics',
+  'Cooking & Fermentation'
 ])
 
-// TODO: Add your actual fun facts
-const funFacts = ref([
-  {
-    icon: '☕',
-    text: 'I\'ve calculated that I\'ve consumed approximately 2,847 cups of coffee during my PhD'
-  },
-  {
-    icon: '🎸',
-    text: 'I can play 23 songs on guitar, including some physics-themed parodies I wrote myself'
-  },
-  {
-    icon: '🌟',
-    text: 'I\'ve photographed 42 different celestial objects through my telescope'
-  }
-])
 </script>

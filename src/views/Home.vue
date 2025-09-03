@@ -14,7 +14,7 @@
         <div class="space-y-8">
           <!-- Profile Image Placeholder -->
           <div class="flex justify-center">
-            <div class="w-64 h-64 rounded-full bg-gradient-to-r from-nuclear-blue to-nuclear-glow p-1 animate-pulse-glow">
+            <div class="w-64 h-64 rounded-full bg-gradient-to-r from-nuclear-blue to-nuclear-glow p-1 ">
               <div class="w-full h-full rounded-full bg-card-bg overflow-hidden">
                 <img :src="'/images/Abhishek.png'" alt="Dr Abhishek" class="w-full h-full object-cover" />
               </div>

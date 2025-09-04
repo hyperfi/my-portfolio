@@ -7,7 +7,7 @@
           Physics <span class="text-nuclear-glow">Blog</span>
         </h1>
         <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-          Thoughts, insights, and discoveries from the world of nuclear physics
+          Thoughts, insights, and discoveries from the world of my imaginations.
         </p>
       </div>
 

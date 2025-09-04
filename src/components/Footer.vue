@@ -57,7 +57,7 @@
       <!-- Bottom Bar -->
       <div class="border-t border-nuclear-blue/30 mt-8 pt-8 text-center">
         <p class="text-gray-400 text-sm">
-          © {{ currentYear }} Nuclear Physicist Portfolio. Built with Vue 3 & Tailwind CSS.
+          © {{ currentYear }} Dr Abhishek Portfolio.
         </p>
       </div>
     </div>

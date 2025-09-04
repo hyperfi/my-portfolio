@@ -9,6 +9,14 @@
         <div class="absolute bottom-32 left-1/4 w-20 h-20 border border-nuclear-glow/10 rounded-full animate-pulse"></div>
         <div class="absolute bottom-20 right-20 w-28 h-28 border border-nuclear-blue/20 rounded-full animate-float"></div>
       </div>
+
+      <!-- Decorative animated orbs (CSS-only, subtle) -->
+      <div class="landing-bg pointer-events-none" aria-hidden="true">
+        <span class="orb orb-1"></span>
+        <span class="orb orb-2"></span>
+        <span class="orb orb-3"></span>
+        <span class="orb orb-4"></span>
+      </div>
       
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <div class="space-y-8">
@@ -25,7 +33,7 @@
           <div class="space-y-4">
             <h1 class="text-5xl md:text-7xl font-bold">
               <span class="text-white">Dr </span>
-              <span class="glow-text animate-pulse">Abhishek</span>
+              <span class="text-nuclear-glow animate-pulse">Abhishek</span>
             </h1>
             <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
               Nuclear Physicist & Quantum Researcher

@@ -4,7 +4,7 @@
       <!-- Header -->
       <div class="text-center mb-16">
         <h1 class="text-5xl font-bold text-white mb-6">
-          Beyond <span class="glow-text">Physics</span>
+          Beyond <span class="text-nuclear-glow">Physics</span>
         </h1>
         <p class="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
           When I'm not exploring the atomic nucleus, I create — I photograph the night sky and urban scenes, build 3D models and visualizations, and publish open-source code on GitHub. Follow my photography on Instagram and check my projects on GitHub.

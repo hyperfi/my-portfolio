@@ -4,7 +4,7 @@
       <!-- Header -->
       <div class="text-center mb-16">
         <h1 class="text-5xl font-bold text-white mb-6">
-          My <span class="glow-text">Research</span>
+          My <span class="text-nuclear-glow">Research</span>
         </h1>
         <p class="text-xl text-gray-300 max-w-5xl mx-auto leading-relaxed">
           My research tackles core problems in nuclear many‑body physics using complementary classical and

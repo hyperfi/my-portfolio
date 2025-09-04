@@ -20,7 +20,7 @@ export default {
         },
       },
       animation: {
-        'pulse-glow': 'pulse-glow 2s ease-in-out infinite alternate',
+        'pulse-glow': 'pulse-glow 4s ease-in-out infinite alternate',
         'float': 'float 6s ease-in-out infinite',
       },
       keyframes: {

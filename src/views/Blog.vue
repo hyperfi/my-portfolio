@@ -4,7 +4,7 @@
       <!-- Header -->
       <div class="text-center mb-16">
         <h1 class="text-5xl font-bold text-white mb-6">
-          Physics <span class="glow-text">Blog</span>
+          Physics <span class="text-nuclear-glow">Blog</span>
         </h1>
         <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
           Thoughts, insights, and discoveries from the world of nuclear physics

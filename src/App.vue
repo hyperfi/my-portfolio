@@ -47,6 +47,11 @@ onMounted(() => {
   --muted: #4b5563; /* maps to tailwind gray-600-ish for light mode */
   --muted-2: #6b7280; /* gray-500 */
   --muted-3: #9ca3af; /* gray-400 */
+  /* nuclear color tweaks for light mode: slightly deeper, more saturated to keep "glow" interesting */
+  --nuclear-blue: #005bb5; /* slightly richer than tailwind base */
+  --nuclear-glow: #0077cc; /* deeper cyan so it shows up on white */
+  /* pulse glow color (rgb) used by the animate-pulse color animation */
+  --pulse-rgb: 0,119,204; /* light-mode: richer blue */
 }
 .dark {
   --bg: #0a0a0a;
@@ -55,6 +60,10 @@ onMounted(() => {
   --muted: #9ca3af; /* lighter muted in dark mode */
   --muted-2: #9ca3af;
   --muted-3: #6b7280;
+  /* restore vivid neon colors for dark mode */
+  --nuclear-blue: #0066cc;
+  --nuclear-glow: #00ffff;
+  --pulse-rgb: 0,255,255; /* dark-mode: neon cyan */
 }
 
 body, #app {
@@ -76,4 +85,15 @@ body, #app {
 
 /* nuclear glow should remain vivid in both themes */
 .text-nuclear-glow { color: #00ffff !important }
+
+/* Use the CSS variables so the glow color adapts between light/dark modes */
+.text-nuclear-glow { color: var(--nuclear-glow) !important; text-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+
+/* Improve button glow visibility in light mode while keeping subtlety in dark mode */
+.btn-glow { box-shadow: 0 8px 28px rgba(3,102,153,0.08); }
+/* stronger shadow & slight inset highlight on light backgrounds */
+:not(.dark) .btn-glow { box-shadow: 0 12px 40px rgba(3,102,153,0.12), inset 0 1px 0 rgba(255,255,255,0.06); }
+
+/* Make borders / card accents slightly more visible in light mode */
+:not(.dark) .bg-card-bg { box-shadow: 0 1px 0 rgba(2,6,23,0.02), 0 6px 18px rgba(3,102,153,0.035); }
 </style>

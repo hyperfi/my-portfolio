@@ -1,0 +1,252 @@
+@article{ABHISHEK2024109239,
+title = {The $\mathrm{TDHF}$ code $\mathrm{S}$ky$\mathrm{3D}$ version $\mathrm{1.2}$},
+journal = {Computer Physics Communications},
+volume = {301},
+pages = {109239},
+year = {2024},
+issn = {0010-4655},
+doi = {https://doi.org/10.1016/j.cpc.2024.109239},
+url = {https://www.sciencedirect.com/science/article/pii/S0010465524001620},
+author = { Abhishek and Paul Stevenson and Yue Shi and Esra Yüksel and A.S. Umar},
+keywords = {Time-dependent Hartree-Fock, Nuclear physics, Giant resonances, Nuclear reactions},
+abstract = {The Sky3D code has been widely used to describe nuclear ground states, collective vibrational excitations, and heavy-ion collisions. The approach is based on Skyrme forces or related energy density functionals. The static and dynamic equations are solved on a three-dimensional grid, and pairing is been implemented in the BCS approximation. This updated version of the code aims to facilitate the calculation of nuclear strength functions in the regime of linear response theory, while retaining all existing functionality and use cases. The strength functions are benchmarked against available RPA codes, and the user has the freedom of choice when selecting the nature of external excitation (from monopole to hexadecapole and more). Some utility programs are also provided that calculate the strength function from the time-dependent output of the dynamic calculations of the Sky3D code.
+New version program summary
+Program Title: Sky3D CPC Library link to program files: https://doi.org/10.17632/vzbrzvyrn4.2 Developer's repository link: https://github.com/manybody/sky3d Licensing provisions: GPLv3 Programming language: Fortran, with one post-processing utility in Python. Journal reference of previous version:: Schuetrumpf, B., Reinhard, P.G., Stevenson, P.D., Umar, A.S., and Maruhn, J.A. (2018). The TDHF code Sky3D version 1.1. Comput. Phys. Commun. 229 (2018) 211–213. Does the new version supersede the previous version?: Yes. Reasons for the new version: The capability of reproducing the nuclear strength function for a variety of newly-coded external boosts has been added. Nature of problem: Calculating nuclear multipole strength functions is a crucial probe that can help model the nuclear system and its structure properties. A variety of models exist for this task, such as QRPA (Quasiparticle Random Phase Approximation) and its variants, but such approaches are often limited due to symmetry constraints. Time-dependent Hartree Fock (TDHF) has been used to simulate nuclear vibrations and collisions between nuclei for low energies without assuming any symmetry in the system. This code extends the TDHF to calculate the multi-pole strength functions of atomic nuclei. We showcase its reliability by comparing it with the established RPA codes for the calculation of such strength functions. Solution method: We extended previous versions of the Sky3D code [1,2] to include an external boost of multipole type where the user can provide custom input that decides the nature of the multipole (monopole, quadrupole, octupole, and so on) boost. The principal aim is to calculate the multipole strength function, which is the Fourier transform of the time-dependent expectation value of the multipole operator, which has the same form as the external boost. The proper unit conversion is done so that one can extract the exact unit of the thus calculated strength function, which is comparable to the available literature in the field. The boundary conditions are chosen such that a Woods-Saxon-like function cuts off the external field, driving it to zero at the boundary. Summary of revisions: The ability to give a more general external field for excitation has been implemented, which can be of a chosen multipolarity and isospin nature. Then, as a function of time, moments for both isospins and for multipolarities up to L=5 are followed. A new analysis program is included to calculate strength functions and energy weighted sum rules. The ability to specify a mixing parameter in the pairing force is included. This allows a mixed surface-volume pairing to be selected in a way more compatable with QRPA codes for comparison. An updated Makefile is included which makes compilation on Apple silicon computers easier.
+References
+[1]J. Maruhn, P.-G. Reinhard, P. Stevenson, A. Umar, The TDHF code Sky3D, Comput. Phys. Commun. 185 (7) (2014) 2195–2216, https://doi.org/10.1016/j.cpc.2014.04.008.[2]B. Schuetrumpf, P.-G. Reinhard, P. Stevenson, A. Umar, J. Maruhn, The TDHF code Sky3D version 1.1, Comput. Phys. Commun. 229 (2018) 211–213, https://doi.org/10.1016/j.cpc.2018.03.012}
+}
+
+@article{Sharma_2023,
+doi = {10.1088/1402-4896/acb23f},
+url = {https://dx.doi.org/10.1088/1402-4896/acb23f},
+year = {2023},
+month = {feb},
+publisher = {IOP Publishing},
+volume = {98},
+number = {3},
+pages = {035303},
+author = {Abhishek and Arumugam, P and Kumar, A K Rhine},
+title = {Giant dipole resonance and its fine structures in 144-152Nd,152Sm studied within the linear response theory},
+journal = {Physica Scripta},
+abstract = {We present a microscopic approach for giant dipole resonance (GDR) where the linear response by the nuclear density to the dipole radiation is represented through the single-particle wavefunctions calculated with a triaxial Woods-Saxon potential. We follow a microscopic-macroscopic approach to estimate the nuclear deformation with the same potential. We explain the recent experimental data for even–even nuclei 144−152Nd and 152Sm and present a comparison with the macroscopic approach for GDR. We highlight the cases where the results from the microscopic approach are sensitive to the change in single-particle configuration despite no change in shape and mass but with a change of two protons in a mid-shell region. We also present the fine structure analysis of the GDR cross-section using the continuous wavelet transform (CWT) framework and elucidate the origin of such fine structures.}
+}
+
+@article{PhysRevLett.134.062502,
+  title = {Deformation and Collectivity in Doubly Magic $^{208}\mathrm{Pb}$},
+  author = {Henderson, J. and Heery, J. and Rocchini, M. and Siciliano, M. and Sensharma, N. and Ayangeakaa, A. D. and Janssens, R. V. F. and Kowalewski, T. M. and Abhishek and Stevenson, P. D. and Y\"uksel, E. and Brown, B. A. and et al.},
+  journal = {Phys. Rev. Lett.},
+  volume = {134},
+  issue = {6},
+  pages = {062502},
+  numpages = {8},
+  year = {2025},
+  month = {Feb},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevLett.134.062502},
+  url = {https://link.aps.org/doi/10.1103/PhysRevLett.134.062502}
+}
+
+@article{PhysRevLett.134.092501,
+  title = {Increasing Octupole Collectivity across the $Z=64$ Isotopic Chain: $\mathrm{B(E3)}$ Values in $^{150}\mathrm{Gd}$},
+  author = {Pascu, S. and Y\"uksel, E. and Abhishek and Stevenson, P. and Bhat, G. H. and Mao, R. N. and Nomura, K. and Costache, C. and Li, Z. P. and M\ifmmode \u{a}\else \u{a}\fi{}rginean, N. and Mihai, C. and Naz, T. and Podoly\'ak, Zs. and Regan, P. H. and Turturic\ifmmode \u{a}\else \u{a}\fi{}, A. E. and Borcea, R. and Boromiza, M. and Bucurescu, D. and C\ifmmode \u{a}\else \u{a}\fi{}linescu, S. and Clisu, C. and Coman, A. and Dinescu, I. and Doshi, S. and Filipescu, D. and Florea, N. M. and Gandhi, A. and Gheorghe, I. and Ionescu, A. and Lic\ifmmode \u{a}\else \u{a}\fi{}, R. and M\ifmmode \u{a}\else \u{a}\fi{}rginean, R. and Mihai, R. E. and Mitu, A. and Nazir, N. and Negret, A. and Ni\ifmmode \mbox{\c{t}}\else \c{t}\fi{}\ifmmode \u{a}\else \u{a}\fi{}, C. R. and O'Sullivan, E. B. and Petrone, C. and Poulton, S. E. and Sheikh, J. A. and Singh, H. K. and Stan, L. and Toma, S. and Turturic\ifmmode \u{a}\else \u{a}\fi{}, G. and Ujeniuc, S.},
+  journal = {Phys. Rev. Lett.},
+  volume = {134},
+  issue = {9},
+  pages = {092501},
+  numpages = {7},
+  year = {2025},
+  month = {Mar},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevLett.134.092501},
+  url = {https://link.aps.org/doi/10.1103/PhysRevLett.134.092501}
+}
+
+@article{PhysRevC.111.034302,
+  title = {Collective excitations in $^{150}\mathrm{Gd}$},
+  author = {Pascu, S. and Y\"uksel, E. and Abhishek and Stevenson, P. and Bhat, G. H. and Mao, R. N. and Nomura, K. and Costache, C. and Li, Z. P. and M\ifmmode \u{a}\else \u{a}\fi{}rginean, N. and Mihai, C. and Naz, T. and Paar, N. and Podoly\'ak, Zs. and Regan, P. H. and Turturic\ifmmode \u{a}\else \u{a}\fi{}, A. E. and Borcea, R. and Boromiza, M. and Bucurescu, D. and C\ifmmode \u{a}\else \u{a}\fi{}linescu, S. and Clisu, C. and Coman, A. and Dinescu, I. and Doshi, S. and Filipescu, D. and Florea, N. M. and Gandhi, A. and Gheorghe, I. and Ionescu, A. and Lic\ifmmode \u{a}\else \u{a}\fi{}, R. and M\ifmmode \u{a}\else \u{a}\fi{}rginean, R. and Mihai, R. E. and Mitu, A. and Nazir, N. and Negret, A. and Ni\ifmmode \mbox{\c{t}}\else \c{t}\fi{}\ifmmode \u{a}\else \u{a}\fi{}, C. R. and O'Sullivan, E. B. and Petrone, C. and Poulton, S. E. and Sheikh, J. A. and Singh, H. K. and Stan, L. and Toma, S. and Turturic\ifmmode \u{a}\else \u{a}\fi{}, G. and Ujeniuc, S.},
+  journal = {Phys. Rev. C},
+  volume = {111},
+  issue = {3},
+  pages = {034302},
+  numpages = {17},
+  year = {2025},
+  month = {Mar},
+  publisher = {American Physical Society},
+  doi = {10.1103/PhysRevC.111.034302},
+  url = {https://link.aps.org/doi/10.1103/PhysRevC.111.034302}
+}
+
+@article{Bairwa_2025,
+doi = {10.1088/1402-4896/adc5b5},
+url = {https://dx.doi.org/10.1088/1402-4896/adc5b5},
+year = {2025},
+month = {apr},
+publisher = {IOP Publishing},
+volume = {100},
+number = {5},
+pages = {056010},
+author = {Bairwa, Manish Kumar and Abhishek and Balasubramanian, R and Arumugam, P},
+title = {Integrating physics insights into machine learning: a case study with giant dipole resonance},
+journal = {Physica Scripta},
+abstract = {Utilizing a recent compilation of experimental data, selected simple theoretical models, and machine learning (ML) algorithms, we analyze a few ways to construct a model with better accuracy and predictive power. For the data and theoretical models, we consider the giant dipole resonance (GDR), a predominant feature of photo-nuclear interactions. We study the dependence of the dipole-dipole interaction strength on the mass number and the energy dependence of the GDR width. The best ML algorithm is chosen among the considered ones by comparing different error metrics. Employing GDR parameters obtained using the best algorithm, we also calculate the cross-section and compare it with the data. For validating our results, we choose even–even Nd isotope chain 144−152Nd and 152Sm. We propose that a model constructed with appropriate physics inputs where the parameters are optimized through ML is successful in explaining the data and has better predictive power.}
+}
+
+@article{inj,
+    author = {Nifeeya Singh and Abhishek and P. Arumugam},
+    title = {A Quantum Algorithm for the Linear Response of Nuclei},
+    journal = {Indian Journal of Physics},
+    year = {2025},
+    month = {5},
+    volume = {99},
+    pages = {4367},
+    URL = {https://doi.org/10.1007/s12648-025-03627-8},
+}
+
+
+@article{jnp,
+
+url = {https://jnp.chitkara.edu.in/index.php/jnp/article/view/349/275},
+year = {2022},
+month = {Nov},
+volume = {10},
+pages = {11},
+author = {Abhishek},
+title = { Iscovector Giant Dipole Resonance in
+ $^{175}\mathrm{Lu}$ within the Linear Response Theory},
+journal = {J. Nucl. Phys. Mat. Sci. Rad. A.},
+}
+
+@misc{abhishek2026quantumsimulationcrankedzirconium,
+      title={Quantum Simulation of Cranked Zirconium Isotopes: A Fixed-N Approach with a Structured Number-Conserving Ansatz}, 
+      author={Abhishek and Nabeel Salim and P. Arumugam},
+      year={2026},
+      eprint={2604.00844},
+      archivePrefix={arXiv},
+      primaryClass={quant-ph},
+      url={https://arxiv.org/abs/2604.00844}, 
+}
+
+@INPROCEEDINGS{paul,
+author={P. D. Stevenson and  Abhishek and Y. Shi},
+year={2024},
+booktitle={Proceedings of the 7th International Conference on Collective Motion in Nuclei under Extreme Conditions},
+title={ Isoscalar giant monopole resonance in  $\mathrm{Mo}$-100: $\mathrm{TDHF}$ calculations and ground state deformation},
+address={Catania, Italy},
+pages={26},
+url={http://dx.doi.org/10.1393/ncc/i2024-24026-y}
+}
+
+
+@INPROCEEDINGS{dae64,
+author={Jaikhomba Singha and Ankit Kumar and Abhishek and Swati Modi and P. Arumugam},
+year={2019},
+booktitle={Proceedings of the DAE Symposium on Nuclear Physics, 64th edition},
+title={ The hyperonic volume of $\mathrm{MSP J0740+6620}$ },
+address={Lucknow},
+pages={616},
+url={https://sympnp.org/proceedings/64/C24.pdf}
+}
+
+
+@INPROCEEDINGS{dae65-1,
+author={Abhishek and P. Arumugam and A. K. Rhine Kumar},
+year={2021},
+booktitle={Proceedings of the DAE Symposium on Nuclear Physics, 65th edition},
+title={ A linear response theory for $\mathrm{GDR}$ },
+address={BARC Mumbai},
+pages={28},
+url={https://sympnp.org/proceedings/65/A3.pdf}
+}
+
+
+@INPROCEEDINGS{dae66-1,
+author={Aman Gupta and Nifeeya Singh and Ashutosh Singh and Abhishek and Pooja Siwach and P Arumugam},
+year={2022},
+booktitle={Proceedings of the DAE Symposium on Nuclear Physics, 66th edition},
+title={ Quantum adiabatic optimization for nuclear ground state },
+address={Guwahati},
+pages={86},
+url={https://sympnp.org/proceedings/66/A17.pdf}
+}
+
+
+@INPROCEEDINGS{dae66-2,
+author={Ashutosh Singh and Nifeeya Singh  and Pooja Siwach and Abhishek and P. Arumugam},
+year={2022},
+booktitle={Proceedings of the DAE Symposium on Nuclear Physics, 66th edition},
+title={ Quantum simulation through variational approach involving linear combination of unitary operators },
+address={Guwahati},
+pages={92},
+url={https://sympnp.org/proceedings/66/A20.pdf}
+}
+
+
+@INPROCEEDINGS{dae66-3,
+author={Nifeeeya Singh and Abhishek and Pooja Siwach and Vidisha Aggarwal and P. Arumugam},
+year={2022},
+booktitle={Proceedings of the DAE Symposium on Nuclear Physics, 66th edition},
+title={ Linear response on a quantum computer },
+address={Guwahati},
+pages={328},
+url={https://sympnp.org/proceedings/66/A138.pdf}
+}
+
+
+@INPROCEEDINGS{dae66-4,
+author={Manish Kumar Bairwa and Abhishek and P. Arumugam},
+year={2022},
+booktitle={Proceedings of the DAE Symposium on Nuclear Physics, 66th edition},
+title={ Machine learning approaches for giant dipole resonance parameters },
+address={Guwahati},
+pages={332},
+url={https://sympnp.org/proceedings/66/A140.pdf}
+}
+
+
+@INPROCEEDINGS{dae67-1,
+author={Nifeeya Singh and Abhishek and Pooja Siwach  and Ashutosh Singh  and  P. Arumugam},
+year={2023},
+booktitle={Proceedings of the DAE Symposium on Nuclear Physics, 67th edition},
+title={ Excitations in Qubit Space using Single-Particle Dipole Operator },
+address={Indore},
+pages={67},
+url={https://sympnp.org/proceedings/67/A16}
+}
+
+
+
+
+
+@INPROCEEDINGS{10821143,
+  author={Singh, Nifeeya and Abhishek and Siwach, Pooja and Arumugam, P.},
+  booktitle={2024 IEEE International Conference on Quantum Computing and Engineering (QCE)}, 
+  title={Quantum Simulation of Nuclear Linear Response}, 
+  year={2024},
+  volume={02},
+  number={},
+  pages={367-369},
+  keywords={Quantum algorithm;Perturbation methods;Computational modeling;Harmonic analysis;Electromagnetics;Oscillators;Quantum simulation;Linear response;Preparation of excited states;Linear combination of unitaries (LCU);SWAP test},
+  doi={10.1109/QCE60285.2024.10308}}
+
+
+@INPROCEEDINGS{dae69-1,
+author={Abhishek and Nabeel Salim and A. K. Rhine Kumar and P. Arumugam},
+year={2025},
+booktitle={Proceedings of the DAE Symposium on Nuclear Physics, 69th edition},
+title={ A Comparative Study of GDR in $^{237}\mathrm{Np}$: Microscopic vs. Macroscopic
+Approaches },
+address={Jalandhar},
+pages={205},
+url={https://sympnp.org/proceedings/69/A82.pdf}
+}
+
+@INPROCEEDINGS{dae69-2,
+author={Bharti Bhoy and Abhishek},
+year={2025},
+booktitle={Proceedings of the DAE Symposium on Nuclear Physics, 69th edition},
+title={ Comparative Study of Fixed and Adaptive $\mathrm{VQE}$ Ansätze for the Nuclear Shell Model },
+address={Jalandhar},
+pages={1199},
+url={https://sympnp.org/proceedings/69/G17.pdf}
+}
+

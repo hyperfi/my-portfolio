@@ -72,7 +72,6 @@ const currentYear = computed(() => new Date().getFullYear())
 const footerLinks = [
   { name: 'Home', path: '/' },
   { name: 'Research', path: '/research' },
-  { name: 'Hobbies', path: '/hobbies' },
-  { name: 'Blog', path: '/blog' }
+  { name: 'Hobbies', path: '/hobbies' }
 ]
 </script>

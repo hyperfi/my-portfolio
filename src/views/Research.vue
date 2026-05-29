@@ -1,311 +1,213 @@
 <template>
-  <div class="min-h-screen py-20">
+  <div class="min-h-screen py-20 bg-dark-bg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Header -->
-      <div class="text-center mb-16">
-        <h1 class="text-5xl font-bold text-white mb-6">
-          My <span class="text-nuclear-glow">Research</span>
+      
+      <!-- Premium Title / Hero Area -->
+      <div class="text-center mb-16 relative">
+        <div class="absolute inset-0 flex items-center justify-center -top-10 opacity-10 pointer-events-none" aria-hidden="true">
+          <span class="text-9xl font-extrabold tracking-widest text-nuclear-blue select-none">NPQR</span>
+        </div>
+        <h1 class="text-5xl md:text-6xl font-bold tracking-tight text-white mb-6 relative z-10">
+          Research & <span class="text-nuclear-glow">Publications</span>
         </h1>
-        <p class="text-xl text-gray-300 max-w-5xl mx-auto leading-relaxed">
-          My research tackles core problems in nuclear many‑body physics using complementary classical and
-          quantum techniques. On the classical side, I develop microscopic descriptions of collective
-          excitations (giant dipole/monopole resonances) with linear‑response theory and TDHF (Sky3D),
-          benchmarked against RPA and experimental data. On the quantum side, I designed a first‑of‑its‑kind
-          algorithm for nuclear linear response that maps fermionic operators to qubits (Jordan–Wigner),
-          prepares time‑dependent states, and employs the SWAP test—achieving O(N) scaling and excellent
-          agreement with data on  <sup>120</sup>Sn and <sup>208</sup>Pb, with careful NISQ noise studies and mitigation.
+        <p class="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed relative z-10 font-light">
+          Addressing fundamental challenges in nuclear many‑body physics using complementary classical and
+          quantum techniques. My work spans microscopic models (linear‑response theory, TDHF/Sky3D,
+          RPA, and density‑functional approaches) and pioneering quantum algorithms for nuclear structure
+          and dynamics, with a particular focus on giant resonances and deformed nuclei.
         </p>
       </div>
 
-      <div class="flex items-center justify-between mb-6">
-        <h2 class="text-3xl font-bold text-nuclear-glow mb-0 text-center">Research Areas</h2>
-        <div class="ml-4">
-          <template v-if="isAdmin">
-            <button v-if="!editMode" @click="enterEdit" class="px-3 py-2 rounded bg-nuclear-blue text-white">Edit</button>
-            <div v-else class="space-x-2">
-              <button @click="saveEdits" :disabled="saving" class="px-3 py-2 rounded bg-nuclear-glow text-white">Save</button>
-              <button @click="cancelEdits" class="px-3 py-2 rounded border">Cancel</button>
-            </div>
-          </template>
+      <!-- Research Areas Grid -->
+      <section class="mb-24">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="h-8 w-1.5 bg-nuclear-glow rounded-full"></div>
+          <h2 class="text-3xl font-bold text-white tracking-wide">Key Research Domains</h2>
         </div>
-      </div>
-      <!-- Research Areas -->
-      <section class="mb-20">
-        <h2 class="sr-only">Research Areas</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- TODO: Customize these research areas based on your actual work -->
-          <div v-for="(area, idx) in (editMode ? areasEdit : researchAreas)" :key="(area.title || idx) + idx" class="bg-card-bg p-6 rounded-xl border border-nuclear-blue/20 card-hover relative">
-            <template v-if="!editMode">
-              <div class="text-3xl mb-4">{{ area.icon }}</div>
-              <h3 class="text-xl font-bold text-white mb-3">{{ area.title }}</h3>
-              <p class="text-gray-300 text-sm leading-relaxed">{{ area.description }}</p>
-            </template>
-            <template v-else>
-              <div class="flex items-start gap-4">
-                <input v-model="areasEdit[idx].icon" class="w-12 h-12 text-center rounded bg-transparent border" />
-                <div class="flex-1">
-                  <input v-model="areasEdit[idx].title" placeholder="Title" class="w-full mb-2 p-2 rounded bg-transparent border" />
-                  <textarea v-model="areasEdit[idx].description" rows="3" placeholder="Description" class="w-full p-2 rounded bg-transparent border"></textarea>
-                </div>
-              </div>
-              <button @click="deleteArea(idx)" class="absolute top-3 right-3 text-sm text-red-400">Delete</button>
-            </template>
-          </div>
-        </div>
-      </section>
-
-      <!-- Publications -->
-      <section class="mb-20">
-        <div class="flex items-center justify-between mb-6">
-          <h2 class="text-3xl font-bold text-nuclear-glow mb-0 text-center">Publications</h2>
-          <div class="flex items-center gap-3">
-            <template v-if="isAdmin && editMode">
-              <button @click="addJournal" class="px-3 py-2 rounded border">Add Journal</button>
-              <button @click="addConference" class="px-3 py-2 rounded border">Add Conference</button>
-              <button @click="savePublications" :disabled="savingPubs" class="px-3 py-2 rounded bg-nuclear-glow text-black">{{ savingPubs ? 'Saving…' : 'Save Pubs' }}</button>
-              <button @click="revertPublications" class="px-3 py-2 rounded border">Revert Pubs</button>
-            </template>
-          </div>
-        </div>
-        <div class="space-y-12">
-          <!-- Journal Articles -->
-          <div>
-            <h3 class="text-2xl font-semibold text-white mb-6 text-center">Journal Articles ({{ (editMode ? journalEdit.length : journalArticles.length) }})</h3>
-            <div class="space-y-6">
-              <div v-for="(paper, idx) in (editMode ? journalEdit : journalArticles)" :key="'j-' + idx" class="bg-card-bg p-6 rounded-xl border border-nuclear-blue/20 card-hover relative">
-                <template v-if="!editMode">
-                  <div class="flex flex-col md:flex-row md:items-start gap-4">
-                    <div class="flex-1">
-                      <h4 class="text-lg font-bold text-white mb-2" v-html="paper.title || paper.raw"></h4>
-                      <p class="text-nuclear-glow text-sm mb-2" v-if="paper.journal || paper.year">
-                        {{ [paper.journal, paper.year].filter(Boolean).join(' • ') }}
-                      </p>
-                    </div>
-                    <div class="flex-shrink-0" v-if="paper.url">
-                      <a :href="paper.url" target="_blank" rel="noopener" class="btn-glow text-sm">Read Paper</a>
-                    </div>
-                  </div>
-                </template>
-                <template v-else>
-                  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <input v-model="journalEdit[idx].title" placeholder="Title" class="col-span-2 p-2 rounded bg-transparent border" />
-                    <input v-model="journalEdit[idx].journal" placeholder="Journal" class="p-2 rounded bg-transparent border" />
-                    <input v-model="journalEdit[idx].year" placeholder="Year" class="p-2 rounded bg-transparent border" />
-                    <input v-model="journalEdit[idx].url" placeholder="URL" class="col-span-3 p-2 rounded bg-transparent border" />
-                    <textarea v-model="journalEdit[idx].raw" rows="2" placeholder="Raw citation" class="col-span-3 p-2 rounded bg-transparent border"></textarea>
-                  </div>
-                  <button @click="deleteJournal(idx)" class="absolute top-3 right-3 text-sm text-red-400">Delete</button>
-                </template>
-              </div>
+          <div 
+            v-for="(area, idx) in researchAreas" 
+            :key="idx" 
+            class="bg-card-bg/60 backdrop-blur-sm p-8 rounded-2xl border border-nuclear-blue/20 hover:border-nuclear-glow/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(0,255,255,0.03)] group"
+          >
+            <div class="w-12 h-12 rounded-xl bg-nuclear-blue/15 border border-nuclear-blue/30 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+              {{ area.icon }}
             </div>
-          </div>
-
-          <!-- Conference Proceedings -->
-          <div>
-            <h3 class="text-2xl font-semibold text-white mb-6 text-center">Conference Proceedings ({{ (editMode ? confEdit.length : conferenceProceedings.length) }})</h3>
-            <div class="space-y-6">
-              <div v-for="(paper, idx) in (editMode ? confEdit : conferenceProceedings)" :key="'c-' + idx" class="bg-card-bg p-6 rounded-xl border border-nuclear-blue/20 card-hover relative">
-                <template v-if="!editMode">
-                  <div class="flex flex-col md:flex-row md:items-start gap-4">
-                    <div class="flex-1">
-                      <h4 class="text-lg font-bold text-white mb-2" v-html="paper.title || paper.raw"></h4>
-                      <p class="text-nuclear-glow text-sm mb-2" v-if="paper.journal || paper.year">
-                        {{ [paper.journal, paper.year].filter(Boolean).join(' • ') }}
-                      </p>
-                    </div>
-                    <div class="flex-shrink-0" v-if="paper.url">
-                      <a :href="paper.url" target="_blank" rel="noopener" class="btn-glow text-sm">Read Paper</a>
-                    </div>
-                  </div>
-                </template>
-                <template v-else>
-                  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <input v-model="confEdit[idx].title" placeholder="Title" class="col-span-2 p-2 rounded bg-transparent border" />
-                    <input v-model="confEdit[idx].journal" placeholder="Venue" class="p-2 rounded bg-transparent border" />
-                    <input v-model="confEdit[idx].year" placeholder="Year" class="p-2 rounded bg-transparent border" />
-                    <input v-model="confEdit[idx].url" placeholder="URL" class="col-span-3 p-2 rounded bg-transparent border" />
-                    <textarea v-model="confEdit[idx].raw" rows="2" placeholder="Raw citation" class="col-span-3 p-2 rounded bg-transparent border"></textarea>
-                  </div>
-                  <button @click="deleteConference(idx)" class="absolute top-3 right-3 text-sm text-red-400">Delete</button>
-                </template>
-              </div>
-            </div>
+            <h3 class="text-xl font-semibold text-white mb-3 group-hover:text-nuclear-glow transition-colors">
+              {{ area.title }}
+            </h3>
+            <p class="text-gray-400 text-sm leading-relaxed font-light">
+              {{ area.description }}
+            </p>
           </div>
         </div>
       </section>
 
       <!-- Current Projects -->
-      <section class="mb-20">
-        <div class="flex items-center justify-between mb-6">
-          <h2 class="text-3xl font-bold text-nuclear-glow mb-0 text-center">Current Projects</h2>
-          <div>
-            <template v-if="isAdmin && editMode">
-              <button @click="addProject" class="px-3 py-2 rounded border">Add Project</button>
-            </template>
-          </div>
+      <section class="mb-24">
+        <div class="flex items-center gap-4 mb-8">
+          <div class="h-8 w-1.5 bg-nuclear-glow rounded-full"></div>
+          <h2 class="text-3xl font-bold text-white tracking-wide">Current Projects</h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <!-- TODO: Replace with your actual current projects -->
-          <div v-for="(project, pidx) in (editMode ? projectsEdit : currentProjects)" :key="(project.title || pidx) + pidx" class="bg-card-bg p-6 rounded-xl border border-nuclear-blue/20 card-hover relative">
-            <template v-if="!editMode">
-              <div class="flex items-start gap-4">
-                <div class="w-12 h-12 bg-gradient-to-r from-nuclear-blue to-nuclear-glow rounded-lg flex items-center justify-center flex-shrink-0">
-                  <span class="text-xl">{{ project.icon }}</span>
-                </div>
-                <div class="flex-1">
-                  <h3 class="text-xl font-bold text-white mb-3">{{ project.title }}</h3>
-                  <p class="text-gray-300 text-sm leading-relaxed mb-4">{{ project.description }}</p>
-                  <div class="text-nuclear-glow text-sm">Status: {{ project.status }}</div>
-                </div>
+          <div 
+            v-for="(project, pidx) in currentProjects" 
+            :key="pidx" 
+            class="bg-card-bg/60 backdrop-blur-sm p-8 rounded-2xl border border-nuclear-blue/20 hover:border-nuclear-glow/40 transition-all duration-300 flex flex-col md:flex-row gap-6 hover:shadow-[0_8px_30px_rgb(0,255,255,0.03)]"
+          >
+            <div class="w-14 h-14 bg-gradient-to-r from-nuclear-blue/20 to-nuclear-glow/20 rounded-xl flex items-center justify-center flex-shrink-0 border border-nuclear-blue/30">
+              <span class="text-2xl">{{ project.icon }}</span>
+            </div>
+            <div class="flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="text-xl font-semibold text-white mb-2">{{ project.title }}</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-4 font-light">{{ project.description }}</p>
               </div>
-            </template>
-            <template v-else>
-              <div class="flex items-start gap-4">
-                <input v-model="projectsEdit[pidx].icon" class="w-12 h-12 text-center rounded bg-transparent border" />
-                <div class="flex-1">
-                  <input v-model="projectsEdit[pidx].title" placeholder="Title" class="w-full mb-2 p-2 rounded bg-transparent border" />
-                  <textarea v-model="projectsEdit[pidx].description" rows="3" placeholder="Description" class="w-full p-2 rounded bg-transparent border"></textarea>
-                  <input v-model="projectsEdit[pidx].status" placeholder="Status" class="w-full mt-2 p-2 rounded bg-transparent border" />
-                </div>
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-nuclear-glow animate-pulse"></span>
+                <span class="text-xs tracking-wider uppercase text-nuclear-glow font-medium">
+                  Status: {{ project.status }}
+                </span>
               </div>
-              <button @click="deleteProject(pidx)" class="absolute top-3 right-3 text-sm text-red-400">Delete</button>
-            </template>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- Collaboration -->
+      <!-- Publications Directory -->
+      <section class="mb-24">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 border-b border-nuclear-blue/20 pb-6">
+          <div class="flex items-center gap-4">
+            <div class="h-8 w-1.5 bg-nuclear-glow rounded-full"></div>
+            <h2 class="text-3xl font-bold text-white tracking-wide">Publications</h2>
+          </div>
+
+          <!-- Modern Animated Navigation Tabs -->
+          <div class="flex flex-wrap p-1 bg-card-bg rounded-xl border border-nuclear-blue/30">
+            <button 
+              v-for="tab in ['preprints', 'journals', 'conferences']" 
+              :key="tab"
+              @click="activeTab = tab"
+              class="px-5 py-2.5 rounded-lg text-sm font-medium tracking-wide transition-all duration-300 uppercase cursor-pointer"
+              :class="activeTab === tab 
+                ? 'bg-nuclear-blue text-white shadow-[0_2px_12px_rgba(0,91,181,0.3)]' 
+                : 'text-gray-400 hover:text-white'"
+            >
+              {{ tab === 'preprints' ? 'Preprints' : tab === 'journals' ? 'Journals' : 'Conferences' }}
+              <span class="ml-1 text-xs px-2 py-0.5 rounded-full bg-black/30 text-nuclear-glow">
+                {{ getTabCount(tab) }}
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Tab Contents -->
+        <div class="space-y-8 min-h-[400px]">
+          <!-- Active Tab list -->
+          <div v-if="activeTabList.length === 0" class="text-center py-20 text-gray-500 font-light">
+            No papers listed in this section.
+          </div>
+          
+          <div v-else class="space-y-8">
+            <div 
+              v-for="(paper, idx) in activeTabList" 
+              :key="paper.key || idx" 
+              class="bg-card-bg/40 backdrop-blur-sm p-8 rounded-2xl border border-nuclear-blue/20 hover:border-nuclear-glow/30 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,255,255,0.02)]"
+            >
+              <div class="flex flex-col lg:flex-row items-start justify-between gap-6">
+                <div class="flex-1 space-y-4">
+                  <!-- Paper Title with Math Rendering -->
+                  <h3 class="text-xl font-bold leading-snug text-white hover:text-nuclear-glow transition-colors duration-200" v-html="renderTitle(paper.title)"></h3>
+                  
+                  <!-- Authors list with Abhishek highlighted -->
+                  <p class="text-gray-300 text-sm font-light leading-relaxed" v-html="highlightAuthor(paper.author)"></p>
+                  
+                  <!-- Journal details / Citation -->
+                  <div class="flex flex-wrap items-center gap-y-2 gap-x-4 text-xs font-mono text-gray-500">
+                    <span class="text-nuclear-blue font-semibold uppercase tracking-wider" v-if="paper.journal">
+                      {{ paper.journal }}
+                    </span>
+                    <span v-if="paper.year">Year: {{ paper.year }}</span>
+                    <span v-if="paper.volume">Vol: {{ paper.volume }}</span>
+                    <span v-if="paper.pages">Pages: {{ paper.pages }}</span>
+                    <span v-if="paper.eprint" class="text-nuclear-glow">arXiv: {{ paper.eprint }}</span>
+                  </div>
+                </div>
+
+                <!-- Action Links -->
+                <div class="flex flex-row lg:flex-col items-center gap-3 w-full lg:w-auto flex-shrink-0 justify-end pt-4 lg:pt-0 border-t lg:border-t-0 border-nuclear-blue/15">
+                  <a 
+                    v-if="paper.url" 
+                    :href="paper.url" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="w-full lg:w-36 text-center px-4 py-2 border border-nuclear-glow/40 hover:border-nuclear-glow text-nuclear-glow hover:bg-nuclear-glow hover:text-black font-semibold text-xs uppercase tracking-wider rounded-lg transition-all duration-300 cursor-pointer"
+                  >
+                    Read Paper
+                  </a>
+                  <button 
+                    v-if="paper.abstract"
+                    @click="toggleAbstract(paper.key)"
+                    class="w-full lg:w-36 px-4 py-2 bg-nuclear-blue/15 hover:bg-nuclear-blue/30 text-white font-medium text-xs uppercase tracking-wider rounded-lg border border-nuclear-blue/30 transition-all duration-300 cursor-pointer"
+                  >
+                    {{ showAbstracts[paper.key] ? 'Hide Abstract' : 'Abstract' }}
+                  </button>
+                </div>
+              </div>
+
+              <!-- Abstract Expandable Content -->
+              <transition 
+                enter-active-class="transition duration-300 ease-out" 
+                enter-from-class="transform scale-95 opacity-0 -translate-y-2" 
+                enter-to-class="transform scale-100 opacity-100 translate-y-0" 
+                leave-active-class="transition duration-200 ease-in" 
+                leave-from-class="transform scale-100 opacity-100 translate-y-0" 
+                leave-to-class="transform scale-95 opacity-0 -translate-y-2"
+              >
+                <div 
+                  v-if="paper.abstract && showAbstracts[paper.key]" 
+                  class="mt-6 p-6 rounded-xl bg-black/40 border border-nuclear-blue/10 text-gray-400 text-sm font-light leading-relaxed tracking-wide italic"
+                >
+                  <span class="font-bold text-gray-300 uppercase not-italic text-xs tracking-wider block mb-2">Abstract:</span>
+                  {{ paper.abstract }}
+                </div>
+              </transition>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Collaboration Highlight Panel -->
       <section class="text-center">
-        <div class="bg-gradient-to-r from-nuclear-blue/10 to-nuclear-glow/10 p-12 rounded-2xl border border-nuclear-blue/30">
-          <h2 class="text-3xl font-bold text-white mb-6">Interested in Collaboration?</h2>
-          <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
-            I'm always open to discussing research opportunities, academic partnerships, 
-            and innovative projects in nuclear physics and related fields.
+        <div class="bg-gradient-to-r from-nuclear-blue/10 via-card-bg/80 to-nuclear-glow/10 p-12 rounded-3xl border border-nuclear-blue/20 hover:border-nuclear-glow/30 transition-colors duration-500 shadow-2xl relative overflow-hidden">
+          <div class="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none" aria-hidden="true"></div>
+          <h2 class="text-3xl font-bold text-white mb-4 relative z-10">Interested in Research Collaboration?</h2>
+          <p class="text-gray-300 mb-8 max-w-2xl mx-auto font-light leading-relaxed relative z-10 text-base">
+            I am always open to discussing research projects, theoretical calculations, and academic partnerships 
+            at the intersection of nuclear physics, high-performance computing, and quantum algorithms.
           </p>
-          <a href="mailto:abi00779@gmail.com" class="btn-glow">
-            Get In Touch
+          <a href="mailto:abi00779@gmail.com" class="px-8 py-3.5 bg-gradient-to-r from-nuclear-blue to-nuclear-glow hover:from-nuclear-glow hover:to-nuclear-blue text-white font-semibold rounded-lg shadow-lg hover:shadow-nuclear-glow/20 transform hover:-translate-y-0.5 transition-all duration-300 cursor-pointer inline-block relative z-10 text-sm uppercase tracking-wider">
+            Initiate Contact
           </a>
         </div>
       </section>
-      <!-- Sticky action bar while editing -->
-      <div v-if="editMode" class="fixed inset-x-0 bottom-4 flex justify-center pointer-events-none">
-        <div class="bg-card-bg/90 backdrop-blur-md px-4 py-2 rounded-full border border-nuclear-blue/30 flex items-center gap-3 pointer-events-auto">
-          <button @click="saveEdits" :disabled="saving" class="px-4 py-2 rounded bg-nuclear-glow text-black">{{ saving ? 'Saving…' : 'Save' }}</button>
-          <button @click="cancelEdits" class="px-4 py-2 rounded border">Cancel</button>
-          <span v-if="saving" class="ml-2 text-sm text-gray-300">Saving changes to database…</span>
-        </div>
-      </div>
+
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import publications from '../data/publications.json'
-import { supabase } from '../lib/supabase'
-import { useAuth } from '../lib/auth'
+import { renderMarkdownToSafeHtml } from '../lib/markdown'
 
-// Admin email - change to your admin account
-const ADMIN_EMAIL = 'abi00779@gmail.com'
+// Page view tabs
+const activeTab = ref('preprints')
 
-const { session, ready } = useAuth()
+// Toggleable abstract map
+const showAbstracts = ref({})
 
-const isAdmin = computed(() => {
-  return !!session.value && session.value.user?.email === ADMIN_EMAIL
-})
-
-// Edit mode state
-const editMode = ref(false)
-const saving = ref(false)
-const savingPubs = ref(false)
-
-// Local editable copies
-const areasEdit = ref([])
-const projectsEdit = ref([])
-
-// Load / Save helpers
-const STORAGE_KEY = 'research_page_local'
-
-// Editable publication copies
-const journalEdit = ref([])
-const confEdit = ref([])
-
-async function loadSaved() {
-  // try Supabase site_data table first
-  try {
-    const { data, error } = await supabase.from('site_data').select('value').eq('key', 'research_page').single()
-    if (!error && data && data.value) {
-      const parsed = typeof data.value === 'string' ? JSON.parse(data.value) : data.value
-      if (parsed?.researchAreas) researchAreas.value = parsed.researchAreas
-    if (parsed?.currentProjects) currentProjects.value = parsed.currentProjects
-    if (parsed?.journalArticles) journalArticles.value = parsed.journalArticles
-    if (parsed?.conferenceProceedings) conferenceProceedings.value = parsed.conferenceProceedings
-  // keep local fallback current
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed)) } catch (e) {}
-      return
-    }
-  } catch (e) {
-    // ignore and fallback to local
-  }
-
-  // fallback local JSON file + localStorage
-  const local = localStorage.getItem(STORAGE_KEY)
-  if (local) {
-    try {
-      const parsed = JSON.parse(local)
-  if (parsed.researchAreas) researchAreas.value = parsed.researchAreas
-  if (parsed.currentProjects) currentProjects.value = parsed.currentProjects
-  if (parsed.journalArticles) journalArticles.value = parsed.journalArticles
-  if (parsed.conferenceProceedings) conferenceProceedings.value = parsed.conferenceProceedings
-      return
-    } catch (e) {}
-  }
-
-  // default: use bundled publications+defaults already in file
-  // ensure local fallback is seeded with the current (bundled) data
-  try {
-    const seed = {
-      researchAreas: researchAreas.value,
-      currentProjects: currentProjects.value,
-      journalArticles: journalArticles.value,
-      conferenceProceedings: conferenceProceedings.value
-    }
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(seed))
-  } catch (e) {}
-}
-
-async function persistSaved(payload) {
-  // attempt upsert into site_data
-  try {
-    const up = { key: 'research_page', value: JSON.stringify(payload) }
-    const res = await supabase.from('site_data').upsert(up, { onConflict: 'key' })
-    // prefer explicit error handling and console visibility for debugging
-    if (res && res.error) {
-      console.error('[supabase] upsert error:', res.error)
-      return false
-    }
-    // success
-    console.debug('[supabase] upsert ok', res.data)
-  // mirror successful DB save to localStorage so fallback is current
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(payload)) } catch (e) {}
-    return true
-  } catch (e) {
-    console.error('[persistSaved] unexpected error', e)
-  }
-  // fallback to localStorage
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(payload))
-    return true
-  } catch (e) {
-    return false
-  }
-}
-
-onMounted(() => {
-  loadSaved()
-})
-
-// Research areas sourced from provided text
+// Static lists for areas and projects
 const researchAreas = ref([
   {
     icon: '🧮',
@@ -334,10 +236,6 @@ const researchAreas = ref([
   }
 ])
 
-// Publications data from generated JSON
-const journalArticles = ref((publications && publications.journal_articles) ? publications.journal_articles : [])
-const conferenceProceedings = ref((publications && publications.conference_proceedings) ? publications.conference_proceedings : [])
-// Current projects and directions
 const currentProjects = ref([
   {
     icon: '🧮',
@@ -365,105 +263,57 @@ const currentProjects = ref([
   }
 ])
 
-// --- Admin edit actions ---
+const journalArticles = computed(() => {
+  return publications?.journal_articles || []
+})
 
-function enterEdit() {
-  editMode.value = true
-  areasEdit.value = JSON.parse(JSON.stringify(researchAreas.value))
-  projectsEdit.value = JSON.parse(JSON.stringify(currentProjects.value))
-  journalEdit.value = JSON.parse(JSON.stringify(journalArticles.value))
-  confEdit.value = JSON.parse(JSON.stringify(conferenceProceedings.value))
+const conferenceProceedings = computed(() => {
+  return publications?.conference_proceedings || []
+})
+
+const preprintsList = computed(() => {
+  return publications?.preprints || []
+})
+
+const activeTabList = computed(() => {
+  if (activeTab.value === 'preprints') return preprintsList.value
+  if (activeTab.value === 'journals') return journalArticles.value
+  if (activeTab.value === 'conferences') return conferenceProceedings.value
+  return []
+})
+
+const getTabCount = (tab) => {
+  if (tab === 'preprints') return preprintsList.value.length
+  if (tab === 'journals') return journalArticles.value.length
+  if (tab === 'conferences') return conferenceProceedings.value.length
+  return 0
 }
 
-function cancelEdits() {
-  editMode.value = false
-  areasEdit.value = []
-  projectsEdit.value = []
-  journalEdit.value = []
-  confEdit.value = []
+const toggleAbstract = (key) => {
+  showAbstracts.value[key] = !showAbstracts.value[key]
 }
 
-function addProject() {
-  projectsEdit.value.unshift({ icon: '📌', title: 'New Project', description: '', status: 'Proposed' })
+// Highlight the author 'Abhishek' in the list of authors
+const highlightAuthor = (authorsList) => {
+  if (!authorsList) return ''
+  return authorsList.replace(/\bAbhishek\b/g, '<span class="text-nuclear-glow font-bold">Abhishek</span>')
 }
 
-function addJournal() {
-  journalEdit.value.unshift({ title: 'New Article', journal: '', year: '', url: '', raw: '' })
-}
-
-function deleteJournal(idx) {
-  journalEdit.value.splice(idx, 1)
-}
-
-function addConference() {
-  confEdit.value.unshift({ title: 'New Proceeding', journal: '', year: '', url: '', raw: '' })
-}
-
-function deleteConference(idx) {
-  confEdit.value.splice(idx, 1)
-}
-
-function deleteProject(idx) {
-  projectsEdit.value.splice(idx, 1)
-}
-
-function deleteArea(idx) {
-  areasEdit.value.splice(idx, 1)
-}
-
-async function saveEdits() {
-  saving.value = true
-  const payload = {
-    researchAreas: areasEdit.value,
-    currentProjects: projectsEdit.value
+// Safely render KaTeX math expressions in title strings
+const renderTitle = (title) => {
+  if (!title) return ''
+  let html = renderMarkdownToSafeHtml(title)
+  // Strip enclosing paragraph tag generated by the marked compiler
+  if (html.startsWith('<p>') && html.endsWith('</p>')) {
+    html = html.substring(3, html.length - 4)
   }
-  // include publications when present
-  if (journalEdit.value) payload.journalArticles = journalEdit.value
-  if (confEdit.value) payload.conferenceProceedings = confEdit.value
-  const ok = await persistSaved(payload)
-  if (ok) {
-    // apply edits
-    researchAreas.value = JSON.parse(JSON.stringify(areasEdit.value))
-    currentProjects.value = JSON.parse(JSON.stringify(projectsEdit.value))
-  // apply publications as well
-  if (journalEdit.value) journalArticles.value = JSON.parse(JSON.stringify(journalEdit.value))
-  if (confEdit.value) conferenceProceedings.value = JSON.parse(JSON.stringify(confEdit.value))
-    editMode.value = false
-    areasEdit.value = []
-    projectsEdit.value = []
-  journalEdit.value = []
-  confEdit.value = []
-  } else {
-    alert('Failed to save changes. Check console or network.')
-  }
-  saving.value = false
+  return html
 }
-
-async function savePublications() {
-  if (!isAdmin.value) return
-  savingPubs.value = true
-  // merge current edits and existing site payload to avoid clobbering other fields
-  const payload = {
-    researchAreas: researchAreas.value,
-    currentProjects: currentProjects.value,
-    journalArticles: journalEdit.value,
-    conferenceProceedings: confEdit.value
-  }
-  const ok = await persistSaved(payload)
-  if (ok) {
-    // apply to reactive lists but keep edit mode open
-    journalArticles.value = JSON.parse(JSON.stringify(journalEdit.value))
-    conferenceProceedings.value = JSON.parse(JSON.stringify(confEdit.value))
-  } else {
-    alert('Failed to save publications. Check console or network.')
-  }
-  savingPubs.value = false
-}
-
-function revertPublications() {
-  // discard publication edits and reload from current reactive state
-  journalEdit.value = JSON.parse(JSON.stringify(journalArticles.value))
-  confEdit.value = JSON.parse(JSON.stringify(conferenceProceedings.value))
-}
-
 </script>
+
+<style scoped>
+.bg-grid-pattern {
+  background-image: radial-gradient(rgba(0, 255, 255, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+</style>

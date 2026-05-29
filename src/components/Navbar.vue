@@ -96,8 +96,6 @@ onMounted(() => {
 const navLinks = [
   { name: 'Home', path: '/' },
   { name: 'Research', path: '/research' },
-  { name: 'Hobbies', path: '/hobbies' },
-  { name: 'Blog', path: '/blog' },
-  { name: 'Admin', path: '/admin' }
+  { name: 'Hobbies', path: '/hobbies' }
 ]
 </script>

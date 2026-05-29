@@ -2,12 +2,64 @@
   <div class="min-h-screen">
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center justify-center relative overflow-hidden">
-      <!-- Animated background elements -->
-      <div class="absolute inset-0 overflow-hidden">
-        <div class="absolute top-20 left-20 w-32 h-32 border border-nuclear-glow/20 rounded-full animate-pulse"></div>
-        <div class="absolute top-40 right-32 w-24 h-24 border border-nuclear-blue/30 rounded-full animate-float"></div>
-        <div class="absolute bottom-32 left-1/4 w-20 h-20 border border-nuclear-glow/10 rounded-full animate-pulse"></div>
-        <div class="absolute bottom-20 right-20 w-28 h-28 border border-nuclear-blue/20 rounded-full animate-float"></div>
+      <!-- Animated background elements (Atomic Orbitals SVG) -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-30 dark:opacity-40">
+        <!-- Top Left Large Atom -->
+        <div class="absolute -top-10 -left-10 w-96 h-96">
+          <svg class="w-full h-full text-nuclear-glow" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="8" fill="url(#nucleus-grad)" class="animate-pulse" />
+            <ellipse cx="100" cy="100" rx="75" ry="22" stroke="url(#orbit-grad-1)" stroke-width="1.5" transform="rotate(30, 100, 100)" class="animate-spin-slow" />
+            <circle r="4" fill="#00ffff" transform="rotate(30, 100, 100)">
+              <animateMotion dur="10s" repeatCount="indefinite" path="M 25,100 A 75,22 0 1,1 175,100 A 75,22 0 1,1 25,100" />
+            </circle>
+            <ellipse cx="100" cy="100" rx="75" ry="22" stroke="url(#orbit-grad-2)" stroke-width="1.5" transform="rotate(90, 100, 100)" class="animate-spin-mid" />
+            <circle r="4" fill="#0066cc" transform="rotate(90, 100, 100)">
+              <animateMotion dur="13s" repeatCount="indefinite" path="M 25,100 A 75,22 0 1,1 175,100 A 75,22 0 1,1 25,100" />
+            </circle>
+            <ellipse cx="100" cy="100" rx="75" ry="22" stroke="url(#orbit-grad-3)" stroke-width="1.5" transform="rotate(150, 100, 100)" class="animate-spin-fast" />
+            <circle r="4" fill="#00ffff" transform="rotate(150, 100, 100)">
+              <animateMotion dur="8s" repeatCount="indefinite" path="M 25,100 A 75,22 0 1,1 175,100 A 75,22 0 1,1 25,100" />
+            </circle>
+          </svg>
+        </div>
+
+        <!-- Bottom Right Medium Atom -->
+        <div class="absolute -bottom-16 -right-16 w-80 h-80">
+          <svg class="w-full h-full text-nuclear-glow" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="6" fill="url(#nucleus-grad)" class="animate-pulse" />
+            <ellipse cx="100" cy="100" rx="65" ry="18" stroke="url(#orbit-grad-1)" stroke-width="1.2" transform="rotate(45, 100, 100)" class="animate-spin-slow" />
+            <circle r="3" fill="#00ffff" transform="rotate(45, 100, 100)">
+              <animateMotion dur="9s" repeatCount="indefinite" path="M 35,100 A 65,18 0 1,1 165,100 A 65,18 0 1,1 35,100" />
+            </circle>
+            <ellipse cx="100" cy="100" rx="65" ry="18" stroke="url(#orbit-grad-2)" stroke-width="1.2" transform="rotate(115, 100, 100)" class="animate-spin-mid" />
+            <circle r="3" fill="#0066cc" transform="rotate(115, 100, 100)">
+              <animateMotion dur="12s" repeatCount="indefinite" path="M 35,100 A 65,18 0 1,1 165,100 A 65,18 0 1,1 35,100" />
+            </circle>
+          </svg>
+        </div>
+
+        <!-- Standard Gradients & Definitions (hidden at root) -->
+        <svg class="hidden" aria-hidden="true">
+          <defs>
+            <radialGradient id="nucleus-grad" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#00ffff" stop-opacity="1" />
+              <stop offset="60%" stop-color="#0066cc" stop-opacity="0.8" />
+              <stop offset="100%" stop-color="transparent" stop-opacity="0" />
+            </radialGradient>
+            <linearGradient id="orbit-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00ffff" stop-opacity="0.6" />
+              <stop offset="100%" stop-color="#0066cc" stop-opacity="0.15" />
+            </linearGradient>
+            <linearGradient id="orbit-grad-2" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#0066cc" stop-opacity="0.6" />
+              <stop offset="100%" stop-color="#00ffff" stop-opacity="0.15" />
+            </linearGradient>
+            <linearGradient id="orbit-grad-3" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#00ffff" stop-opacity="0.4" />
+              <stop offset="100%" stop-color="#0066cc" stop-opacity="0.4" />
+            </linearGradient>
+          </defs>
+        </svg>
       </div>
 
       <!-- Decorative animated orbs (CSS-only, subtle) -->

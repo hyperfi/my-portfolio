@@ -7,6 +7,24 @@ body {
   @apply bg-dark-bg text-white font-sans antialiased;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Custom spin animations for SVG elements */
+.animate-spin-slow {
+  animation: spin 25s linear infinite;
+  transform-origin: center;
+}
+.animate-spin-mid {
+  animation: spin 16s linear infinite;
+  transform-origin: center;
+}
+.animate-spin-fast {
+  animation: spin 9s linear infinite;
+  transform-origin: center;
+}
+
 html {
   scroll-behavior: smooth;
 }

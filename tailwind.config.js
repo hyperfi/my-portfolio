@@ -19,6 +19,11 @@ export default {
           'bg': '#1a1a1a',
         },
       },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+        heading: ['Outfit', 'sans-serif'],
+        mono: ['Fira Code', 'monospace'],
+      },
       animation: {
         'pulse-glow': 'pulse-glow 4s ease-in-out infinite alternate',
         'float': 'float 6s ease-in-out infinite',

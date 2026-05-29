@@ -41,9 +41,9 @@ onMounted(() => {
 
 <style>
 :root {
-  --bg: #ffffff;
+  --bg: #f8fafc; /* premium slate-50 off-white background */
   --text: #0a0a0a;
-  --card-bg: #f5f5f5;
+  --card-bg: rgba(255, 255, 255, 0.7); /* sleek translucent glassmorphism */
   --muted: #4b5563; /* maps to tailwind gray-600-ish for light mode */
   --muted-2: #6b7280; /* gray-500 */
   --muted-3: #9ca3af; /* gray-400 */

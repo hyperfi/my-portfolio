@@ -5,7 +5,7 @@
       <!-- Animated background elements (Atomic Orbitals SVG) -->
       <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-30 dark:opacity-40">
         <!-- Top Left Large Atom -->
-        <div class="absolute -top-10 -left-10 w-96 h-96">
+        <div class="absolute top-16 -left-10 w-96 h-96">
           <svg class="w-full h-full text-nuclear-glow" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="100" cy="100" r="8" fill="url(#nucleus-grad)" class="animate-pulse" />
             <ellipse cx="100" cy="100" rx="75" ry="22" stroke="url(#orbit-grad-1)" stroke-width="1.5" transform="rotate(30, 100, 100)" class="animate-spin-slow" />

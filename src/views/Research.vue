@@ -187,7 +187,7 @@
             I am always open to discussing research projects, theoretical calculations, and academic partnerships 
             at the intersection of nuclear physics, high-performance computing, and quantum algorithms.
           </p>
-          <a href="mailto:abi00779@gmail.com" class="btn-glow px-8 py-3.5 text-force-white transform hover:-translate-y-0.5 shadow-lg hover:shadow-nuclear-glow/20 inline-block relative z-10 text-sm uppercase tracking-wider">
+          <a href="mailto:abhishek@ph.iitr.ac.in" class="btn-glow px-8 py-3.5 text-force-white transform hover:-translate-y-0.5 shadow-lg hover:shadow-nuclear-glow/20 inline-block relative z-10 text-sm uppercase tracking-wider">
             Initiate Contact
           </a>
         </div>

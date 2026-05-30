@@ -1,5 +1,5 @@
 <template>
-  <nav class="fixed top-0 left-0 right-0 bg-card-bg/90 backdrop-blur-md border-b border-nuclear-blue/30 z-50">
+  <nav ref="navbarRef" class="fixed top-0 left-0 right-0 bg-card-bg/90 backdrop-blur-md border-b border-nuclear-blue/30 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <!-- Logo/Name -->
@@ -32,7 +32,7 @@
         <!-- Mobile menu button -->
         <div class="md:hidden">
           <button 
-            @click="mobileMenuOpen = !mobileMenuOpen"
+            @click.stop="mobileMenuOpen = !mobileMenuOpen"
             class="text-gray-300 hover:text-nuclear-glow transition-colors"
           >
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -43,35 +43,51 @@
       </div>
 
       <!-- Mobile Navigation -->
-      <div v-if="mobileMenuOpen" class="md:hidden py-4 border-t border-nuclear-blue/30">
-        <div class="flex flex-col space-y-2">
-          <router-link 
-            v-for="link in navLinks" 
-            :key="link.name"
-            :to="link.path"
-            @click="mobileMenuOpen = false"
-            class="text-gray-300 hover:text-nuclear-glow transition-colors py-2 px-4 rounded"
-            :class="{ 'text-nuclear-glow bg-nuclear-blue/20': $route.path === link.path }"
-          >
-            {{ link.name }}
-          </router-link>
-          <div class="px-4">
-            <button @click="toggleTheme" class="w-full text-left px-3 py-2 rounded border bg-card-bg/80 text-sm text-gray-200">
-              <span v-if="theme === 'dark'">Switch to Light</span>
-              <span v-else>Switch to Dark</span>
-            </button>
+      <transition
+        enter-active-class="transition duration-300 ease-out"
+        enter-from-class="transform -translate-y-4 opacity-0"
+        enter-to-class="transform translate-y-0 opacity-100"
+        leave-active-class="transition duration-200 ease-in"
+        leave-from-class="transform translate-y-0 opacity-100"
+        leave-to-class="transform -translate-y-4 opacity-0"
+      >
+        <div v-if="mobileMenuOpen" class="md:hidden py-4 border-t border-nuclear-blue/30">
+          <div class="flex flex-col space-y-2">
+            <router-link 
+              v-for="link in navLinks" 
+              :key="link.name"
+              :to="link.path"
+              @click="mobileMenuOpen = false"
+              class="text-gray-300 hover:text-nuclear-glow transition-colors py-2 px-4 rounded"
+              :class="{ 'text-nuclear-glow bg-nuclear-blue/20': $route.path === link.path }"
+            >
+              {{ link.name }}
+            </router-link>
+            <div class="px-4">
+              <button @click="toggleTheme" class="w-full text-left px-3 py-2 rounded border bg-card-bg/80 text-sm text-gray-200">
+                <span v-if="theme === 'dark'">Switch to Light</span>
+                <span v-else>Switch to Dark</span>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </transition>
     </div>
   </nav>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 const mobileMenuOpen = ref(false)
 const theme = ref('dark')
+const navbarRef = ref(null)
+
+const handleClickOutside = (event) => {
+  if (mobileMenuOpen.value && navbarRef.value && !navbarRef.value.contains(event.target)) {
+    mobileMenuOpen.value = false
+  }
+}
 
 const applyTheme = (t) => {
   try {
@@ -91,6 +107,14 @@ onMounted(() => {
   const stored = localStorage.getItem('theme')
   if (stored === 'light' || stored === 'dark') applyTheme(stored)
   else applyTheme((window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light')
+
+  document.addEventListener('click', handleClickOutside)
+  document.addEventListener('touchstart', handleClickOutside)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside)
+  document.removeEventListener('touchstart', handleClickOutside)
 })
 
 const navLinks = [

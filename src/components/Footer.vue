@@ -31,7 +31,7 @@
           <h3 class="text-lg font-semibold text-white mb-4">Connect</h3>
           <div class="space-y-2">
             <!-- Updated contact information -->
-            <p class="text-gray-400 text-sm">📧 abi00779@gmail.com</p>
+            <p class="text-gray-400 text-sm">📧 abhishek@ph.iitr.ac.in</p>
             <p class="text-gray-400 text-sm">🏢 University of Surrey / IIT Roorkee</p>
             <p class="text-gray-400 text-sm">🔬 Nuclear Physics</p>
           </div>

@@ -6,7 +6,7 @@
       <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-30 dark:opacity-40">
         <!-- Top Left Large Atom -->
         <div class="absolute top-16 -left-10 w-96 h-96">
-          <svg class="w-full h-full text-nuclear-glow" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg class="w-full h-full text-nuclear-glow overflow-visible" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="100" cy="100" r="8" fill="url(#nucleus-grad)" class="animate-pulse" />
             <ellipse cx="100" cy="100" rx="75" ry="22" stroke="url(#orbit-grad-1)" stroke-width="1.5" transform="rotate(30, 100, 100)" class="animate-spin-slow" />
             <circle r="4" fill="#00ffff" transform="rotate(30, 100, 100)">
@@ -25,7 +25,7 @@
 
         <!-- Bottom Right Medium Atom -->
         <div class="absolute -bottom-16 -right-16 w-80 h-80">
-          <svg class="w-full h-full text-nuclear-glow" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg class="w-full h-full text-nuclear-glow overflow-visible" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="100" cy="100" r="6" fill="url(#nucleus-grad)" class="animate-pulse" />
             <ellipse cx="100" cy="100" rx="65" ry="18" stroke="url(#orbit-grad-1)" stroke-width="1.2" transform="rotate(45, 100, 100)" class="animate-spin-slow" />
             <circle r="3" fill="#00ffff" transform="rotate(45, 100, 100)">

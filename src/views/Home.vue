@@ -2,65 +2,8 @@
   <div class="min-h-screen">
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center justify-center relative overflow-hidden">
-      <!-- Animated background elements (Atomic Orbitals SVG) -->
-      <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-30 dark:opacity-40">
-        <!-- Top Left Large Atom -->
-        <div class="absolute top-16 -left-10 w-96 h-96">
-          <svg class="w-full h-full text-nuclear-glow overflow-visible" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="100" cy="100" r="8" fill="url(#nucleus-grad)" class="animate-pulse" />
-            <ellipse cx="100" cy="100" rx="75" ry="22" stroke="url(#orbit-grad-1)" stroke-width="1.5" transform="rotate(30, 100, 100)" class="animate-spin-slow" />
-            <circle r="4" fill="#00ffff" transform="rotate(30, 100, 100)">
-              <animateMotion dur="10s" repeatCount="indefinite" path="M 25,100 A 75,22 0 1,1 175,100 A 75,22 0 1,1 25,100" />
-            </circle>
-            <ellipse cx="100" cy="100" rx="75" ry="22" stroke="url(#orbit-grad-2)" stroke-width="1.5" transform="rotate(90, 100, 100)" class="animate-spin-mid" />
-            <circle r="4" fill="#0066cc" transform="rotate(90, 100, 100)">
-              <animateMotion dur="13s" repeatCount="indefinite" path="M 25,100 A 75,22 0 1,1 175,100 A 75,22 0 1,1 25,100" />
-            </circle>
-            <ellipse cx="100" cy="100" rx="75" ry="22" stroke="url(#orbit-grad-3)" stroke-width="1.5" transform="rotate(150, 100, 100)" class="animate-spin-fast" />
-            <circle r="4" fill="#00ffff" transform="rotate(150, 100, 100)">
-              <animateMotion dur="8s" repeatCount="indefinite" path="M 25,100 A 75,22 0 1,1 175,100 A 75,22 0 1,1 25,100" />
-            </circle>
-          </svg>
-        </div>
-
-        <!-- Bottom Right Medium Atom -->
-        <div class="absolute -bottom-16 -right-16 w-80 h-80">
-          <svg class="w-full h-full text-nuclear-glow overflow-visible" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="100" cy="100" r="6" fill="url(#nucleus-grad)" class="animate-pulse" />
-            <ellipse cx="100" cy="100" rx="65" ry="18" stroke="url(#orbit-grad-1)" stroke-width="1.2" transform="rotate(45, 100, 100)" class="animate-spin-slow" />
-            <circle r="3" fill="#00ffff" transform="rotate(45, 100, 100)">
-              <animateMotion dur="9s" repeatCount="indefinite" path="M 35,100 A 65,18 0 1,1 165,100 A 65,18 0 1,1 35,100" />
-            </circle>
-            <ellipse cx="100" cy="100" rx="65" ry="18" stroke="url(#orbit-grad-2)" stroke-width="1.2" transform="rotate(115, 100, 100)" class="animate-spin-mid" />
-            <circle r="3" fill="#0066cc" transform="rotate(115, 100, 100)">
-              <animateMotion dur="12s" repeatCount="indefinite" path="M 35,100 A 65,18 0 1,1 165,100 A 65,18 0 1,1 35,100" />
-            </circle>
-          </svg>
-        </div>
-
-        <!-- Standard Gradients & Definitions (hidden at root) -->
-        <svg class="hidden" aria-hidden="true">
-          <defs>
-            <radialGradient id="nucleus-grad" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#00ffff" stop-opacity="1" />
-              <stop offset="60%" stop-color="#0066cc" stop-opacity="0.8" />
-              <stop offset="100%" stop-color="transparent" stop-opacity="0" />
-            </radialGradient>
-            <linearGradient id="orbit-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#00ffff" stop-opacity="0.6" />
-              <stop offset="100%" stop-color="#0066cc" stop-opacity="0.15" />
-            </linearGradient>
-            <linearGradient id="orbit-grad-2" x1="100%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#0066cc" stop-opacity="0.6" />
-              <stop offset="100%" stop-color="#00ffff" stop-opacity="0.15" />
-            </linearGradient>
-            <linearGradient id="orbit-grad-3" x1="0%" y1="100%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="#00ffff" stop-opacity="0.4" />
-              <stop offset="100%" stop-color="#0066cc" stop-opacity="0.4" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
+      <!-- Animated background elements (Physical hard-sphere simulation on Canvas) -->
+      <canvas ref="simulationCanvas" class="absolute inset-0 w-full h-full pointer-events-none opacity-70 dark:opacity-45"></canvas>
 
       <!-- Decorative animated orbs (CSS-only, subtle) -->
       <div class="landing-bg pointer-events-none" aria-hidden="true">
@@ -75,7 +18,7 @@
           <!-- Profile Image Placeholder -->
           <div class="flex justify-center">
             <div class="w-64 h-64 rounded-full bg-gradient-to-r from-nuclear-blue to-nuclear-glow p-1 ">
-              <div class="w-full h-full rounded-full bg-card-bg overflow-hidden">
+              <div class="w-full h-full rounded-full profile-avatar-frost overflow-hidden">
                 <img :src="'/images/Abhishek.png'" alt="Dr Abhishek" class="w-full h-full object-cover" />
               </div>
             </div>
@@ -247,5 +190,265 @@
 </template>
 
 <script setup>
-// Add any reactive data or methods here
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+
+const simulationCanvas = ref(null);
+let animationId = null;
+let width = 0;
+let height = 0;
+let balls = [];
+let initialEnergy = 0;
+let frameCount = 0;
+
+const getDelta = (a, b, w, h) => {
+  let dx = b.x - a.x;
+  let dy = b.y - a.y;
+  
+  if (dx > w / 2) dx -= w;
+  else if (dx < -w / 2) dx += w;
+  
+  if (dy > h / 2) dy -= h;
+  else if (dy < -h / 2) dy += h;
+  
+  return { dx, dy };
+};
+
+const getKineticEnergy = () => {
+  let energy = 0;
+  for (const ball of balls) {
+    energy += 0.5 * ball.mass * (ball.vx * ball.vx + ball.vy * ball.vy);
+  }
+  return energy;
+};
+
+const scaleEnergy = () => {
+  const currentEnergy = getKineticEnergy();
+  if (currentEnergy > 0 && initialEnergy > 0) {
+    const scale = Math.sqrt(initialEnergy / currentEnergy);
+    for (const ball of balls) {
+      ball.vx *= scale;
+      ball.vy *= scale;
+    }
+  }
+};
+
+const handleResize = () => {
+  const canvas = simulationCanvas.value;
+  if (!canvas) return;
+  const oldWidth = width;
+  const oldHeight = height;
+  
+  width = canvas.clientWidth;
+  height = canvas.clientHeight;
+  canvas.width = width;
+  canvas.height = height;
+  
+  if (oldWidth > 0 && oldHeight > 0) {
+    balls.forEach(ball => {
+      ball.x = (ball.x / oldWidth) * width;
+      ball.y = (ball.y / oldHeight) * height;
+    });
+  }
+};
+
+onMounted(() => {
+  const canvas = simulationCanvas.value;
+  if (!canvas) return;
+  
+  // Set dimensions
+  width = canvas.clientWidth;
+  height = canvas.clientHeight;
+  canvas.width = width;
+  canvas.height = height;
+  
+  // Create 6 balls with sizes 25-55 and mass proportional to area
+  const numBalls = 6;
+  const minRadius = 25;
+  const maxRadius = 55;
+  
+  for (let i = 0; i < numBalls; i++) {
+    const radius = minRadius + Math.random() * (maxRadius - minRadius);
+    const mass = radius * radius;
+    let x, y, overlap;
+    let attempts = 0;
+    
+    do {
+      x = Math.random() * width;
+      y = Math.random() * height;
+      overlap = false;
+      attempts++;
+      
+      for (const other of balls) {
+        const { dx, dy } = getDelta({ x, y }, other, width, height);
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < (radius + other.radius + 15)) {
+          overlap = true;
+          break;
+        }
+      }
+    } while (overlap && attempts < 100);
+    
+    // Initial random velocity (low to moderate speed for a relaxing and elegant backdrop)
+    const speed = 0.6 + Math.random() * 0.8;
+    const angle = Math.random() * Math.PI * 2;
+    const vx = Math.cos(angle) * speed;
+    const vy = Math.sin(angle) * speed;
+    
+    balls.push({
+      x,
+      y,
+      vx,
+      vy,
+      radius,
+      mass,
+      colorType: i % 2 === 0 ? 'cyan' : 'blue'
+    });
+  }
+  
+  initialEnergy = getKineticEnergy();
+  
+  window.addEventListener('resize', handleResize);
+  
+  const ctx = canvas.getContext('2d');
+  
+  const tick = () => {
+    if (!ctx) return;
+    
+    // Clear canvas
+    ctx.clearRect(0, 0, width, height);
+    
+    // 1. Move balls and wrap
+    for (const ball of balls) {
+      ball.x += ball.vx;
+      ball.y += ball.vy;
+      
+      ball.x = (ball.x % width + width) % width;
+      ball.y = (ball.y % height + height) % height;
+    }
+    
+    // 2. Handle collisions
+    for (let i = 0; i < balls.length; i++) {
+      for (let j = i + 1; j < balls.length; j++) {
+        const ballA = balls[i];
+        const ballB = balls[j];
+        
+        const { dx, dy } = getDelta(ballA, ballB, width, height);
+        const distSq = dx * dx + dy * dy;
+        const minDist = ballA.radius + ballB.radius;
+        
+        if (distSq < minDist * minDist) {
+          const dist = Math.sqrt(distSq);
+          const nx = dist > 0 ? dx / dist : 1;
+          const ny = dist > 0 ? dy / dist : 0;
+          
+          // Resolve overlap
+          const overlap = minDist - dist;
+          const totalInvMass = (1 / ballA.mass) + (1 / ballB.mass);
+          
+          const corrX = (overlap / totalInvMass) * nx;
+          const corrY = (overlap / totalInvMass) * ny;
+          
+          ballA.x -= (1 / ballA.mass) * corrX;
+          ballA.y -= (1 / ballA.mass) * corrY;
+          
+          ballB.x += (1 / ballB.mass) * corrX;
+          ballB.y += (1 / ballB.mass) * corrY;
+          
+          // Re-wrap
+          ballA.x = (ballA.x % width + width) % width;
+          ballA.y = (ballA.y % height + height) % height;
+          
+          ballB.x = (ballB.x % width + width) % width;
+          ballB.y = (ballB.y % height + height) % height;
+          
+          // Velocities relative along normal
+          const rvx = ballB.vx - ballA.vx;
+          const rvy = ballB.vy - ballA.vy;
+          const velAlongNormal = rvx * nx + rvy * ny;
+          
+          if (velAlongNormal < 0) {
+            const impulse = -(2 * velAlongNormal) / totalInvMass;
+            
+            ballA.vx -= (1 / ballA.mass) * impulse * nx;
+            ballA.vy -= (1 / ballA.mass) * impulse * ny;
+            
+            ballB.vx += (1 / ballB.mass) * impulse * nx;
+            ballB.vy += (1 / ballB.mass) * impulse * ny;
+          }
+        }
+      }
+    }
+    
+    // 3. Rescale energy thermostat every 120 frames to counteract floating point drift
+    frameCount++;
+    if (frameCount % 120 === 0) {
+      scaleEnergy();
+    }
+    
+    // 4. Render
+    for (const ball of balls) {
+      // Periodic image rendering for seamless wrapping
+      for (let dx = -1; dx <= 1; dx++) {
+        for (let dy = -1; dy <= 1; dy++) {
+          const px = ball.x + dx * width;
+          const py = ball.y + dy * height;
+          
+          if (px + ball.radius >= 0 && px - ball.radius <= width &&
+              py + ball.radius >= 0 && py - ball.radius <= height) {
+            
+            const isDark = document.documentElement.classList.contains('dark');
+            const grad = ctx.createRadialGradient(px, py, 0, px, py, ball.radius);
+            if (isDark) {
+              if (ball.colorType === 'cyan') {
+                grad.addColorStop(0, 'rgba(6, 182, 212, 0.45)');
+                grad.addColorStop(0.3, 'rgba(6, 182, 212, 0.18)');
+                grad.addColorStop(1, 'rgba(6, 182, 212, 0)');
+              } else {
+                grad.addColorStop(0, 'rgba(59, 130, 246, 0.45)');
+                grad.addColorStop(0.3, 'rgba(59, 130, 246, 0.18)');
+                grad.addColorStop(1, 'rgba(59, 130, 246, 0)');
+              }
+            } else {
+              // Light mode: use darker, higher contrast, and more saturated colors
+              if (ball.colorType === 'cyan') {
+                grad.addColorStop(0, 'rgba(3, 105, 120, 0.65)'); // deeper cyan-700
+                grad.addColorStop(0.3, 'rgba(3, 105, 120, 0.3)');
+                grad.addColorStop(1, 'rgba(3, 105, 120, 0)');
+              } else {
+                grad.addColorStop(0, 'rgba(29, 78, 216, 0.65)'); // deeper blue-700
+                grad.addColorStop(0.3, 'rgba(29, 78, 216, 0.3)');
+                grad.addColorStop(1, 'rgba(29, 78, 216, 0)');
+              }
+            }
+            
+            ctx.beginPath();
+            ctx.arc(px, py, ball.radius, 0, Math.PI * 2);
+            ctx.fillStyle = grad;
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.arc(px, py, 3.5, 0, Math.PI * 2);
+            if (isDark) {
+              ctx.fillStyle = ball.colorType === 'cyan' ? '#06b6d4' : '#3b82f6';
+            } else {
+              ctx.fillStyle = ball.colorType === 'cyan' ? '#0891b2' : '#1d4ed8'; // cyan-600 / blue-700
+            }
+            ctx.fill();
+          }
+        }
+      }
+    }
+    
+    animationId = requestAnimationFrame(tick);
+  };
+  
+  tick();
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', handleResize);
+  if (animationId) {
+    cancelAnimationFrame(animationId);
+  }
+});
 </script>

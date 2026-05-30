@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-05-30T05:22:09.031Z",
+  "generatedAt": "2026-05-30T05:31:24.690Z",
   "journal_articles": [
     {
       "key": "PhysRevLett.134.062502",
       "title": "Deformation and Collectivity in Doubly Magic $^{208}\\mathrm{Pb}$",
-      "author": "J. Henderson, J. Heery, M. Rocchini, M. Siciliano, N. Sensharma, A. D. Ayangeakaa, R. V. F. Janssens, T. M. Kowalewski, Abhishek, P. D. Stevenson, E. Yüksel, B. A. Brown, and et al.",
+      "author": "J. Henderson, J. Heery, M. Rocchini, M. Siciliano, N. Sensharma, A. D. Ayangeakaa, R. V. F. Janssens, T. M. Kowalewski, Abhishek, P. D. Stevenson, E. Yüksel, B. A. Brown, T. R. Rodriguez, L. M. Robledo, C. Y. Wu, S. Kisyov, C. Müller-Gatermann, V. Bildstein, L. Canete, C. M. Campbell, S. Carmichael, M. P. Carpenter, W. N. Catford, P. Copp, C. Cousins, M. Devlin, D. T. Doherty, P. E. Garrett, U. Garg, L. P. Gaffney, K. Hadynska-Klek, D. J. Hartley, S. F. Hicks, H. Jayatissa, S. R. Johnson, D. Kalaydjieva, F. Kondev, D. Lascar, T. Lauritsen, G. Lotay, N. Marchini, M. Matejska-Minda, S. Nandi, A. Nannini, C. O'Shea, S. Pascu, C. J. Paxman, A. Perkoff, E. E. Peters, Zs. Podolyak, A. Radich, R. Rathod, B. J. Reed, P. H. Regan, W. Reviol, E. Rubino, R. Russell, D. Seweryniak, J. R. Vanhoy, G. L. Wilson, K. Wrzosek-Lipska, S. W. Yates, and I. Zanon",
       "journal": "Phys. Rev. Lett.",
       "year": 2025,
       "volume": "134",
@@ -72,7 +72,7 @@
       "pages": "4367",
       "doi": null,
       "url": "https://doi.org/10.1007/s12648-025-03627-8",
-      "abstract": null,
+      "abstract": "We present a quantum algorithm to obtain the response of the atomic nucleus to a small external electromagnetic perturbation. For the first time, such an algorithm is implemented on quantum computers to obtain the Giant Dipole Resonance cross-sections in nuclei and corroborated with experimental data. The Hamiltonian of the system is represented by a mean field with a separable interaction. For the quantum computation, we utilize the Jordan-Wigner (JW) transformation and one hot encoding for the operators and basis, respectively. Apart from getting the eigenstates of the Hamiltonian (performed in most of the quantum simulations), we utilize them further in calculating the dipole response. The results for 120Sn and 208Pb are analyzed along with classical computing involving linear response theory, showing good agreement with available data. We also present the results in the presence of hardware noise and employ noise mitigation techniques. We quantify the circuit depth, width, and number of gates to encode the states and perform other required calculations in quantum circuits. While bringing out the feasibility of utilizing quantum algorithms in accurately modeling nuclear response, this study underscores the need for more efforts to explore situations where the quantum simulations might outperform other methods.",
       "eprint": null,
       "archiveprefix": null
     },

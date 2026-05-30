@@ -90,7 +90,7 @@
               @click="activeTab = tab"
               class="px-5 py-2.5 rounded-lg text-sm font-medium tracking-wide transition-all duration-300 uppercase cursor-pointer"
               :class="activeTab === tab 
-                ? 'bg-nuclear-blue text-white shadow-[0_2px_12px_rgba(0,91,181,0.3)]' 
+                ? 'bg-nuclear-blue text-force-white shadow-[0_2px_12px_rgba(0,91,181,0.3)]' 
                 : 'text-gray-400 hover:text-white'"
             >
               {{ tab === 'preprints' ? 'Preprints' : tab === 'journals' ? 'Journals' : 'Conferences' }}
@@ -186,7 +186,7 @@
             I am always open to discussing research projects, theoretical calculations, and academic partnerships 
             at the intersection of nuclear physics, high-performance computing, and quantum algorithms.
           </p>
-          <a href="mailto:abi00779@gmail.com" class="px-8 py-3.5 bg-gradient-to-r from-nuclear-blue to-nuclear-glow hover:from-nuclear-glow hover:to-nuclear-blue text-white font-semibold rounded-lg shadow-lg hover:shadow-nuclear-glow/20 transform hover:-translate-y-0.5 transition-all duration-300 cursor-pointer inline-block relative z-10 text-sm uppercase tracking-wider">
+          <a href="mailto:abi00779@gmail.com" class="px-8 py-3.5 bg-gradient-to-r from-nuclear-blue to-nuclear-glow hover:from-nuclear-glow hover:to-nuclear-blue text-force-white font-semibold rounded-lg shadow-lg hover:shadow-nuclear-glow/20 transform hover:-translate-y-0.5 transition-all duration-300 cursor-pointer inline-block relative z-10 text-sm uppercase tracking-wider">
             Initiate Contact
           </a>
         </div>

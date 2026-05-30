@@ -50,9 +50,9 @@ html {
   pointer-events: none;
 }
 
-/* Custom components */
 .btn-glow {
-  @apply px-6 py-3 bg-gradient-to-r from-nuclear-blue to-nuclear-glow text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105;
+  @apply px-6 py-3 bg-gradient-to-r from-nuclear-blue to-nuclear-glow font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105;
+  color: #ffffff !important;
 }
 
 .card-hover {

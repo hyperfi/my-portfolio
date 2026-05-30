@@ -42,11 +42,11 @@ onMounted(() => {
 <style>
 :root {
   --bg: #f8fafc; /* premium slate-50 off-white background */
-  --text: #0a0a0a;
+  --text: #0f172a; /* slate-900 */
   --card-bg: rgba(255, 255, 255, 0.7); /* sleek translucent glassmorphism */
-  --muted: #4b5563; /* maps to tailwind gray-600-ish for light mode */
-  --muted-2: #6b7280; /* gray-500 */
-  --muted-3: #9ca3af; /* gray-400 */
+  --muted: #1e293b; /* slate-800: maps to text-gray-200 in light mode */
+  --muted-2: #475569; /* slate-600: maps to text-gray-300 in light mode */
+  --muted-3: #64748b; /* slate-500: maps to text-gray-400/500/600 in light mode */
   /* nuclear color tweaks for light mode: slightly deeper, more saturated to keep "glow" interesting */
   --nuclear-blue: #005bb5; /* slightly richer than tailwind base */
   --nuclear-glow: #0077cc; /* deeper cyan so it shows up on white */
@@ -57,9 +57,9 @@ onMounted(() => {
   --bg: #0a0a0a;
   --text: #ffffff;
   --card-bg: #1a1a1a;
-  --muted: #9ca3af; /* lighter muted in dark mode */
-  --muted-2: #9ca3af;
-  --muted-3: #6b7280;
+  --muted: #e2e8f0; /* slate-200: maps to text-gray-200 in dark mode */
+  --muted-2: #cbd5e1; /* slate-300: maps to text-gray-300 in dark mode */
+  --muted-3: #94a3b8; /* slate-400: maps to text-gray-400/500/600 in dark mode */
   /* restore vivid neon colors for dark mode */
   --nuclear-blue: #0066cc;
   --nuclear-glow: #00ffff;
@@ -76,12 +76,15 @@ body, #app {
 .text-white { color: var(--text) !important }
 .bg-card-bg { background-color: var(--card-bg) !important }
 
+/* Force standard white text utility when contrast requires it on dark/gradient buttons */
+.text-force-white { color: #ffffff !important }
+
 /* Improve visibility for commonly used utility text colors across themes */
-.text-gray-300 { color: var(--muted-3) !important }
-.text-gray-400 { color: var(--muted-2) !important }
 .text-gray-200 { color: var(--muted) !important }
-.text-gray-500 { color: var(--muted-2) !important }
-.text-gray-600 { color: var(--muted-2) !important }
+.text-gray-300 { color: var(--muted-2) !important }
+.text-gray-400 { color: var(--muted-3) !important }
+.text-gray-500 { color: var(--muted-3) !important }
+.text-gray-600 { color: var(--muted-3) !important }
 
 /* nuclear glow should remain vivid in both themes */
 .text-nuclear-glow { color: #00ffff !important }

@@ -48,23 +48,29 @@
         </div>
       </section>
 
-      <!-- Instagram Profiles -->
+      <!-- Creative Channels -->
       <section class="mb-20">
-        <h2 class="text-3xl font-bold text-nuclear-glow mb-6 text-center">Instagram</h2>
-        <p class="text-center text-gray-300 mb-6">Follow my photography and 3D work on Instagram.</p>
-  <div class="flex justify-center gap-6">
-          <a href="https://www.instagram.com/hyperfinephotos" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 bg-card-bg px-4 py-3 rounded-lg border border-nuclear-blue/20 hover:scale-[1.02] transition-transform">
+        <h2 class="text-3xl font-bold text-nuclear-glow mb-6 text-center">Creative Channels</h2>
+        <p class="text-center text-gray-300 mb-6">Follow my photography, 3D work, and science-oriented video content.</p>
+        <div class="flex flex-wrap justify-center gap-6">
+          <a href="https://www.youtube.com/@abiuniverse" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 bg-card-bg px-4 py-3 rounded-lg border border-nuclear-blue/20 hover:scale-[1.02] transition-transform shadow-sm">
+            <svg class="h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.508 9.388.508 9.388.508s7.517 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            <span class="text-sm text-gray-200">YouTube @abiuniverse</span>
+          </a>
+
+          <a href="https://www.instagram.com/hyperfinephotos" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 bg-card-bg px-4 py-3 rounded-lg border border-nuclear-blue/20 hover:scale-[1.02] transition-transform shadow-sm">
             <svg class="h-5 w-5 text-pink-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10zM12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9zm0 2a2.5 2.5 0 110 5 2.5 2.5 0 010-5zM17.5 6a.9.9 0 11-.001 1.8A.9.9 0 0117.5 6z"/></svg>
             <span class="text-sm text-gray-200">@hyperfinephotos</span>
           </a>
 
-          <a href="https://www.instagram.com/hyperfine3d" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 bg-card-bg px-4 py-3 rounded-lg border border-nuclear-blue/20 hover:scale-[1.02] transition-transform">
+          <a href="https://www.instagram.com/hyperfine3d" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 bg-card-bg px-4 py-3 rounded-lg border border-nuclear-blue/20 hover:scale-[1.02] transition-transform shadow-sm">
             <svg class="h-5 w-5 text-pink-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10zM12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9zm0 2a2.5 2.5 0 110 5 2.5 2.5 0 010-5zM17.5 6a.9.9 0 11-.001 1.8A.9.9 0 0117.5 6z"/></svg>
             <span class="text-sm text-gray-200">@hyperfine3d</span>
           </a>
+        </div>    
           
-          
-        </div>
       </section>
 
   <!-- Personal Projects & Achievements section intentionally hidden -->
@@ -195,7 +201,7 @@ const technicalSkills = ref([
   'NumPy', 'SciPy', 'Pandas',
   'Vue.js', 'JavaScript', 'TypeScript', 'Git', 'Linux',
   'Qiskit/Quantum Algorithms', 'TensorFlow / PyTorch', 'Machine Learning',
-  'HPC / MPI', 'Docker', 'LaTeX', 'ROOT', 'Geant4'
+  'HPC / MPI', 'Docker', 'LaTeX', 'ROOT'
 ])
 
 // TODO: Add your actual creative interests
@@ -203,7 +209,6 @@ const creativeInterests = ref([
   'Astrophotography',
   '3D Modeling & Animation (Blender)',
   'Game Design for Education',
-  'Guitar', 'Piano',
   'Creative Coding / Data Viz',
   'Writing & Science Communication',
   'Instrument Building & DIY Electronics',

@@ -103,7 +103,7 @@
             <router-link to="/research" class="btn-glow">
               Explore My Research
             </router-link>
-            <router-link to="/hobbies" class="px-6 py-3 border border-nuclear-glow text-nuclear-glow hover:bg-nuclear-glow hover:text-dark-bg transition-all duration-300 rounded-lg">
+            <router-link to="/hobbies" class="btn-outline-glow">
               Discover My Hobbies
             </router-link>
           </div>
@@ -201,7 +201,7 @@
               </p>
             </div>
             <div>
-              <a href="https://hyperfi.github.io/Nilsson-Model-Interactive/" target="_blank" rel="noopener noreferrer" class="w-full inline-block text-center px-6 py-3 border border-nuclear-glow text-nuclear-glow hover:bg-nuclear-glow hover:text-black font-semibold rounded-lg transition-all duration-300 text-sm uppercase tracking-wider">
+              <a href="https://hyperfi.github.io/Nilsson-Model-Interactive/" target="_blank" rel="noopener noreferrer" class="w-full inline-block text-center btn-outline-glow text-sm uppercase tracking-wider">
                 Run Simulation
               </a>
             </div>
@@ -222,7 +222,7 @@
               </p>
             </div>
             <div>
-              <a href="https://hyperfi.github.io/Time-Dependent-Schrodinger-Equation-1D/" target="_blank" rel="noopener noreferrer" class="w-full inline-block text-center px-6 py-3 border border-nuclear-glow text-nuclear-glow hover:bg-nuclear-glow hover:text-black font-semibold rounded-lg transition-all duration-300 text-sm uppercase tracking-wider">
+              <a href="https://hyperfi.github.io/Time-Dependent-Schrodinger-Equation-1D/" target="_blank" rel="noopener noreferrer" class="w-full inline-block text-center btn-outline-glow text-sm uppercase tracking-wider">
                 Run Simulation
               </a>
             </div>

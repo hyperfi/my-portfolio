@@ -51,9 +51,114 @@ html {
 }
 
 .btn-glow {
-  @apply px-6 py-3 bg-gradient-to-r from-nuclear-blue to-nuclear-glow font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105;
+  @apply px-6 py-3 font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105;
+  background: linear-gradient(to right, var(--nuclear-blue), var(--nuclear-glow)) !important;
   color: #ffffff !important;
 }
+
+.btn-outline-glow {
+  @apply px-6 py-3 border border-nuclear-glow font-semibold rounded-lg transition-all duration-300;
+  color: var(--nuclear-glow) !important;
+  background-color: transparent;
+}
+.btn-outline-glow:hover {
+  background-color: var(--nuclear-glow) !important;
+  color: var(--bg) !important;
+  box-shadow: 0 6px 20px rgba(var(--nuclear-glow-rgb), 0.25) !important;
+  transform: translateY(-1.5px);
+}
+
+.btn-outline-glow-sm {
+  @apply px-4 py-2 border border-nuclear-glow/40 font-semibold text-xs uppercase tracking-wider rounded-lg transition-all duration-300;
+  color: var(--nuclear-glow) !important;
+  background-color: transparent;
+}
+.btn-outline-glow-sm:hover {
+  border-color: var(--nuclear-glow) !important;
+  background-color: var(--nuclear-glow) !important;
+  color: var(--bg) !important;
+  box-shadow: 0 4px 12px rgba(var(--nuclear-glow-rgb), 0.2) !important;
+  transform: translateY(-1px);
+}
+
+.tab-btn-active {
+  background: linear-gradient(135deg, var(--nuclear-blue), var(--nuclear-glow)) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(0, 119, 204, 0.3) !important;
+  transform: translateY(-0.5px);
+}
+
+.tab-btn-inactive {
+  background-color: transparent !important;
+  color: var(--muted-2) !important;
+}
+
+.tab-btn-inactive:hover {
+  color: var(--text) !important;
+  background-color: rgba(var(--nuclear-blue-rgb), 0.08) !important;
+}
+
+.dark .tab-btn-inactive:hover {
+  color: var(--nuclear-glow) !important;
+  background-color: rgba(var(--nuclear-blue-rgb), 0.15) !important;
+}
+
+/* Tab Badges */
+.tab-badge {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+}
+
+.tab-btn-active .tab-badge {
+  background-color: rgba(255, 255, 255, 0.25) !important;
+  color: #ffffff !important;
+}
+
+.tab-btn-inactive .tab-badge {
+  background-color: rgba(var(--nuclear-blue-rgb), 0.08) !important;
+  color: var(--nuclear-blue) !important;
+}
+
+.dark .tab-btn-inactive .tab-badge {
+  background-color: rgba(0, 0, 0, 0.35) !important;
+  color: var(--nuclear-glow) !important;
+}
+
+/* Abstract Toggle Button */
+.btn-abstract {
+  @apply px-4 py-2 font-semibold text-xs uppercase tracking-wider rounded-lg border transition-all duration-300 cursor-pointer;
+  background-color: rgba(var(--nuclear-blue-rgb), 0.08) !important;
+  border-color: rgba(var(--nuclear-blue-rgb), 0.25) !important;
+  color: var(--text) !important;
+}
+
+.btn-abstract:hover {
+  background-color: var(--nuclear-blue) !important;
+  border-color: var(--nuclear-blue) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(var(--nuclear-blue-rgb), 0.2) !important;
+  transform: translateY(-1px);
+}
+
+.dark .btn-abstract:hover {
+  background-color: var(--nuclear-glow) !important;
+  border-color: var(--nuclear-glow) !important;
+  color: var(--bg) !important;
+  box-shadow: 0 4px 12px rgba(var(--nuclear-glow-rgb), 0.35) !important;
+}
+
+.btn-abstract-active {
+  background-color: rgba(var(--nuclear-blue-rgb), 0.22) !important;
+  border-color: var(--nuclear-blue) !important;
+  color: var(--text) !important;
+}
+
+.dark .btn-abstract-active {
+  background-color: rgba(var(--nuclear-glow-rgb), 0.22) !important;
+  border-color: var(--nuclear-glow) !important;
+  color: #ffffff !important;
+}
+
 
 .card-hover {
   @apply transition-all duration-300 hover:scale-105 hover:shadow-xl;
@@ -63,10 +168,6 @@ html {
   @apply text-nuclear-glow drop-shadow-lg;
 }
 
-.bg-card-bg {
-  --tw-bg-opacity: 0.0;
-  background-color: rgb(0, 0, 0) !important;
-}
 
 /* Landing page background orbs - more pronounced and light-mode friendly */
 .landing-bg {

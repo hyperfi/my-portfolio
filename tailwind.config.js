@@ -8,15 +8,19 @@ export default {
   theme: {
     extend: {
       colors: {
+        'nuclear-blue': 'rgb(var(--nuclear-blue-rgb) / <alpha-value>)',
+        'nuclear-glow': 'rgb(var(--nuclear-glow-rgb) / <alpha-value>)',
+        'dark-bg': 'rgb(var(--bg-rgb) / <alpha-value>)',
+        'card-bg': 'rgb(var(--card-bg-rgb) / <alpha-value>)',
         'nuclear': {
-          'blue': '#0066cc',
-          'glow': '#00ffff',
+          'blue': 'rgb(var(--nuclear-blue-rgb) / <alpha-value>)',
+          'glow': 'rgb(var(--nuclear-glow-rgb) / <alpha-value>)',
         },
         'dark': {
-          'bg': '#0a0a0a',
+          'bg': 'rgb(var(--bg-rgb) / <alpha-value>)',
         },
         'card': {
-          'bg': '#1a1a1a',
+          'bg': 'rgb(var(--card-bg-rgb) / <alpha-value>)',
         },
       },
       fontFamily: {

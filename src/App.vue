@@ -41,6 +41,11 @@ onMounted(() => {
 
 <style>
 :root {
+  --bg-rgb: 248, 250, 252; /* slate-50 rgb values */
+  --card-bg-rgb: 255, 255, 255; /* white rgb values */
+  --nuclear-blue-rgb: 0, 91, 181;
+  --nuclear-glow-rgb: 0, 119, 204;
+
   --bg: #f8fafc; /* premium slate-50 off-white background */
   --text: #0f172a; /* slate-900 */
   --card-bg: rgba(255, 255, 255, 0.7); /* sleek translucent glassmorphism */
@@ -54,6 +59,11 @@ onMounted(() => {
   --pulse-rgb: 0,119,204; /* light-mode: richer blue */
 }
 .dark {
+  --bg-rgb: 10, 10, 10; /* #0a0a0a rgb values */
+  --card-bg-rgb: 26, 26, 26; /* #1a1a1a rgb values */
+  --nuclear-blue-rgb: 0, 102, 204;
+  --nuclear-glow-rgb: 0, 255, 255;
+
   --bg: #0a0a0a;
   --text: #ffffff;
   --card-bg: #1a1a1a;

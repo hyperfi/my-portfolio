@@ -179,6 +179,65 @@
       </div>
     </section>
 
+
+    <!-- Interactive Simulations Section -->
+    <section class="py-20 bg-dark-bg border-t border-nuclear-blue/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-white mb-4">
+            Interactive <span class="text-nuclear-glow">Simulations</span>
+          </h2>
+          <p class="text-xl text-gray-300 max-w-3xl mx-auto font-light">
+            Bringing theoretical and mathematical physics to life directly in your browser.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <!-- Simulation 1: Nilsson Model -->
+          <div class="bg-card-bg/60 backdrop-blur-sm p-8 rounded-2xl border border-nuclear-blue/20 hover:border-nuclear-glow/40 transition-all duration-300 flex flex-col justify-between hover:shadow-[0_8px_30px_rgb(0,255,255,0.03)] group">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="text-3xl">⚛️</span>
+                <span class="px-3 py-1 bg-nuclear-blue/10 text-nuclear-glow text-xs font-semibold rounded-full border border-nuclear-blue/20 uppercase tracking-wider">Nuclear Physics</span>
+              </div>
+              <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-nuclear-glow transition-colors">
+                Interactive Nilsson Model Solver
+              </h3>
+              <p class="text-gray-300 text-sm font-light leading-relaxed mb-6">
+                Visualize single-particle energy levels in a deformed nuclear potential. This tool solves the Nilsson Hamiltonian in real-time, allowing users to adjust deformation parameters (&epsilon;, spin-orbit strength, and orbit-orbit coupling) to explore how nuclear shells split and form magic numbers.
+              </p>
+            </div>
+            <div>
+              <a href="https://hyperfi.github.io/Nilsson-Model-Interactive/" target="_blank" rel="noopener noreferrer" class="w-full inline-block text-center px-6 py-3 border border-nuclear-glow text-nuclear-glow hover:bg-nuclear-glow hover:text-black font-semibold rounded-lg transition-all duration-300 text-sm uppercase tracking-wider">
+                Run Simulation
+              </a>
+            </div>
+          </div>
+
+          <!-- Simulation 2: TDSE -->
+          <div class="bg-card-bg/60 backdrop-blur-sm p-8 rounded-2xl border border-nuclear-blue/20 hover:border-nuclear-glow/40 transition-all duration-300 flex flex-col justify-between hover:shadow-[0_8px_30px_rgb(0,255,255,0.03)] group">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="text-3xl">🌊</span>
+                <span class="px-3 py-1 bg-nuclear-glow/10 text-nuclear-glow text-xs font-semibold rounded-full border border-nuclear-glow/20 uppercase tracking-wider">Quantum Mechanics</span>
+              </div>
+              <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-nuclear-glow transition-colors">
+                1D Time-Dependent Schrödinger Solver
+              </h3>
+              <p class="text-gray-300 text-sm font-light leading-relaxed mb-6">
+                Simulate quantum wave packet dynamics under arbitrary potentials. Watch wave functions propagate, tunnel through potential barriers, scatter, or remain bound, with full real-time control over physical parameters.
+              </p>
+            </div>
+            <div>
+              <a href="https://hyperfi.github.io/Time-Dependent-Schrodinger-Equation-1D/" target="_blank" rel="noopener noreferrer" class="w-full inline-block text-center px-6 py-3 border border-nuclear-glow text-nuclear-glow hover:bg-nuclear-glow hover:text-black font-semibold rounded-lg transition-all duration-300 text-sm uppercase tracking-wider">
+                Run Simulation
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Quote Section -->
     <section class="py-20 bg-card-bg">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

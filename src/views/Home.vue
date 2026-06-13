@@ -128,7 +128,7 @@
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           <!-- Simulation 1: Nilsson Model -->
           <div class="bg-card-bg/60 backdrop-blur-sm p-8 rounded-2xl border border-nuclear-blue/20 hover:border-nuclear-glow/40 transition-all duration-300 flex flex-col justify-between hover:shadow-[0_8px_30px_rgb(0,255,255,0.03)] group">
             <div>
@@ -166,6 +166,27 @@
             </div>
             <div>
               <a href="https://hyperfi.github.io/Time-Dependent-Schrodinger-Equation-1D/" target="_blank" rel="noopener noreferrer" class="w-full inline-block text-center btn-outline-glow text-sm uppercase tracking-wider">
+                Run Simulation
+              </a>
+            </div>
+          </div>
+
+          <!-- Simulation 3: PES Visualizer -->
+          <div class="bg-card-bg/60 backdrop-blur-sm p-8 rounded-2xl border border-nuclear-blue/20 hover:border-nuclear-glow/40 transition-all duration-300 flex flex-col justify-between hover:shadow-[0_8px_30px_rgb(0,255,255,0.03)] group">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="text-3xl">⛰️</span>
+                <span class="px-3 py-1 bg-nuclear-blue/10 text-nuclear-glow text-xs font-semibold rounded-full border border-nuclear-blue/20 uppercase tracking-wider">Nuclear Physics</span>
+              </div>
+              <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-nuclear-glow transition-colors">
+                Potential Energy Surfaces (PES) Visualizer
+              </h3>
+              <p class="text-gray-300 text-sm font-light leading-relaxed mb-6">
+                Explore the microscopic-macroscopic (Micro-Macro) approach to nuclear deformation. Calculate Nilsson level splitting, evaluate Strutinsky shell corrections, and project the 2D/3D Potential Energy Surface in real-time, displaying predicted ground-state shapes dynamically.
+              </p>
+            </div>
+            <div>
+              <a href="https://hyperfi.github.io/PES-Visualizer/" target="_blank" rel="noopener noreferrer" class="w-full inline-block text-center btn-outline-glow text-sm uppercase tracking-wider">
                 Run Simulation
               </a>
             </div>

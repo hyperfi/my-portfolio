@@ -130,10 +130,10 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           <!-- Simulation 1: Nilsson Model -->
-          <div class="bg-card-bg/60 backdrop-blur-sm p-8 rounded-2xl border border-nuclear-blue/20 hover:border-nuclear-glow/40 transition-all duration-300 flex flex-col justify-between hover:shadow-[0_8px_30px_rgb(0,255,255,0.03)] group">
+          <div class="bg-card-bg/60 backdrop-blur-sm p-8 rounded-2xl border border-nuclear-blue/20 flex flex-col justify-between sim-card-glow group">
             <div>
               <div class="flex items-center justify-between mb-6">
-                <span class="text-3xl">⚛️</span>
+                <span class="text-3xl sim-icon">⚛️</span>
                 <span class="px-3 py-1 bg-nuclear-blue/10 text-nuclear-glow text-xs font-semibold rounded-full border border-nuclear-blue/20 uppercase tracking-wider">Nuclear Physics</span>
               </div>
               <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-nuclear-glow transition-colors">
@@ -151,10 +151,10 @@
           </div>
 
           <!-- Simulation 2: TDSE -->
-          <div class="bg-card-bg/60 backdrop-blur-sm p-8 rounded-2xl border border-nuclear-blue/20 hover:border-nuclear-glow/40 transition-all duration-300 flex flex-col justify-between hover:shadow-[0_8px_30px_rgb(0,255,255,0.03)] group">
+          <div class="bg-card-bg/60 backdrop-blur-sm p-8 rounded-2xl border border-nuclear-blue/20 flex flex-col justify-between sim-card-glow group">
             <div>
               <div class="flex items-center justify-between mb-6">
-                <span class="text-3xl">🌊</span>
+                <span class="text-3xl sim-icon">🌊</span>
                 <span class="px-3 py-1 bg-nuclear-glow/10 text-nuclear-glow text-xs font-semibold rounded-full border border-nuclear-glow/20 uppercase tracking-wider">Quantum Mechanics</span>
               </div>
               <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-nuclear-glow transition-colors">
@@ -172,10 +172,10 @@
           </div>
 
           <!-- Simulation 3: PES Visualizer -->
-          <div class="bg-card-bg/60 backdrop-blur-sm p-8 rounded-2xl border border-nuclear-blue/20 hover:border-nuclear-glow/40 transition-all duration-300 flex flex-col justify-between hover:shadow-[0_8px_30px_rgb(0,255,255,0.03)] group">
+          <div class="bg-card-bg/60 backdrop-blur-sm p-8 rounded-2xl border border-nuclear-blue/20 flex flex-col justify-between sim-card-glow group">
             <div>
               <div class="flex items-center justify-between mb-6">
-                <span class="text-3xl">⛰️</span>
+                <span class="text-3xl sim-icon">⛰️</span>
                 <span class="px-3 py-1 bg-nuclear-blue/10 text-nuclear-glow text-xs font-semibold rounded-full border border-nuclear-blue/20 uppercase tracking-wider">Nuclear Physics</span>
               </div>
               <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-nuclear-glow transition-colors">

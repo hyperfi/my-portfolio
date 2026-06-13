@@ -241,3 +241,23 @@ html {
 :not(.dark) .landing-bg .orb { mix-blend-mode: normal; opacity: 0.85; filter: blur(20px); }
 :root .landing-bg .orb { mix-blend-mode: screen; }
 .dark .landing-bg .orb { mix-blend-mode: screen; opacity: 0.55; filter: blur(36px); }
+
+/* Premium Simulation Card hover effects */
+.sim-card-glow {
+  @apply transition-all duration-500 ease-out;
+}
+
+.sim-card-glow:hover {
+  transform: translateY(-6px) scale(1.015);
+  border-color: rgba(var(--nuclear-glow-rgb), 0.6) !important;
+  box-shadow: 0 20px 40px rgba(var(--nuclear-blue-rgb), 0.12), 
+              0 0 30px rgba(var(--nuclear-glow-rgb), 0.18) !important;
+}
+
+.sim-card-glow .sim-icon {
+  @apply transition-transform duration-500 ease-out inline-block;
+}
+
+.sim-card-glow:hover .sim-icon {
+  transform: scale(1.25) rotate(12deg);
+}

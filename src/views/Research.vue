@@ -1,320 +1,207 @@
 <template>
-  <div class="min-h-screen py-20 bg-dark-bg">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <!-- Premium Title / Hero Area -->
-      <div class="text-center mb-16 relative">
-        <div class="absolute inset-0 flex items-center justify-center -top-10 opacity-10 pointer-events-none" aria-hidden="true">
-          <span class="text-9xl font-extrabold tracking-widest text-nuclear-blue select-none">NPQR</span>
-        </div>
-        <h1 class="text-5xl md:text-6xl font-bold tracking-tight text-white mb-6 relative z-10">
-          Research & <span class="text-nuclear-glow">Publications</span>
-        </h1>
-        <p class="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed relative z-10 font-light">
-          Addressing fundamental challenges in nuclear many‑body physics using complementary classical and
-          quantum techniques. My work spans microscopic models (linear‑response theory, TDHF/Sky3D,
-          RPA, and density‑functional approaches) and pioneering quantum algorithms for nuclear structure
-          and dynamics, with a particular focus on giant resonances and deformed nuclei.
-        </p>
-      </div>
-
-      <!-- Research Areas Grid -->
-      <section class="mb-24">
-        <div class="flex items-center gap-4 mb-8">
-          <div class="h-8 w-1.5 bg-nuclear-glow rounded-full"></div>
-          <h2 class="text-3xl font-bold text-white tracking-wide">Key Research Domains</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div 
-            v-for="(area, idx) in researchAreas" 
-            :key="idx" 
-            class="bg-card-bg/60 backdrop-blur-sm p-8 rounded-2xl border border-nuclear-blue/20 hover:border-nuclear-glow/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgb(0,255,255,0.03)] group"
-          >
-            <div class="w-12 h-12 rounded-xl bg-nuclear-blue/15 border border-nuclear-blue/30 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
-              {{ area.icon }}
-            </div>
-            <h3 class="text-xl font-semibold text-white mb-3 group-hover:text-nuclear-glow transition-colors">
-              {{ area.title }}
-            </h3>
-            <p class="text-gray-400 text-sm leading-relaxed font-light">
-              {{ area.description }}
+  <div class="inner-page research-page">
+    <section class="page-hero section-shell">
+      <div class="page-hero-grid">
+        <span class="page-number">01 / Research</span>
+        <div>
+          <h1>Questions at the scale<br>of the <em>nucleus.</em></h1>
+          <div class="page-hero-copy">
+            <p>
+              I combine microscopic many-body theory, time-dependent simulation, and quantum information
+              science to understand collective nuclear dynamics—and to build better ways of computing them.
             </p>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Current Projects -->
-      <section class="mb-24">
-        <div class="flex items-center gap-4 mb-8">
-          <div class="h-8 w-1.5 bg-nuclear-glow rounded-full"></div>
-          <h2 class="text-3xl font-bold text-white tracking-wide">Current Projects</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div 
-            v-for="(project, pidx) in currentProjects" 
-            :key="pidx" 
-            class="bg-card-bg/60 backdrop-blur-sm p-8 rounded-2xl border border-nuclear-blue/20 hover:border-nuclear-glow/40 transition-all duration-300 flex flex-col md:flex-row gap-6 hover:shadow-[0_8px_30px_rgb(0,255,255,0.03)]"
-          >
-            <div class="w-14 h-14 bg-gradient-to-r from-nuclear-blue/20 to-nuclear-glow/20 rounded-xl flex items-center justify-center flex-shrink-0 border border-nuclear-blue/30">
-              <span class="text-2xl">{{ project.icon }}</span>
-            </div>
-            <div class="flex-1 flex flex-col justify-between">
-              <div>
-                <h3 class="text-xl font-semibold text-white mb-2">{{ project.title }}</h3>
-                <p class="text-gray-400 text-sm leading-relaxed mb-4 font-light">{{ project.description }}</p>
-              </div>
-              <div class="flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-nuclear-glow animate-pulse"></span>
-                <span class="text-xs tracking-wider uppercase text-nuclear-glow font-medium">
-                  Status: {{ project.status }}
-                </span>
-              </div>
-            </div>
+    <section class="section-shell inner-section">
+      <div class="inner-section-header">
+        <h2>Core research domains</h2>
+        <span>Five connected directions</span>
+      </div>
+      <div class="domain-grid">
+        <article v-for="(area, index) in researchAreas" :key="area.title" class="domain-card">
+          <span class="domain-index">0{{ index + 1 }}</span>
+          <h3>{{ area.title }}</h3>
+          <p>{{ area.description }}</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-shell inner-section">
+      <div class="inner-section-header">
+        <h2>Work in progress</h2>
+        <span>Current research programme</span>
+      </div>
+      <div class="project-list">
+        <article v-for="(project, index) in currentProjects" :key="project.title" class="project-row">
+          <span class="project-index">0{{ index + 1 }}</span>
+          <h3>{{ project.title }}</h3>
+          <p>{{ project.description }}</p>
+          <span class="status-pill">{{ project.status }}</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="publication-section">
+      <div class="section-shell">
+        <div class="inner-section-header">
+          <div>
+            <span class="eyebrow">Research record</span>
+            <h2>Publications</h2>
           </div>
-        </div>
-      </section>
-
-      <!-- Publications Directory -->
-      <section class="mb-24">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 border-b border-nuclear-blue/20 pb-6">
-          <div class="flex items-center gap-4">
-            <div class="h-8 w-1.5 bg-nuclear-glow rounded-full"></div>
-            <h2 class="text-3xl font-bold text-white tracking-wide">Publications</h2>
-          </div>
-
-          <!-- Modern Animated Navigation Tabs -->
-          <div class="flex flex-wrap p-1 bg-card-bg rounded-xl border border-nuclear-blue/20 shadow-sm">
-            <button 
-              v-for="tab in ['preprints', 'journals', 'conferences']" 
-              :key="tab"
-              @click="activeTab = tab"
-              class="px-5 py-2.5 rounded-lg text-sm font-medium tracking-wide transition-all duration-300 uppercase cursor-pointer"
-              :class="activeTab === tab 
-                ? 'tab-btn-active' 
-                : 'tab-btn-inactive'"
+          <div class="publication-controls" role="tablist" aria-label="Publication categories">
+            <button
+              v-for="tab in tabs"
+              :key="tab.key"
+              type="button"
+              role="tab"
+              :aria-selected="activeTab === tab.key"
+              :class="{ active: activeTab === tab.key }"
+              @click="activeTab = tab.key"
             >
-              {{ tab === 'preprints' ? 'Preprints' : tab === 'journals' ? 'Journals' : 'Conferences' }}
-              <span class="ml-1.5 text-xs px-2 py-0.5 rounded-full tab-badge">
-                {{ getTabCount(tab) }}
-              </span>
+              {{ tab.label }} <span>{{ getTabCount(tab.key) }}</span>
             </button>
           </div>
         </div>
 
-        <!-- Tab Contents -->
-        <div class="space-y-8 min-h-[400px]">
-          <!-- Active Tab list -->
-          <div v-if="activeTabList.length === 0" class="text-center py-20 text-gray-500 font-light">
-            No papers listed in this section.
-          </div>
-          
-          <div v-else class="space-y-8">
-            <div 
-              v-for="(paper, idx) in activeTabList" 
-              :key="paper.key || idx" 
-              class="bg-card-bg/40 backdrop-blur-sm p-8 rounded-2xl border border-nuclear-blue/20 hover:border-nuclear-glow/30 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,255,255,0.02)]"
-            >
-              <div class="flex flex-col lg:flex-row items-start justify-between gap-6">
-                <div class="flex-1 space-y-4">
-                  <!-- Paper Title with Math Rendering -->
-                  <h3 class="text-xl font-bold leading-snug text-white hover:text-nuclear-glow transition-colors duration-200" v-html="renderTitle(paper.title)"></h3>
-                  
-                  <!-- Authors list with Abhishek highlighted -->
-                  <p class="text-gray-300 text-sm font-light leading-relaxed" v-html="highlightAuthor(paper.author)"></p>
-                  
-                  <!-- Journal details / Citation -->
-                  <div class="flex flex-wrap items-center gap-y-2 gap-x-4 text-xs font-mono text-gray-500">
-                    <span class="text-nuclear-blue font-semibold uppercase tracking-wider" v-if="paper.journal">
-                      {{ paper.journal }}
-                    </span>
-                    <span v-if="paper.year">Year: {{ paper.year }}</span>
-                    <span v-if="paper.volume">Vol: {{ paper.volume }}</span>
-                    <span v-if="paper.pages">Pages: {{ paper.pages }}</span>
-                    <span v-if="paper.eprint" class="text-nuclear-glow">arXiv: {{ paper.eprint }}</span>
-                  </div>
-                </div>
-
-                <!-- Action Links -->
-                <div class="flex flex-row lg:flex-col items-center gap-3 w-full lg:w-auto flex-shrink-0 justify-end pt-4 lg:pt-0 border-t lg:border-t-0 border-nuclear-blue/15">
-                  <a 
-                    v-if="paper.url" 
-                    :href="paper.url" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    class="btn-outline-glow-sm w-full lg:w-36 text-center cursor-pointer"
-                  >
-                    Read Paper
-                  </a>
-                  <button 
-                    v-if="paper.abstract"
-                    @click="toggleAbstract(paper.key)"
-                    class="w-full lg:w-36 btn-abstract"
-                    :class="showAbstracts[paper.key] ? 'btn-abstract-active' : ''"
-                  >
-                    {{ showAbstracts[paper.key] ? 'Hide Abstract' : 'Abstract' }}
-                  </button>
-                </div>
+        <div v-if="activeTabList.length" class="publication-list">
+          <article v-for="(paper, index) in activeTabList" :key="paper.key || index" class="publication-card">
+            <span class="publication-year">{{ paper.year || '—' }}</span>
+            <div class="publication-body">
+              <h3 v-html="renderTitle(paper.title)"></h3>
+              <p class="publication-authors" v-html="highlightAuthor(paper.author)"></p>
+              <div class="publication-meta">
+                <span v-if="paper.journal">{{ paper.journal }}</span>
+                <span v-if="paper.volume">Vol. {{ paper.volume }}</span>
+                <span v-if="paper.pages">{{ paper.pages }}</span>
+                <span v-if="paper.doi">DOI available</span>
               </div>
-
-              <!-- Abstract Expandable Content -->
-              <transition 
-                enter-active-class="transition duration-300 ease-out" 
-                enter-from-class="transform scale-95 opacity-0 -translate-y-2" 
-                enter-to-class="transform scale-100 opacity-100 translate-y-0" 
-                leave-active-class="transition duration-200 ease-in" 
-                leave-from-class="transform scale-100 opacity-100 translate-y-0" 
-                leave-to-class="transform scale-95 opacity-0 -translate-y-2"
-              >
-                <div 
-                  v-if="paper.abstract && showAbstracts[paper.key]" 
-                  class="mt-6 p-6 rounded-xl bg-black/40 border border-nuclear-blue/10 text-gray-400 text-sm font-light leading-relaxed tracking-wide italic"
-                >
-                  <span class="font-bold text-gray-300 uppercase not-italic text-xs tracking-wider block mb-2">Abstract:</span>
-                  {{ paper.abstract }}
-                </div>
-              </transition>
             </div>
-          </div>
+            <div class="publication-actions">
+              <a v-if="paper.url" :href="paper.url" target="_blank" rel="noopener noreferrer">Read paper ↗</a>
+              <button
+                v-if="paper.abstract"
+                type="button"
+                :class="{ active: showAbstracts[paper.key] }"
+                :aria-expanded="Boolean(showAbstracts[paper.key])"
+                @click="toggleAbstract(paper.key)"
+              >
+                {{ showAbstracts[paper.key] ? 'Close abstract' : 'View abstract' }}
+              </button>
+            </div>
+            <transition name="page">
+              <p v-if="paper.abstract && showAbstracts[paper.key]" class="publication-abstract">
+                {{ paper.abstract }}
+              </p>
+            </transition>
+          </article>
         </div>
-      </section>
+        <p v-else class="empty-state">No papers are listed in this section yet.</p>
+      </div>
+    </section>
 
-      <!-- Collaboration Highlight Panel -->
-      <section class="text-center">
-        <div class="bg-gradient-to-r from-nuclear-blue/10 via-card-bg/80 to-nuclear-glow/10 p-12 rounded-3xl border border-nuclear-blue/20 hover:border-nuclear-glow/30 transition-colors duration-500 shadow-2xl relative overflow-hidden">
-          <div class="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none" aria-hidden="true"></div>
-          <h2 class="text-3xl font-bold text-white mb-4 relative z-10">Interested in Research Collaboration?</h2>
-          <p class="text-gray-300 mb-8 max-w-2xl mx-auto font-light leading-relaxed relative z-10 text-base">
-            I am always open to discussing research projects, theoretical calculations, and academic partnerships 
-            at the intersection of nuclear physics, high-performance computing, and quantum algorithms.
-          </p>
-          <a href="mailto:abhishek@ph.iitr.ac.in" class="btn-glow px-8 py-3.5 text-force-white transform hover:-translate-y-0.5 shadow-lg hover:shadow-nuclear-glow/20 inline-block relative z-10 text-sm uppercase tracking-wider">
-            Initiate Contact
-          </a>
+    <section class="section-shell inner-section">
+      <div class="collaboration-band">
+        <div>
+          <span class="eyebrow">Collaboration</span>
+          <h2>Have a difficult physical question worth computing?</h2>
         </div>
-      </section>
-
-    </div>
+        <a href="mailto:abhishek@ph.iitr.ac.in" class="button">Start a conversation <span>↗</span></a>
+      </div>
+    </section>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { computed, ref } from 'vue'
 import publications from '../data/publications.json'
 import { renderMarkdownToSafeHtml } from '../lib/markdown'
 
-// Page view tabs
-const activeTab = ref('preprints')
-
-// Toggleable abstract map
+const activeTab = ref('journals')
 const showAbstracts = ref({})
 
-// Static lists for areas and projects
-const researchAreas = ref([
-  {
-    icon: '🧮',
-    title: 'Quantum Linear Response (GDR)',
-    description: 'First‑of‑its‑kind quantum algorithm for nuclear linear response using Jordan–Wigner mapping, time‑dependent state prep, SWAP test, and O(N) scaling.'
-  },
-  {
-    icon: '🧭',
-    title: 'Microscopic GDR in Deformed Nuclei',
-    description: 'Linear‑response theory with triaxial Woods–Saxon potential; wavelet analysis; improved fits vs macroscopic models for Nd/Sm isotopes.'
-  },
-  {
-    icon: '🌀',
-    title: 'TDHF / Sky3D',
-    description: 'Development of Sky3D v1.2 for external multipole boosts and strength functions; benchmarking vs RPA and applications to collectivity studies.'
-  },
-  {
-    icon: '⚙️',
-    title: 'RPA & Density Functionals',
-    description: 'Random Phase Approximation and Skyrme energy‑density functionals for nuclear structure and dynamics.'
-  },
-  {
-    icon: '🔗',
-    title: 'Hybrid Quantum‑Classical',
-    description: 'Combining quantum algorithms with classical microscopic models to push precision and scalability.'
-  }
-])
+const tabs = [
+  { key: 'journals', label: 'Journals' },
+  { key: 'preprints', label: 'Preprints' },
+  { key: 'conferences', label: 'Conferences' }
+]
 
-const currentProjects = ref([
+const researchAreas = [
   {
-    icon: '🧮',
-    title: 'Refining Quantum Linear‑Response Algorithms',
-    description: 'Extend to broader multipoles and open‑shell systems; optimize circuits; systematic NISQ noise mitigation.',
+    title: 'Quantum linear response',
+    description: 'Quantum algorithms for nuclear response using Jordan–Wigner mapping, time-dependent state preparation, SWAP tests, and resource-aware circuit design.'
+  },
+  {
+    title: 'Giant resonances in deformed nuclei',
+    description: 'Microscopic linear-response theory with triaxial Woods–Saxon potentials, wavelet analysis, and systematic comparison with experimental structure.'
+  },
+  {
+    title: 'TDHF and Sky3D',
+    description: 'Three-dimensional time-dependent Hartree–Fock methods, external multipole boosts, and benchmarked strength-function calculations.'
+  },
+  {
+    title: 'RPA and density functionals',
+    description: 'Random Phase Approximation and Skyrme energy-density functionals for collective nuclear structure and dynamics.'
+  },
+  {
+    title: 'Hybrid quantum–classical methods',
+    description: 'Connecting quantum subroutines with established microscopic models to improve the reach and precision of many-body calculations.'
+  }
+]
+
+const currentProjects = [
+  {
+    title: 'Quantum response algorithms',
+    description: 'Extending the method to broader multipoles and open-shell systems while reducing circuit cost and improving noise resilience.',
     status: 'Active'
   },
   {
-    icon: '🔗',
-    title: 'Hybrid Quantum‑Classical Frameworks',
-    description: 'Bridge TDHF/DFT with quantum subroutines to accelerate many‑body response calculations.',
-    status: 'Design Phase'
+    title: 'Hybrid many-body frameworks',
+    description: 'Bridging TDHF and density-functional workflows with quantum subroutines for response calculations.',
+    status: 'Design'
   },
   {
-    icon: '🌀',
-    title: 'Sky3D Enhancements',
-    description: 'New external fields, improved strength‑function analysis, and validation against RPA/experiment.',
+    title: 'Sky3D extensions',
+    description: 'Adding external fields, analysis tools, and validation pathways for reproducible strength-function studies.',
     status: 'Development'
   },
   {
-    icon: '📊',
-    title: 'Deformation & Fine‑Structure Systematics',
-    description: 'Microscopic studies of GDR/ISM in deformed nuclei with wavelet analysis and comparisons to data.',
-    status: 'In Progress'
+    title: 'Deformation systematics',
+    description: 'Resolving the fine structure of giant resonances in deformed nuclei through microscopic modelling and data comparison.',
+    status: 'In progress'
   }
-])
+]
 
-const journalArticles = computed(() => {
-  return publications?.journal_articles || []
-})
-
-const conferenceProceedings = computed(() => {
-  return publications?.conference_proceedings || []
-})
-
-const preprintsList = computed(() => {
-  return publications?.preprints || []
-})
+const journals = computed(() => publications?.journal_articles || [])
+const conferences = computed(() => publications?.conference_proceedings || [])
+const preprints = computed(() => publications?.preprints || [])
 
 const activeTabList = computed(() => {
-  if (activeTab.value === 'preprints') return preprintsList.value
-  if (activeTab.value === 'journals') return journalArticles.value
-  if (activeTab.value === 'conferences') return conferenceProceedings.value
-  return []
+  if (activeTab.value === 'preprints') return preprints.value
+  if (activeTab.value === 'conferences') return conferences.value
+  return journals.value
 })
 
 const getTabCount = (tab) => {
-  if (tab === 'preprints') return preprintsList.value.length
-  if (tab === 'journals') return journalArticles.value.length
-  if (tab === 'conferences') return conferenceProceedings.value.length
-  return 0
+  if (tab === 'preprints') return preprints.value.length
+  if (tab === 'conferences') return conferences.value.length
+  return journals.value.length
 }
 
 const toggleAbstract = (key) => {
   showAbstracts.value[key] = !showAbstracts.value[key]
 }
 
-// Highlight the author 'Abhishek' in the list of authors
-const highlightAuthor = (authorsList) => {
-  if (!authorsList) return ''
-  return authorsList.replace(/\bAbhishek\b/g, '<span class="text-nuclear-glow font-bold">Abhishek</span>')
+const highlightAuthor = (authors) => {
+  if (!authors) return ''
+  return authors.replace(/\bAbhishek\b/g, '<span class="author-highlight">Abhishek</span>')
 }
 
-// Safely render KaTeX math expressions in title strings
 const renderTitle = (title) => {
   if (!title) return ''
-  let html = renderMarkdownToSafeHtml(title)
-  // Strip enclosing paragraph tag generated by the marked compiler
-  if (html.startsWith('<p>') && html.endsWith('</p>')) {
-    html = html.substring(3, html.length - 4)
-  }
-  return html
+  const html = renderMarkdownToSafeHtml(title)
+  return html.startsWith('<p>') && html.endsWith('</p>') ? html.slice(3, -4) : html
 }
 </script>
-
-<style scoped>
-.bg-grid-pattern {
-  background-image: radial-gradient(rgba(0, 255, 255, 0.15) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-</style>

@@ -1,7 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import Research from '../views/Research.vue'
-import Hobbies from '../views/Hobbies.vue'
 
 const routes = [
   {
@@ -12,12 +10,12 @@ const routes = [
   {
     path: '/research',
     name: 'Research',
-    component: Research
+    component: () => import('../views/Research.vue')
   },
   {
     path: '/hobbies',
     name: 'Hobbies',
-    component: Hobbies
+    component: () => import('../views/Hobbies.vue')
   }
 ]
 
@@ -25,11 +23,7 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition
-    } else {
-      return { top: 0 }
-    }
+    return savedPosition || { top: 0 }
   }
 })
 

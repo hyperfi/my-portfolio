@@ -5,7 +5,7 @@
     :class="{ 'is-scrolled': isScrolled, 'on-home': $route.path === '/' }"
   >
     <div class="nav-shell">
-      <router-link to="/" class="brand" aria-label="Dr Abhishek — home">
+      <router-link to="/" class="brand" aria-label="Dr Abhishek, home">
         <span class="brand-copy">
           <strong>Dr Abhishek</strong>
           <small>Nuclear physicist</small>

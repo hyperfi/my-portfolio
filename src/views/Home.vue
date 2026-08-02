@@ -18,8 +18,8 @@
             </div>
             <h1>Mapping the nucleus.<br><em>Reframing computation.</em></h1>
             <p class="hero-lede">
-              I study collective phenomena in atomic nuclei and build computational methods—from microscopic
-              many-body models to quantum algorithms—that make their dynamics measurable and understandable.
+              I study collective phenomena in atomic nuclei. I also build computational methods, from microscopic
+              many-body models to quantum algorithms, that make their dynamics measurable and understandable.
             </p>
             <div class="hero-actions">
               <router-link to="/research" class="button button-primary">Explore research <span>↗</span></router-link>
@@ -76,7 +76,7 @@
           <h2>Research at the edge of<br>models and machines.</h2>
         </div>
         <p>
-          My work connects first-principles questions with usable computational systems—turning dense
+          My work connects first-principles questions with usable computational systems. It turns dense
           theoretical frameworks into predictions, tools, and experiments.
         </p>
       </div>
@@ -136,7 +136,7 @@
     <section class="section-shell perspective-section">
       <span class="eyebrow">Working perspective</span>
       <blockquote>
-        “The most useful computation is not merely faster—it makes a difficult physical question
+        “The most useful computation is not merely faster. It makes a difficult physical question
         <em>clear enough to test.</em>”
       </blockquote>
       <div class="perspective-meta">
@@ -179,7 +179,7 @@ const focusAreas = [
 const simulations = [
   {
     domain: 'Nuclear structure',
-    title: 'Nilsson Live — Level Diagram',
+    title: 'Nilsson Live: Level Diagram',
     description: 'Trace how deformation, spin–orbit coupling, and shell structure reshape single-particle energy levels.',
     url: 'https://hyperfi.github.io/Nilsson-Model-Interactive/',
     thumbnail: '/images/demos/nilsson-model.png',

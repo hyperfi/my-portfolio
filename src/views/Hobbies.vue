@@ -37,6 +37,49 @@
       </div>
     </section>
 
+    <section class="app-section">
+      <div class="section-shell">
+        <div class="inner-section-header app-section-header">
+          <div>
+            <span class="eyebrow">Published products</span>
+            <h2>Apps on Google Play</h2>
+          </div>
+          <span>Designed and built by Dr Abhishek</span>
+        </div>
+
+        <div class="app-grid">
+          <article v-for="app in apps" :key="app.name" class="app-card">
+            <a
+              :href="app.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="app-media"
+              :aria-label="`View ${app.name} on Google Play`"
+            >
+              <img :src="app.screenshot" :alt="app.screenshotAlt" loading="lazy" />
+            </a>
+
+            <div class="app-card-body">
+              <div class="app-title-row">
+                <img :src="app.icon" alt="" class="app-icon" loading="lazy" />
+                <div>
+                  <span>{{ app.category }}</span>
+                  <h3>{{ app.name }}</h3>
+                </div>
+              </div>
+              <p>{{ app.description }}</p>
+              <div class="app-facts" :aria-label="`${app.name} details`">
+                <span v-for="fact in app.facts" :key="fact">{{ fact }}</span>
+              </div>
+              <a :href="app.url" target="_blank" rel="noopener noreferrer" class="app-store-link">
+                View on Google Play <span>↗</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section-shell inner-section">
       <div class="inner-section-header">
         <h2>Open channels</h2>
@@ -80,11 +123,34 @@
 </template>
 
 <script setup>
+const apps = [
+  {
+    name: 'EverMove: Video Live Wallpaper',
+    category: 'Personalization',
+    description: 'Turn videos from your gallery into live wallpapers with preview, trim, crop, speed, loop, sound, and rotation controls. Your files stay on your device and the original video is never modified.',
+    facts: ['1K+ downloads', '5.0 rating', 'No data collected'],
+    url: 'https://play.google.com/store/apps/details?id=com.hyperfi.evermove',
+    icon: '/images/apps/evermove-icon.png',
+    screenshot: '/images/apps/evermove-interface.png',
+    screenshotAlt: 'EverMove tablet interface showing video wallpaper controls and a wallpaper collection'
+  },
+  {
+    name: 'EigenSpace: Quantum Physics 3D',
+    category: 'Education',
+    description: 'Solve quantum eigenvalue problems and explore energy states, wavefunctions, probability densities, hydrogen orbitals, and custom potentials through interactive 2D and 3D visualizations.',
+    facts: ['Ad-free', 'Interactive solver', 'No data collected'],
+    url: 'https://play.google.com/store/apps/details?id=com.eigenspace.app',
+    icon: '/images/apps/eigenspace-icon.png',
+    screenshot: '/images/apps/eigenspace-interface.png',
+    screenshotAlt: 'EigenSpace tablet interface showing wavefunctions, energy levels, and probability density visualizations'
+  }
+]
+
 const practices = [
   {
     type: 'Image',
     title: 'Photography',
-    description: 'I photograph night skies, landscapes, and urban scenes—using long exposures to make time and light visible.',
+    description: 'I photograph night skies, landscapes, and urban scenes, using long exposures to make time and light visible.',
     tags: ['Astrophotography', 'Landscape', 'Long exposure']
   },
   {

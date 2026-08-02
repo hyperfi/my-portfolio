@@ -8,7 +8,7 @@
           <div class="page-hero-copy">
             <p>
               I combine microscopic many-body theory, time-dependent simulation, and quantum information
-              science to understand collective nuclear dynamics—and to build better ways of computing them.
+              science to understand collective nuclear dynamics and build better ways of computing them.
             </p>
           </div>
         </div>
@@ -68,7 +68,7 @@
 
         <div v-if="activeTabList.length" class="publication-list">
           <article v-for="(paper, index) in activeTabList" :key="paper.key || index" class="publication-card">
-            <span class="publication-year">{{ paper.year || '—' }}</span>
+            <span class="publication-year">{{ paper.year || 'Not dated' }}</span>
             <div class="publication-body">
               <h3 v-html="renderTitle(paper.title)"></h3>
               <p class="publication-authors" v-html="highlightAuthor(paper.author)"></p>

@@ -5,8 +5,8 @@
         <span class="page-number">02 / Beyond the lab</span>
         <div>
           <h1>A wider field<br>of <em>view.</em></h1>
-          <div class="beyond-intro">
-            <span class="beyond-intro-note">Making, observing,<br>and explaining</span>
+          <div class="page-hero-copy">
+            <span class="page-hero-kicker">Making, observing, and explaining</span>
             <p>
               Photography, creative coding, and science communication are not detours from my research.
               They sharpen the same habits: patience, visual thinking, and curiosity about hidden structure.

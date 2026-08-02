@@ -1,38 +1,50 @@
 <template>
   <div class="home-page">
-    <section class="home-hero section-shell">
-      <div class="hero-copy reveal">
-        <div class="eyebrow"><span></span>Theoretical physics × quantum computation</div>
-        <h1>Mapping the nucleus.<br><em>Reframing computation.</em></h1>
-        <p class="hero-lede">
-          I study collective phenomena in atomic nuclei and build computational methods—from microscopic
-          many-body models to quantum algorithms—that make their dynamics measurable and understandable.
-        </p>
-        <div class="hero-actions">
-          <router-link to="/research" class="button button-primary">Explore research <span>↗</span></router-link>
-          <a href="mailto:abhishek@ph.iitr.ac.in" class="button button-quiet">Get in touch <span>→</span></a>
-        </div>
-        <div class="hero-disciplines" aria-label="Areas of expertise">
-          <span>Nuclear many-body theory</span>
-          <span>Quantum algorithms</span>
-          <span>Scientific computing</span>
-        </div>
-      </div>
+    <section class="home-hero">
+      <div class="hero-stage reveal">
+        <ParticleCollisionField />
 
-      <div class="hero-visual reveal reveal-delay">
-        <div class="visual-header">
-          <span>Collective response field</span>
-          <span class="live-indicator">Live model</span>
+        <div class="hero-simulation-meta" aria-hidden="true">
+          <span>2D elastic ensemble</span>
+          <span class="live-indicator">Elastic collisions</span>
         </div>
-        <NuclearField />
-        <div class="portrait-card">
-          <img src="/images/Abhishek.png" alt="Portrait of Dr Abhishek" fetchpriority="high" />
-          <div>
-            <strong>Dr Abhishek</strong>
-            <span>Nuclear physicist & quantum researcher</span>
+
+        <div class="hero-stage-grid">
+          <div class="hero-copy">
+            <div class="eyebrow"><span></span>Theoretical physics × quantum computation</div>
+            <div class="hero-identity">
+              <strong>Dr Abhishek</strong>
+              <span>Nuclear physicist<br>& quantum researcher</span>
+            </div>
+            <h1>Mapping the nucleus.<br><em>Reframing computation.</em></h1>
+            <p class="hero-lede">
+              I study collective phenomena in atomic nuclei and build computational methods—from microscopic
+              many-body models to quantum algorithms—that make their dynamics measurable and understandable.
+            </p>
+            <div class="hero-actions">
+              <router-link to="/research" class="button button-primary">Explore research <span>↗</span></router-link>
+              <a href="mailto:abhishek@ph.iitr.ac.in" class="button button-quiet">Get in touch <span>→</span></a>
+            </div>
           </div>
+
+          <figure class="hero-portrait">
+            <div class="portrait-orbit" aria-hidden="true"></div>
+            <img src="/images/Abhishek.png" alt="Portrait of Dr Abhishek" fetchpriority="high" />
+            <figcaption>
+              <span>Research focus</span>
+              <strong>Atomic nuclei / many-body dynamics / quantum information</strong>
+            </figcaption>
+          </figure>
         </div>
-        <div class="visual-coordinate" aria-hidden="true">Ψ(r,t) · 08—24</div>
+
+        <div class="hero-stage-footer">
+          <div class="hero-disciplines" aria-label="Areas of expertise">
+            <span>Nuclear many-body theory</span>
+            <span>Quantum algorithms</span>
+            <span>Scientific computing</span>
+          </div>
+          <span class="simulation-coordinate" aria-hidden="true">e = 1 · friction = 0 · planar</span>
+        </div>
       </div>
     </section>
 
@@ -105,9 +117,14 @@
               <span>0{{ index + 1 }}</span>
               <span>{{ simulation.domain }}</span>
             </div>
-            <div class="simulation-graphic" :class="`graphic-${index + 1}`" aria-hidden="true">
-              <i></i><i></i><i></i>
-            </div>
+            <figure class="simulation-preview">
+              <img
+                :src="simulation.thumbnail"
+                :alt="simulation.thumbnailAlt"
+                loading="lazy"
+              />
+              <span>Live interface</span>
+            </figure>
             <h3>{{ simulation.title }}</h3>
             <p>{{ simulation.description }}</p>
             <span class="card-link">Launch simulation ↗</span>
@@ -131,8 +148,8 @@
 </template>
 
 <script setup>
-import { computed, defineAsyncComponent } from 'vue'
-const NuclearField = defineAsyncComponent(() => import('../components/NuclearField.vue'))
+import { computed } from 'vue'
+import ParticleCollisionField from '../components/ParticleCollisionField.vue'
 import publications from '../data/publications.json'
 
 const publicationCount = computed(() => (
@@ -162,21 +179,27 @@ const focusAreas = [
 const simulations = [
   {
     domain: 'Nuclear structure',
-    title: 'Interactive Nilsson Model',
+    title: 'Nilsson Live — Level Diagram',
     description: 'Trace how deformation, spin–orbit coupling, and shell structure reshape single-particle energy levels.',
-    url: 'https://hyperfi.github.io/Nilsson-Model-Interactive/'
+    url: 'https://hyperfi.github.io/Nilsson-Model-Interactive/',
+    thumbnail: '/images/demos/nilsson-model.png',
+    thumbnailAlt: 'Live Nilsson level diagram with proton and neutron energy states'
   },
   {
     domain: 'Quantum mechanics',
-    title: '1D Schrödinger Dynamics',
+    title: 'Quantum TDSE Simulator',
     description: 'Create potentials and observe wave packets propagate, scatter, bind, and tunnel in real time.',
-    url: 'https://hyperfi.github.io/Time-Dependent-Schrodinger-Equation-1D/'
+    url: 'https://hyperfi.github.io/Time-Dependent-Schrodinger-Equation-1D/',
+    thumbnail: '/images/demos/tdse-1d.png',
+    thumbnailAlt: 'Quantum TDSE simulator showing a wave packet and potential barrier'
   },
   {
     domain: 'Computational physics',
-    title: 'Potential Energy Surfaces',
+    title: 'Shell Correction & PES Visualizer',
     description: 'Explore deformation landscapes, shell corrections, and predicted nuclear ground-state shapes.',
-    url: 'https://hyperfi.github.io/PES-Visualizer/'
+    url: 'https://hyperfi.github.io/PES-Visualizer/',
+    thumbnail: '/images/demos/pes-visualizer.png',
+    thumbnailAlt: 'Strutinsky shell correction and potential energy surface dashboard'
   }
 ]
 </script>

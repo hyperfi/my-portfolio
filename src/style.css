@@ -734,9 +734,18 @@ img { display: block; max-width: 100%; }
   .home-hero { padding: 0; }
   .hero-stage, .hero-stage-grid { min-height: 920px; }
   .hero-stage-grid { grid-template-rows: auto 360px; }
-  .hero-simulation-meta { inset: 84px 20px auto; }
+  .hero-simulation-meta {
+    inset: 82px 20px auto;
+    color: rgba(248,248,244,.28);
+    font-size: .46rem;
+    letter-spacing: .14em;
+  }
   .hero-simulation-meta > span:first-child { display: none; }
   .hero-simulation-meta { justify-content: flex-end; }
+  .hero-simulation-meta .live-indicator { gap: 5px; }
+  .hero-simulation-meta .live-indicator::before {
+    width: 3px; height: 3px; background: rgba(150,255,178,.52); box-shadow: none;
+  }
   .hero-copy { padding: 132px 22px 22px; }
   .hero-identity { align-items: flex-start; gap: 12px; margin-top: 32px; padding-left: 12px; }
   .hero-identity span { padding-left: 12px; }

@@ -53,7 +53,7 @@ const createParticle = (index) => {
 
 const resetParticles = () => {
   particles.length = 0
-  const count = Math.max(12, Math.min(22, Math.round((width * height) / 36000)))
+  const count = 36
 
   for (let index = 0; index < count; index += 1) {
     const particle = createParticle(index)

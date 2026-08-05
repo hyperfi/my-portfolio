@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04T08:25:08.551Z",
+  "generatedAt": "2026-08-05T15:36:33.209Z",
   "journal_articles": [
     {
       "key": "PhysRevLett.134.062502",
@@ -123,6 +123,21 @@
     }
   ],
   "conference_proceedings": [
+    {
+      "key": "Pascu_2026_EPJWC",
+      "title": "New region of maximum octupole collectivity in the rare-earth nuclei: The case of Gd isotopes",
+      "author": "S. Pascu, E. Yüksel, Abhishek, P. Stevenson, G. H. Bhat, R. N. Mao, K. Nomura, C. Costache, Z. P. Li, N. Mărginean, C. Mihai, T. Naz, Zs. Podolyák, P. H. Regan, A. E. Turturică, R. Borcea, M. Boromiza, D. Bucurescu, S. Călinescu, C. Clisu, A. Coman, I. Dinescu, S. Doshi, D. Filipescu, N. M. Florea, A. Gandhi, I. Gheorghe, A. Ionescu, R. Lică, R. Mărginean, R. E. Mihai, A. Mitu, N. Nazir, A. Negret, C. R. Niță, E. B. O'Sullivan, C. Petrone, S. E. Poulton, J. A. Sheikh, H. K. Singh, L. Stan, S. Toma, G. Turturică, and S. Ujeniuc",
+      "journal": "EPJ Web of Conferences",
+      "year": 2026,
+      "volume": "378",
+      "number": null,
+      "pages": "01011",
+      "doi": "10.1051/epjconf/202637801011",
+      "url": "https://doi.org/10.1051/epjconf/202637801011",
+      "abstract": null,
+      "eprint": null,
+      "archiveprefix": null
+    },
     {
       "key": "dae69-1",
       "title": "A Comparative Study of GDR in $^{237}\\mathrm{Np}$: Microscopic vs. Macroscopic Approaches",

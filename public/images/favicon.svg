@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Dr Abhishek favicon</title>
+  <desc id="desc">A-state monogram on a midnight square.</desc>
+  <rect width="128" height="128" rx="26" fill="#11152A"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 29V99" stroke="#526BFF" stroke-width="9"/>
+    <path d="M31 101 57 27 83 101" stroke="#F8F8F4" stroke-width="9"/>
+    <path d="M42 73H72" stroke="#526BFF" stroke-width="9"/>
+    <path d="m98 29 19 35-19 35" stroke="#526BFF" stroke-width="9"/>
+  </g>
+</svg>

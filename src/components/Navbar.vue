@@ -5,12 +5,7 @@
     :class="{ 'is-scrolled': isScrolled, 'on-home': $route.path === '/' }"
   >
     <div class="nav-shell">
-      <router-link to="/" class="brand" aria-label="Dr Abhishek, home">
-        <span class="brand-copy">
-          <strong>Dr Abhishek</strong>
-          <small>Nuclear physicist</small>
-        </span>
-      </router-link>
+      <BrandLogo />
 
       <nav class="desktop-nav" aria-label="Primary navigation">
         <router-link
@@ -66,6 +61,7 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import BrandLogo from './BrandLogo.vue'
 
 const route = useRoute()
 const headerRef = ref(null)

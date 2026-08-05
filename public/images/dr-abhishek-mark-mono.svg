@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">Dr Abhishek monochrome A-state mark</title>
+  <desc id="desc">A geometric A set inside Dirac ket notation.</desc>
+  <g fill="none" stroke="#15171A" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 29V99"/>
+    <path d="M31 101 57 27 83 101"/>
+    <path d="M42 73H72"/>
+    <path d="m98 29 19 35-19 35"/>
+  </g>
+</svg>

@@ -102,10 +102,14 @@ img { display: block; max-width: 100%; }
   align-items: center; gap: 32px;
 }
 .brand {
-  width: fit-content; display: inline-flex; align-items: center; padding-left: 13px;
-  border-left: 2px solid var(--accent); transition: border-color 180ms ease;
+  width: fit-content; display: inline-flex; align-items: center; gap: .62rem;
+  transition: color 180ms ease;
 }
-.brand:hover { border-color: var(--ink); }
+.brand:hover { color: var(--accent); }
+.brand-logo__mark {
+  width: 1.95rem; height: 1.95rem; flex: 0 0 auto; overflow: visible;
+}
+.brand-logo__accent { stroke: var(--accent); }
 .brand-copy { display: flex; flex-direction: column; line-height: 1.1; }
 .brand-copy strong { font-size: .78rem; font-weight: 700; letter-spacing: -.01em; }
 .brand-copy small {
@@ -113,7 +117,7 @@ img { display: block; max-width: 100%; }
   font-size: .56rem; letter-spacing: .08em; text-transform: uppercase;
 }
 .site-header.on-home:not(.is-scrolled) { color: #f8f8f4; }
-.site-header.on-home:not(.is-scrolled) .brand:hover { border-color: #f8f8f4; }
+.site-header.on-home:not(.is-scrolled) .brand:hover { color: #fff; }
 .site-header.on-home:not(.is-scrolled) .brand-copy small,
 .site-header.on-home:not(.is-scrolled) .desktop-nav a,
 .site-header.on-home:not(.is-scrolled) .theme-toggle { color: rgba(248,248,244,.62); }
@@ -729,7 +733,7 @@ img { display: block; max-width: 100%; }
 @media (max-width: 620px) {
   .section-shell, .nav-shell, .footer-shell, .footer-bottom { width: calc(100% - 28px); }
   .nav-shell { height: 72px; }
-  .brand-copy small { display: none; }
+  .brand-logo__mark { width: 1.75rem; height: 1.75rem; }
   .theme-toggle { padding-left: 9px; }
   .home-hero { padding: 0; }
   .hero-stage, .hero-stage-grid { min-height: 920px; }

@@ -101,7 +101,7 @@
             <span class="eyebrow">Open computational lab</span>
             <h2>Theory you can<br>interact with.</h2>
           </div>
-          <p>Browser-based scientific tools for exploring how nuclear and quantum systems behave.</p>
+          <p>Browser-based scientific tools for exploring nuclear, quantum, and atmospheric systems.</p>
         </div>
 
         <div class="simulation-grid">
@@ -127,7 +127,7 @@
             </figure>
             <h3>{{ simulation.title }}</h3>
             <p>{{ simulation.description }}</p>
-            <span class="card-link">Launch simulation ↗</span>
+            <span class="card-link">{{ simulation.cta || 'Launch simulation' }} ↗</span>
           </a>
         </div>
       </div>
@@ -200,6 +200,15 @@ const simulations = [
     url: 'https://hyperfi.github.io/PES-Visualizer/',
     thumbnail: '/images/demos/pes-visualizer.png',
     thumbnailAlt: 'Strutinsky shell correction and potential energy surface dashboard'
+  },
+  {
+    domain: 'Atmospheric modeling',
+    title: 'WRF Code Atlas',
+    description: 'Trace namelist options into Registry rules, runtime branches, routines, state fields, and the exact WRF source behind each claim.',
+    url: 'https://hyperfi.github.io/WRF_Atlas/#/',
+    thumbnail: '/images/demos/wrf-atlas.png',
+    thumbnailAlt: 'WRF Code Atlas overview showing source navigation, configuration questions, and a canonical physics trace',
+    cta: 'Open source atlas'
   }
 ]
 </script>

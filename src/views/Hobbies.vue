@@ -27,7 +27,11 @@
             <span>0{{ index + 1 }}</span>
             <span>{{ practice.type }}</span>
           </div>
-          <div class="practice-mark" aria-hidden="true"></div>
+          <div class="practice-mark" :class="`practice-mark--${practice.icon}`" aria-hidden="true">
+            <span class="practice-mark__primary"></span>
+            <span class="practice-mark__secondary"></span>
+            <span class="practice-mark__tertiary"></span>
+          </div>
           <h3>{{ practice.title }}</h3>
           <p>{{ practice.description }}</p>
           <div class="practice-tags">
@@ -149,30 +153,35 @@ const apps = [
 const practices = [
   {
     type: 'Image',
+    icon: 'camera',
     title: 'Photography',
     description: 'I photograph night skies, landscapes, and urban scenes, using long exposures to make time and light visible.',
     tags: ['Astrophotography', 'Landscape', 'Long exposure']
   },
   {
     type: 'Code',
+    icon: 'code',
     title: 'Creative computation',
     description: 'I build interactive simulations and data visualizations that let people explore an idea instead of only reading about it.',
     tags: ['WebGL', 'Data visualization', 'Open source']
   },
   {
     type: 'Communication',
+    icon: 'communication',
     title: 'Making difficult physics accessible',
     description: 'Through teaching resources, writing, video, and 3D animation, I translate technical ideas without flattening their depth.',
     tags: ['Teaching', '3D animation', 'Writing']
   },
   {
     type: 'Field',
+    icon: 'mountain',
     title: 'Hiking and the outdoors',
     description: 'Mountain trails offer a slower mode of observation: long horizons, changing systems, and space to think clearly.',
     tags: ['Mountains', 'Exploration', 'Landscape']
   },
   {
     type: 'Observation',
+    icon: 'telescope',
     title: 'Amateur astronomy',
     description: 'Stargazing reconnects formal physics with the direct experience of scale, uncertainty, and wonder.',
     tags: ['Night sky', 'Telescopes', 'Cosmos']

@@ -339,11 +339,11 @@ img { display: block; max-width: 100%; }
 }
 .section-heading-light .eyebrow, .section-heading-light > p { color: rgba(248,248,244,.62); }
 .simulation-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 76px;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; margin-top: 76px;
   border: 1px solid rgba(248,248,244,.14); background: rgba(248,248,244,.14);
 }
 .simulation-card {
-  min-height: 548px; display: flex; flex-direction: column; padding: 24px;
+  min-height: 520px; display: flex; flex-direction: column; padding: 24px;
   background: var(--night); transition: background 220ms ease, transform 220ms ease;
 }
 .simulation-card:hover { background: var(--night-soft); transform: translateY(-4px); }
@@ -594,17 +594,87 @@ img { display: block; max-width: 100%; }
   font-family: 'DM Mono', monospace; font-size: .58rem; letter-spacing: .06em; text-transform: uppercase;
 }
 .practice-mark {
-  width: 72px; height: 72px; margin-top: auto; position: relative;
-  border: 1px solid var(--accent); border-radius: 50%;
+  width: 78px; height: 78px; margin-top: auto; position: relative; color: var(--accent);
 }
-.practice-mark::before, .practice-mark::after {
-  content: ''; position: absolute; inset: 50% auto auto 50%; background: var(--accent);
-  transform: translate(-50%,-50%);
+.practice-mark span, .practice-mark span::before, .practice-mark span::after {
+  position: absolute; box-sizing: border-box;
 }
-.practice-mark::before { width: 100px; height: 1px; }
-.practice-mark::after { width: 1px; height: 100px; }
-.practice-card:nth-child(2) .practice-mark { border-radius: 0; transform: rotate(18deg); }
-.practice-card:nth-child(3) .practice-mark { border-radius: 50% 4% 50% 4%; }
+.practice-mark span::before, .practice-mark span::after { content: ''; }
+
+.practice-mark--camera .practice-mark__primary {
+  inset: 24px 7px 8px; border: 1.5px solid currentColor; border-radius: 5px;
+}
+.practice-mark--camera .practice-mark__primary::before {
+  left: 10px; top: -9px; width: 22px; height: 9px; border: 1.5px solid currentColor;
+  border-bottom: 0; border-radius: 4px 4px 0 0;
+}
+.practice-mark--camera .practice-mark__primary::after {
+  left: 21px; top: 8px; width: 20px; height: 20px; border: 1.5px solid currentColor; border-radius: 50%;
+}
+.practice-mark--camera .practice-mark__secondary {
+  right: 14px; top: 31px; width: 5px; height: 5px; border-radius: 50%; background: currentColor;
+}
+
+.practice-mark--code .practice-mark__primary,
+.practice-mark--code .practice-mark__secondary {
+  top: 18px; width: 22px; height: 42px; border-block: 1.5px solid currentColor;
+}
+.practice-mark--code .practice-mark__primary {
+  left: 8px; border-left: 1.5px solid currentColor; transform: skewY(-18deg);
+}
+.practice-mark--code .practice-mark__secondary {
+  right: 8px; border-right: 1.5px solid currentColor; transform: skewY(18deg);
+}
+.practice-mark--code .practice-mark__tertiary {
+  left: 37px; top: 25px; width: 3px; height: 3px; border-radius: 50%; background: currentColor;
+  box-shadow: 0 12px 0 currentColor, 0 24px 0 currentColor;
+}
+
+.practice-mark--communication .practice-mark__primary {
+  inset: 9px 7px 23px; border: 1.5px solid currentColor; border-radius: 9px;
+}
+.practice-mark--communication .practice-mark__primary::after {
+  left: 12px; bottom: -8px; width: 15px; height: 15px; border-left: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor; background: var(--paper); transform: skewY(-34deg);
+}
+.practice-mark--communication .practice-mark__secondary {
+  left: 22px; top: 23px; width: 35px; height: 1px; background: currentColor;
+  box-shadow: 0 9px 0 currentColor, 0 18px 0 currentColor;
+}
+
+.practice-mark--mountain .practice-mark__primary {
+  left: 13px; top: 26px; width: 39px; height: 39px; border-left: 1.5px solid currentColor;
+  border-top: 1.5px solid currentColor; transform: rotate(45deg);
+}
+.practice-mark--mountain .practice-mark__secondary {
+  right: 8px; top: 34px; width: 28px; height: 28px; border-left: 1.5px solid currentColor;
+  border-top: 1.5px solid currentColor; transform: rotate(45deg);
+}
+.practice-mark--mountain .practice-mark__tertiary {
+  left: 36px; bottom: 2px; width: 22px; height: 36px; border-left: 1.5px solid currentColor;
+  border-radius: 50%; transform: rotate(24deg);
+}
+
+.practice-mark--telescope .practice-mark__primary {
+  left: 10px; top: 23px; width: 50px; height: 16px; border: 1.5px solid currentColor;
+  border-radius: 3px; transform: rotate(-28deg);
+}
+.practice-mark--telescope .practice-mark__primary::after {
+  right: -10px; top: -4px; width: 10px; height: 24px; border: 1.5px solid currentColor; border-radius: 2px;
+}
+.practice-mark--telescope .practice-mark__secondary {
+  left: 37px; top: 42px; width: 1.5px; height: 30px; background: currentColor;
+}
+.practice-mark--telescope .practice-mark__secondary::before,
+.practice-mark--telescope .practice-mark__secondary::after {
+  left: 0; top: 10px; width: 1.5px; height: 24px; background: currentColor; transform-origin: top;
+}
+.practice-mark--telescope .practice-mark__secondary::before { transform: rotate(31deg); }
+.practice-mark--telescope .practice-mark__secondary::after { transform: rotate(-31deg); }
+.practice-mark--telescope .practice-mark__tertiary {
+  right: 4px; top: 5px; width: 4px; height: 4px; border-radius: 50%; background: currentColor;
+  box-shadow: -12px 6px 0 -1px currentColor, 4px 15px 0 -1px currentColor;
+}
 .practice-card h3 {
   margin: 45px 0 13px; font-size: 1.5rem; font-weight: 600; letter-spacing: -.035em;
 }

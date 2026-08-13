@@ -1,6 +1,21 @@
 {
-  "generatedAt": "2026-08-05T15:36:33.209Z",
+  "generatedAt": "2026-08-13T05:27:33.902Z",
   "journal_articles": [
+    {
+      "key": "Abhishek_2026_pairing",
+      "title": "Effect of pairing and shape fluctuations on the linear response in warm nuclei",
+      "author": "Abhishek, Nabeel Salim, P. Arumugam, and A. K. Rhine Kumar",
+      "journal": "Indian Journal of Physics",
+      "year": 2026,
+      "volume": null,
+      "number": null,
+      "pages": null,
+      "doi": "10.1007/s12648-026-04162-w",
+      "url": "https://doi.org/10.1007/s12648-026-04162-w",
+      "abstract": null,
+      "eprint": null,
+      "archiveprefix": null
+    },
     {
       "key": "PhysRevLett.134.062502",
       "title": "Deformation and Collectivity in Doubly Magic $^{208}\\mathrm{Pb}$",

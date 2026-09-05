@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-13T08:48:33.962Z",
+  "generatedAt": "2026-09-05T14:09:55.673Z",
   "journal_articles": [
     {
       "key": "Abhishek_2026_pairing",
@@ -321,8 +321,8 @@
   ],
   "preprints": [
     {
-      "key": "abhishek2026quantumsimulationcrankedzirconium",
-      "title": "Quantum Simulation of Cranked Zirconium Isotopes: A Fixed-N Approach with a Structured Number-Conserving Ansatz",
+      "key": "abhishek2026graphstructurednumberconservingvariationalquantum",
+      "title": "Graph-Structured Number-Conserving Variational Quantum Eigensolver for Fermionic Pairing Hamiltonians",
       "author": "Abhishek, Nabeel Salim, and P. Arumugam",
       "journal": "",
       "year": 2026,

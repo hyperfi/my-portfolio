@@ -60,7 +60,15 @@
               class="app-media"
               :aria-label="`View ${app.name} on Google Play`"
             >
-              <img :src="app.screenshot" :alt="app.screenshotAlt" loading="lazy" />
+              <div class="app-media-gallery">
+                <img
+                  v-for="screenshot in app.screenshots"
+                  :key="screenshot.src"
+                  :src="screenshot.src"
+                  :alt="screenshot.alt"
+                  loading="lazy"
+                />
+              </div>
             </a>
 
             <div class="app-card-body">
@@ -131,22 +139,38 @@ const apps = [
   {
     name: 'EverMove: Video Live Wallpaper',
     category: 'Personalization',
-    description: 'Turn videos from your gallery into live wallpapers with preview, trim, crop, speed, loop, sound, and rotation controls. Your files stay on your device and the original video is never modified.',
-    facts: ['1K+ downloads', '5.0 rating', 'No data collected'],
+    description: 'Turn a video from your gallery into a live wallpaper, then shape it with Looks, framing, trim, speed, looping, resting frames, sound, and collection controls. Videos remain on your device, and Pro is a one-time unlock with no subscription.',
+    facts: ['5K+ downloads', 'Updated Sep 2026', 'One-time Pro unlock', 'No data collected'],
     url: 'https://play.google.com/store/apps/details?id=com.hyperfi.evermove',
     icon: '/images/apps/evermove-icon.png',
-    screenshot: '/images/apps/evermove-interface.png',
-    screenshotAlt: 'EverMove tablet interface showing video wallpaper controls and a wallpaper collection'
+    screenshots: [
+      {
+        src: '/images/apps/evermove-interface.png',
+        alt: 'EverMove phone interface showing a video live wallpaper and playback controls'
+      },
+      {
+        src: '/images/apps/evermove-preview.png',
+        alt: 'EverMove phone interface for choosing, previewing, and applying a video wallpaper'
+      }
+    ]
   },
   {
     name: 'EigenSpace: Quantum Physics 3D',
     category: 'Education',
-    description: 'Solve quantum eigenvalue problems and explore energy states, wavefunctions, probability densities, hydrogen orbitals, and custom potentials through interactive 2D and 3D visualizations.',
-    facts: ['Ad-free', 'Interactive solver', 'No data collected'],
+    description: 'Make the Schrödinger equation visible by solving eigenvalue problems and exploring spectra, wavefunctions, probability densities, basis composition, orbitals, and custom potentials in interactive 2D and 3D workspaces. Pro adds research-ready exports through a one-time unlock.',
+    facts: ['100+ downloads', 'Updated Sep 2026', 'Ad-free', 'No data collected'],
     url: 'https://play.google.com/store/apps/details?id=com.eigenspace.app',
     icon: '/images/apps/eigenspace-icon.png',
-    screenshot: '/images/apps/eigenspace-interface.png',
-    screenshotAlt: 'EigenSpace tablet interface showing wavefunctions, energy levels, and probability density visualizations'
+    screenshots: [
+      {
+        src: '/images/apps/eigenspace-interface.png',
+        alt: 'EigenSpace phone interface showing a quantum potential and calculated energy eigenstates'
+      },
+      {
+        src: '/images/apps/eigenspace-visualizer.png',
+        alt: 'EigenSpace phone interface showing wavefunctions, probability density, and basis decomposition in 2D'
+      }
+    ]
   }
 ]
 

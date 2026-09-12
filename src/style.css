@@ -729,16 +729,29 @@ img { display: block; max-width: 100%; }
   transition: background 220ms ease, transform 220ms ease;
 }
 .app-card:hover { z-index: 1; background: var(--night-soft); transform: translateY(-4px); }
-.app-media { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #05070d; }
+.app-media {
+  position: relative; display: grid; aspect-ratio: 16 / 9; overflow: hidden; place-items: center;
+  background:
+    radial-gradient(circle at 25% 42%, rgba(86, 115, 255, .2), transparent 34%),
+    radial-gradient(circle at 75% 58%, rgba(73, 196, 181, .12), transparent 32%),
+    #05070d;
+}
 .app-media::after {
   content: ''; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(180deg, transparent 58%, rgba(5,7,13,.28));
+  background: linear-gradient(180deg, transparent 58%, rgba(5,7,13,.32));
 }
-.app-media img {
-  width: 100%; height: 100%; object-fit: cover;
+.app-media-gallery {
+  width: 100%; height: 100%; display: flex; align-items: flex-end; justify-content: center;
+  gap: clamp(8px, 1.5vw, 18px); padding: 18px 22px 0;
+}
+.app-media-gallery img {
+  width: auto; height: 100%; max-width: 44%; object-fit: contain; object-position: center bottom;
+  border-radius: 10px 10px 0 0; box-shadow: 0 12px 32px rgba(0,0,0,.34);
   transition: transform 320ms ease, filter 320ms ease;
 }
-.app-card:hover .app-media img { transform: scale(1.02); filter: saturate(1.06); }
+.app-media-gallery img:nth-child(2) { height: 92%; opacity: .82; }
+.app-card:hover .app-media-gallery img { transform: translateY(-4px); filter: saturate(1.06); }
+.app-card:hover .app-media-gallery img:nth-child(2) { transform: translateY(-2px); opacity: .94; }
 .app-card-body { flex: 1; display: flex; flex-direction: column; padding: 30px; }
 .app-title-row { display: grid; grid-template-columns: 66px 1fr; align-items: center; gap: 17px; }
 .app-icon {
@@ -1033,6 +1046,8 @@ img { display: block; max-width: 100%; }
   .focus-item > p { grid-column: 1 / -1; padding-left: 34px; }
   .simulation-card { min-height: 500px; padding: 22px; }
   .app-card-body { padding: 24px 22px; }
+  .app-media-gallery { gap: 8px; padding-inline: 14px; }
+  .app-media-gallery img { max-width: 46%; border-radius: 7px 7px 0 0; }
   .app-title-row { grid-template-columns: 58px 1fr; }
   .app-icon { width: 58px; height: 58px; border-radius: 15px; }
   .perspective-meta, .footer-bottom { align-items: flex-start; flex-direction: column; gap: 12px; }

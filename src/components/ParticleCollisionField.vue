@@ -6,6 +6,7 @@
 
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { createCanvasScheduler } from '../lib/canvasScheduler'
 
 const container = ref(null)
 const canvas = ref(null)
@@ -13,7 +14,7 @@ const particles = []
 const pointer = { x: 0, y: 0, active: false }
 
 let context
-let frameId
+let stopAnimation
 let resizeObserver
 let width = 0
 let height = 0
@@ -21,7 +22,7 @@ let pixelRatio = 1
 let lastTime = 0
 
 const palette = [
-  { fill: 'rgba(98, 218, 232, .22)', stroke: 'rgba(98, 218, 232, .92)' },
+  { fill: 'rgba(121, 139, 255, .15)', stroke: 'rgba(139, 154, 255, .7)' },
   { fill: 'rgba(121, 139, 255, .2)', stroke: 'rgba(139, 154, 255, .9)' },
   { fill: 'rgba(237, 240, 255, .11)', stroke: 'rgba(218, 223, 255, .6)' }
 ]
@@ -185,24 +186,6 @@ const draw = () => {
   if (!context) return
   context.clearRect(0, 0, width, height)
 
-  context.save()
-  context.strokeStyle = 'rgba(153, 169, 255, .065)'
-  context.lineWidth = 1
-  const gridSize = 56
-  for (let x = gridSize; x < width; x += gridSize) {
-    context.beginPath()
-    context.moveTo(x, 0)
-    context.lineTo(x, height)
-    context.stroke()
-  }
-  for (let y = gridSize; y < height; y += gridSize) {
-    context.beginPath()
-    context.moveTo(0, y)
-    context.lineTo(width, y)
-    context.stroke()
-  }
-  context.restore()
-
   particles.forEach((particle) => {
     context.beginPath()
     context.moveTo(particle.x, particle.y)
@@ -239,7 +222,6 @@ const animate = (time) => {
   lastTime = time
   update(deltaTime)
   draw()
-  frameId = requestAnimationFrame(animate)
 }
 
 const handlePointerMove = (event) => {
@@ -270,13 +252,11 @@ onMounted(() => {
   window.addEventListener('pointerleave', handlePointerLeave)
   resize()
 
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    frameId = requestAnimationFrame(animate)
-  }
+  stopAnimation = createCanvasScheduler(container.value, { frame: animate, still: draw, resume: () => { lastTime = performance.now() } })
 })
 
 onBeforeUnmount(() => {
-  if (frameId) cancelAnimationFrame(frameId)
+  stopAnimation?.()
   resizeObserver?.disconnect()
   window.removeEventListener('pointermove', handlePointerMove)
   window.removeEventListener('pointerleave', handlePointerLeave)

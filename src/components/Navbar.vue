@@ -1,4 +1,5 @@
 <template>
+  <span ref="scrollSentinel" class="header-scroll-sentinel" aria-hidden="true"></span>
   <header
     ref="headerRef"
     class="site-header"
@@ -19,7 +20,7 @@
       </nav>
 
       <div class="nav-actions">
-        <a class="nav-contact" href="mailto:abhishek@ph.iitr.ac.in">Let’s talk</a>
+        <a class="nav-contact" href="mailto:abhishek@ph.iitr.ac.in">Get in touch</a>
         <button
           class="theme-toggle"
           type="button"
@@ -30,6 +31,7 @@
         </button>
         <button
           class="menu-toggle"
+          ref="menuToggle"
           type="button"
           :aria-expanded="mobileMenuOpen"
           aria-controls="mobile-navigation"
@@ -52,7 +54,7 @@
         >
           <span>0{{ index + 1 }}</span>{{ link.name }}
         </router-link>
-        <a href="mailto:abhishek@ph.iitr.ac.in">Start a conversation</a>
+        <a href="mailto:abhishek@ph.iitr.ac.in" @click="mobileMenuOpen = false">Get in touch</a>
       </nav>
     </transition>
   </header>
@@ -65,6 +67,9 @@ import BrandLogo from './BrandLogo.vue'
 
 const route = useRoute()
 const headerRef = ref(null)
+const scrollSentinel = ref(null)
+const menuToggle = ref(null)
+let scrollObserver
 const mobileMenuOpen = ref(false)
 const isScrolled = ref(false)
 const theme = ref('light')
@@ -75,8 +80,11 @@ const navLinks = [
   { name: 'Beyond the lab', path: '/hobbies' }
 ]
 
-const syncScroll = () => {
-  isScrolled.value = window.scrollY > 18
+const handleKeyDown = (event) => {
+  if (event.key === 'Escape' && mobileMenuOpen.value) {
+    mobileMenuOpen.value = false
+    menuToggle.value?.focus()
+  }
 }
 
 const handleClickOutside = (event) => {
@@ -102,13 +110,15 @@ onMounted(() => {
   const stored = localStorage.getItem('theme')
   const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches
   applyTheme(stored || (prefersDark ? 'dark' : 'light'))
-  syncScroll()
-  window.addEventListener('scroll', syncScroll, { passive: true })
+  scrollObserver = new IntersectionObserver(([entry]) => { isScrolled.value = !entry.isIntersecting })
+  scrollObserver.observe(scrollSentinel.value)
   document.addEventListener('pointerdown', handleClickOutside)
+  document.addEventListener('keydown', handleKeyDown)
 })
 
 onBeforeUnmount(() => {
-  window.removeEventListener('scroll', syncScroll)
+  scrollObserver?.disconnect()
   document.removeEventListener('pointerdown', handleClickOutside)
+  document.removeEventListener('keydown', handleKeyDown)
 })
 </script>

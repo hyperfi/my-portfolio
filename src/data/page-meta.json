@@ -1,0 +1,14 @@
+{
+  "/": {
+    "title": "Dr Abhishek | Nuclear Physicist & Quantum Researcher",
+    "description": "Dr Abhishek is a nuclear physicist and quantum researcher working across many-body theory, quantum algorithms, and scientific computing."
+  },
+  "/research": {
+    "title": "Research & Publications | Dr Abhishek",
+    "description": "Explore Dr Abhishek's nuclear many-body research, quantum response algorithms, current projects, and complete journal, preprint, and conference publication record."
+  },
+  "/hobbies": {
+    "title": "Beyond the Lab | Dr Abhishek",
+    "description": "Scientific visualization, photography, creative computing, and Android apps built by Dr Abhishek, including EverMove and EigenSpace."
+  }
+}

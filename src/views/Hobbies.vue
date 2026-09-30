@@ -2,11 +2,10 @@
   <div class="inner-page beyond-page">
     <section class="page-hero section-shell">
       <div class="page-hero-grid">
-        <span class="page-number">02 / Beyond the lab</span>
+        <span class="page-number">Beyond the lab</span>
         <div>
-          <h1>A wider field<br>of <em>view.</em></h1>
+          <h1>A wider field<br>of view.</h1>
           <div class="page-hero-copy">
-            <span class="page-hero-kicker">Making, observing, and explaining</span>
             <p>
               Photography, creative coding, and science communication are not detours from my research.
               They sharpen the same habits: patience, visual thinking, and curiosity about hidden structure.
@@ -21,22 +20,21 @@
         <h2>Creative practice</h2>
         <span>What keeps me looking closely</span>
       </div>
+      <div class="creative-work-grid">
+        <a v-for="work in creativeWork" :key="work.title" :href="work.url" target="_blank" rel="noopener noreferrer" class="creative-work">
+          <figure>
+            <img :src="work.image" :srcset="`${work.image.replace('.png', '-640.webp')} 640w, ${work.image.replace('.png', '-1280.webp')} 1280w`" sizes="(max-width: 620px) calc(100vw - 28px), 600px" :alt="work.alt" loading="lazy" width="1280" height="720" />
+            <figcaption><strong>{{ work.title }} ↗</strong><span>{{ work.caption }}</span></figcaption>
+          </figure>
+        </a>
+      </div>
       <div class="practice-grid">
-        <article v-for="(practice, index) in practices" :key="practice.title" class="practice-card">
+        <article v-for="practice in practices" :key="practice.title" class="practice-card">
           <div class="practice-card-top">
-            <span>0{{ index + 1 }}</span>
             <span>{{ practice.type }}</span>
-          </div>
-          <div class="practice-mark" :class="`practice-mark--${practice.icon}`" aria-hidden="true">
-            <span class="practice-mark__primary"></span>
-            <span class="practice-mark__secondary"></span>
-            <span class="practice-mark__tertiary"></span>
           </div>
           <h3>{{ practice.title }}</h3>
           <p>{{ practice.description }}</p>
-          <div class="practice-tags">
-            <span v-for="tag in practice.tags" :key="tag">{{ tag }}</span>
-          </div>
         </article>
       </div>
     </section>
@@ -135,6 +133,10 @@
 </template>
 
 <script setup>
+const creativeWork = [
+  { title: 'Wave packets in motion', caption: 'An interactive teaching tool for scattering and tunnelling.', image: '/images/demos/tdse-1d.png', alt: 'My TDSE simulator displaying the evolution of a quantum wave packet', url: 'https://hyperfi.github.io/Time-Dependent-Schrodinger-Equation-1D/' },
+  { title: 'Making nuclear landscapes visible', caption: 'Visual exploration of shell corrections and deformation.', image: '/images/demos/pes-visualizer.png', alt: 'My potential energy surface visualizer displaying a nuclear deformation landscape', url: 'https://hyperfi.github.io/PES-Visualizer/' }
+]
 const apps = [
   {
     name: 'EverMove: Video Live Wallpaper',

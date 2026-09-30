@@ -6,14 +6,13 @@
     @pointerleave="handlePointerLeave"
   >
     <div class="response-lab-topline" aria-hidden="true">
-      <span>Collective response study</span>
-      <span class="response-lab-live">Live field</span>
+      <span>Schematic collective response</span>
     </div>
 
     <canvas
       ref="canvas"
       role="img"
-      aria-label="An interactive two-dimensional illustration of a deformed nucleus responding to an external field and producing a strength spectrum"
+      aria-label="Schematic illustration of a deformed nucleus responding to an external field. The curve is illustrative, not a calculated strength spectrum."
     ></canvas>
 
     <div class="response-lab-labels" aria-hidden="true">
@@ -22,15 +21,14 @@
     </div>
 
     <div class="response-lab-footer" aria-hidden="true">
-      <span>External field</span>
-      <span>Time evolution</span>
-      <span>Linear response</span>
+      <span>Illustration, not a numerical calculation</span>
     </div>
   </div>
 </template>
 
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { createCanvasScheduler } from '../lib/canvasScheduler'
 
 const lab = ref(null)
 const canvas = ref(null)
@@ -38,7 +36,7 @@ const canvas = ref(null)
 let context
 let resizeObserver
 let themeObserver
-let animationFrame
+let stopAnimation
 let width = 0
 let height = 0
 let pointerX = 0
@@ -202,7 +200,6 @@ const draw = (timestamp = 0) => {
   context.stroke()
   context.restore()
 
-  if (!reducedMotion) animationFrame = requestAnimationFrame(draw)
 }
 
 const resize = () => {
@@ -248,12 +245,12 @@ onMounted(() => {
   })
   themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
   resize()
-  if (!reducedMotion) animationFrame = requestAnimationFrame(draw)
+  stopAnimation = createCanvasScheduler(lab.value, { frame: draw, still: () => draw(), motion: (value) => { reducedMotion = value } })
 })
 
 onBeforeUnmount(() => {
   resizeObserver?.disconnect()
   themeObserver?.disconnect()
-  cancelAnimationFrame(animationFrame)
+  stopAnimation?.()
 })
 </script>

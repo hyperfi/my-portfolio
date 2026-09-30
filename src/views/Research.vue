@@ -2,20 +2,121 @@
   <div class="inner-page research-page">
     <section class="page-hero research-hero section-shell">
       <div class="page-hero-grid">
-        <span class="page-number">01 / Research</span>
+        <span class="page-number">Research</span>
         <div class="research-hero-content">
           <div class="research-hero-heading research-reveal">
-            <h1>Questions at the scale<br>of the <em>nucleus.</em></h1>
+            <h1>Questions at the scale<br>of the nucleus.</h1>
             <div class="page-hero-copy">
               <p>
                 I combine microscopic many-body theory, time-dependent simulation, and quantum information
                 science to understand collective nuclear dynamics and build better ways of computing them.
               </p>
+              <a href="#publications" class="text-link publication-jump">Browse publications <span>↓</span></a>
             </div>
           </div>
-          <div class="research-reveal">
-            <ResearchResponseLab />
+        </div>
+      </div>
+      <article v-if="featuredPaper" class="publication-spotlight research-reveal latest-publication">
+        <div class="publication-spotlight-label">
+          <span class="eyebrow">Latest journal article</span>
+          <strong>{{ featuredPaper.year }}</strong>
+        </div>
+        <div class="publication-spotlight-body">
+          <h2 v-html="renderTitle(featuredPaper.title)"></h2>
+          <PublicationAuthors :authors="featuredPaper.author" />
+          <div class="publication-meta"><span>{{ featuredPaper.journal }}</span></div>
+        </div>
+        <div class="publication-spotlight-actions">
+          <a :href="featuredPaper.url" target="_blank" rel="noopener noreferrer">Read paper ↗</a>
+          <button type="button" @click="copyCitation(featuredPaper)">{{ copiedCitationKey === featuredPaper.key ? 'Citation copied' : 'Copy citation' }}</button>
+        </div>
+      </article>
+      <ResearchResponseLab />
+    </section>
+
+    <section id="publications" class="publication-section">
+      <div class="section-shell">
+        <div class="inner-section-header research-reveal">
+          <div>
+            <span class="eyebrow">Research record</span>
+            <h2>Publications</h2>
           </div>
+          <div class="publication-controls" role="tablist" aria-label="Publication categories">
+            <button
+              v-for="tab in tabs"
+              :key="tab.key"
+              type="button"
+              role="tab"
+              :id="`tab-${tab.key}`"
+              :aria-controls="`panel-${tab.key}`"
+              :tabindex="activeTab === tab.key ? 0 : -1"
+              :aria-selected="activeTab === tab.key"
+              :class="{ active: activeTab === tab.key }"
+              @click="setActiveTab(tab.key)"
+              @keydown="handleTabKey($event, tab.key)"
+            >
+              {{ tab.label }} <span>{{ getTabCount(tab.key) }}</span>
+            </button>
+          </div>
+        </div>
+
+        <div :id="`panel-${activeTab}`" role="tabpanel" :aria-labelledby="`tab-${activeTab}`" tabindex="0">
+        <div class="publication-tools research-reveal">
+          <label class="publication-search">
+            <span>Search this record</span>
+            <input
+              v-model="publicationQuery"
+              type="search"
+              placeholder="Title, author, journal, year, or DOI"
+              autocomplete="off"
+            >
+          </label>
+          <label class="publication-year-filter">
+            <span>Year</span>
+            <select v-model="yearFilter">
+              <option value="all">All years</option>
+              <option v-for="year in availableYears" :key="year" :value="String(year)">{{ year }}</option>
+            </select>
+          </label>
+          <p>{{ filteredPublicationList.length }} {{ filteredPublicationList.length === 1 ? 'result' : 'results' }}</p>
+        </div>
+
+        <div v-if="filteredPublicationList.length" class="publication-list">
+          <article v-for="(paper, index) in filteredPublicationList" :key="paper.key || index" class="publication-card">
+            <span class="publication-year">{{ paper.year || 'Not dated' }}</span>
+            <div class="publication-body">
+              <h3 v-html="renderTitle(paper.title)"></h3>
+              <PublicationAuthors :authors="paper.author" />
+              <div class="publication-meta">
+                <span v-if="paper.journal">{{ paper.journal }}</span>
+                <span v-if="paper.volume">Vol. {{ paper.volume }}</span>
+                <span v-if="paper.pages">{{ paper.pages }}</span>
+                <span v-if="paper.doi">DOI available</span>
+              </div>
+            </div>
+            <div class="publication-actions">
+              <a v-if="paper.url" :href="paper.url" target="_blank" rel="noopener noreferrer">Read paper ↗</a>
+              <button type="button" @click="copyCitation(paper)">
+                {{ copiedCitationKey === paper.key ? 'Copied' : 'Copy citation' }}
+              </button>
+              <button
+                v-if="paper.abstract"
+                type="button"
+                :class="{ active: showAbstracts[paper.key] }"
+                :aria-expanded="Boolean(showAbstracts[paper.key])"
+                @click="toggleAbstract(paper.key)"
+              >
+                {{ showAbstracts[paper.key] ? 'Close abstract' : 'View abstract' }}
+              </button>
+            </div>
+            <transition name="page">
+              <p v-if="paper.abstract && showAbstracts[paper.key]" class="publication-abstract">
+                {{ paper.abstract }}
+              </p>
+            </transition>
+          </article>
+        </div>
+        <p v-else class="empty-state">No publications match the current search.</p>
         </div>
       </div>
     </section>
@@ -30,40 +131,35 @@
         <span class="research-flow-label">Research flow</span>
         <div class="research-flow-track">
           <button
-            v-for="(stage, index) in flowStages"
+            v-for="stage in flowStages"
             :key="stage.key"
             type="button"
             :class="{ active: activeDomain === stage.key }"
-            @mouseenter="activeDomain = stage.key"
-            @focus="activeDomain = stage.key"
+            :aria-pressed="activeDomain === stage.key"
             @click="selectActiveDomain(stage.key)"
           >
-            <span>0{{ index + 1 }}</span>
             {{ stage.label }}
           </button>
         </div>
+        <button type="button" class="domain-reset" :disabled="!activeDomain" @click="clearActiveDomain">Show all domains</button>
       </div>
 
       <div class="domain-grid research-domain-grid">
         <article
-          v-for="(area, index) in researchAreas"
+          v-for="area in researchAreas"
           :key="area.title"
           class="domain-card research-reveal"
           :class="{
-            'is-active': activeDomain === area.key,
-            'is-muted': activeDomain && activeDomain !== area.key
+            'is-active': activeDomain === area.key
           }"
           role="button"
           tabindex="0"
           :aria-pressed="activeDomain === area.key"
-          @mouseenter="activeDomain = area.key"
-          @focusin="activeDomain = area.key"
           @click="selectActiveDomain(area.key)"
           @keydown.enter.prevent="selectActiveDomain(area.key)"
           @keydown.space.prevent="selectActiveDomain(area.key)"
         >
           <div class="domain-card-top">
-            <span class="domain-index">0{{ index + 1 }}</span>
             <span>{{ area.signal }}</span>
           </div>
           <div class="domain-visual" :class="`domain-visual--${area.visual}`" aria-hidden="true">
@@ -96,8 +192,7 @@
           :key="project.title"
           class="project-row research-reveal"
           :class="{
-            'is-related': activeDomain && project.domains.includes(activeDomain),
-            'is-muted': activeDomain && !project.domains.includes(activeDomain)
+            'is-related': activeDomain && project.domains.includes(activeDomain)
           }"
         >
           <span class="project-index">0{{ index + 1 }}</span>
@@ -113,125 +208,15 @@
       </div>
     </section>
 
-    <section class="publication-section">
-      <div class="section-shell">
-        <div class="inner-section-header research-reveal">
-          <div>
-            <span class="eyebrow">Research record</span>
-            <h2>Publications</h2>
-          </div>
-          <div class="publication-controls" role="tablist" aria-label="Publication categories">
-            <button
-              v-for="tab in tabs"
-              :key="tab.key"
-              type="button"
-              role="tab"
-              :aria-selected="activeTab === tab.key"
-              :class="{ active: activeTab === tab.key }"
-              @click="setActiveTab(tab.key)"
-            >
-              {{ tab.label }} <span>{{ getTabCount(tab.key) }}</span>
-            </button>
-          </div>
-        </div>
 
-        <article v-if="activeTab === 'journals' && featuredPaper" class="publication-spotlight research-reveal">
-          <div class="publication-spotlight-label">
-            <span class="eyebrow"><span></span>Latest publication</span>
-            <strong>{{ featuredPaper.year }}</strong>
-          </div>
-          <div class="publication-spotlight-body">
-            <h3 v-html="renderTitle(featuredPaper.title)"></h3>
-            <p class="publication-authors" v-html="highlightAuthor(featuredPaper.author)"></p>
-            <div class="publication-meta">
-              <span>{{ featuredPaper.journal }}</span>
-              <span v-if="featuredPaper.doi">DOI {{ normalizeDoi(featuredPaper.doi) }}</span>
-            </div>
-          </div>
-          <div class="publication-spotlight-actions">
-            <a v-if="featuredPaper.url" :href="featuredPaper.url" target="_blank" rel="noopener noreferrer">
-              Read paper <span>↗</span>
-            </a>
-            <button type="button" @click="copyCitation(featuredPaper)">
-              {{ copiedCitationKey === featuredPaper.key ? 'Citation copied' : 'Copy citation' }}
-            </button>
-          </div>
-        </article>
-
-        <div class="publication-tools research-reveal">
-          <label class="publication-search">
-            <span>Search this record</span>
-            <input
-              v-model="publicationQuery"
-              type="search"
-              placeholder="Title, author, journal, or method"
-              autocomplete="off"
-            >
-          </label>
-          <label class="publication-year-filter">
-            <span>Year</span>
-            <select v-model="yearFilter">
-              <option value="all">All years</option>
-              <option v-for="year in availableYears" :key="year" :value="String(year)">{{ year }}</option>
-            </select>
-          </label>
-          <p>{{ filteredPublicationList.length }} {{ filteredPublicationList.length === 1 ? 'result' : 'results' }}</p>
-        </div>
-
-        <div v-if="filteredPublicationList.length" class="publication-list">
-          <article v-for="(paper, index) in filteredPublicationList" :key="paper.key || index" class="publication-card">
-            <span class="publication-year">{{ paper.year || 'Not dated' }}</span>
-            <div class="publication-body">
-              <h3 v-html="renderTitle(paper.title)"></h3>
-              <p class="publication-authors" v-html="highlightAuthor(paper.author)"></p>
-              <div class="publication-meta">
-                <span v-if="paper.journal">{{ paper.journal }}</span>
-                <span v-if="paper.volume">Vol. {{ paper.volume }}</span>
-                <span v-if="paper.pages">{{ paper.pages }}</span>
-                <span v-if="paper.doi">DOI available</span>
-              </div>
-            </div>
-            <div class="publication-actions">
-              <a v-if="paper.url" :href="paper.url" target="_blank" rel="noopener noreferrer">Read paper ↗</a>
-              <button type="button" @click="copyCitation(paper)">
-                {{ copiedCitationKey === paper.key ? 'Copied' : 'Copy citation' }}
-              </button>
-              <button
-                v-if="paper.abstract"
-                type="button"
-                :class="{ active: showAbstracts[paper.key] }"
-                :aria-expanded="Boolean(showAbstracts[paper.key])"
-                @click="toggleAbstract(paper.key)"
-              >
-                {{ showAbstracts[paper.key] ? 'Close abstract' : 'View abstract' }}
-              </button>
-            </div>
-            <transition name="page">
-              <p v-if="paper.abstract && showAbstracts[paper.key]" class="publication-abstract">
-                {{ paper.abstract }}
-              </p>
-            </transition>
-          </article>
-        </div>
-        <p v-else class="empty-state">No publications match the current search.</p>
-      </div>
-    </section>
-
-    <section class="section-shell inner-section research-reveal">
-      <div class="collaboration-band">
-        <div>
-          <span class="eyebrow">Collaboration</span>
-          <h2>Have a difficult physical question worth computing?</h2>
-        </div>
-        <a href="mailto:abhishek@ph.iitr.ac.in" class="button">Start a conversation <span>↗</span></a>
-      </div>
-    </section>
   </div>
 </template>
 
 <script setup>
 import { computed, onBeforeUnmount, ref } from 'vue'
+import 'katex/dist/katex.css'
 import ResearchResponseLab from '../components/ResearchResponseLab.vue'
+import PublicationAuthors from '../components/PublicationAuthors.vue'
 import publications from '../data/publications.json'
 import { renderMarkdownToSafeHtml } from '../lib/markdown'
 
@@ -378,6 +363,15 @@ const setActiveTab = (tab) => {
   yearFilter.value = 'all'
 }
 
+const handleTabKey = (event, key) => {
+  const index = tabs.findIndex((tab) => tab.key === key)
+  const next = { ArrowRight: (index + 1) % tabs.length, ArrowLeft: (index + tabs.length - 1) % tabs.length, Home: 0, End: tabs.length - 1 }[event.key]
+  if (next === undefined) return
+  event.preventDefault()
+  setActiveTab(tabs[next].key)
+  document.getElementById(`tab-${tabs[next].key}`)?.focus()
+}
+
 const selectActiveDomain = (key) => {
   activeDomain.value = key
 }
@@ -419,14 +413,9 @@ const copyCitation = async (paper) => {
   }, 1800)
 }
 
-const highlightAuthor = (authors) => {
-  if (!authors) return ''
-  return authors.replace(/\bAbhishek\b/g, '<span class="author-highlight">Abhishek</span>')
-}
-
 const renderTitle = (title) => {
   if (!title) return ''
-  const html = renderMarkdownToSafeHtml(title)
+  const html = renderMarkdownToSafeHtml(title).trim()
   return html.startsWith('<p>') && html.endsWith('</p>') ? html.slice(3, -4) : html
 }
 

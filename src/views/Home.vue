@@ -13,13 +13,14 @@
           <div class="hero-copy">
             <div class="eyebrow"><span></span>Theoretical physics × quantum computation</div>
             <div class="hero-identity">
+              <img class="mobile-portrait" src="/images/Abhishek-mobile.webp" alt="Portrait of Dr Abhishek" width="80" height="96" fetchpriority="high" />
               <strong>Dr Abhishek</strong>
               <span>Nuclear physicist<br>& quantum researcher</span>
             </div>
             <h1>Mapping the nucleus.<br><em>Reframing computation.</em></h1>
             <p class="hero-lede">
-              I study collective phenomena in atomic nuclei. I also build computational methods, from microscopic
-              many-body models to quantum algorithms, that make their dynamics measurable and understandable.
+              I study collective motion in atomic nuclei and build computational methods, from many-body models
+              to quantum algorithms, to understand their dynamics.
             </p>
             <div class="hero-actions">
               <router-link to="/research" class="button button-primary">Explore research <span>↗</span></router-link>
@@ -29,7 +30,7 @@
 
           <figure class="hero-portrait">
             <div class="portrait-orbit" aria-hidden="true"></div>
-            <img src="/images/Abhishek.png" alt="Portrait of Dr Abhishek" fetchpriority="high" />
+            <img src="/images/Abhishek-desktop.webp" alt="Portrait of Dr Abhishek" width="900" height="1080" loading="lazy" />
             <figcaption>
               <span>Research focus</span>
               <strong>Atomic nuclei / many-body dynamics / quantum information</strong>
@@ -51,8 +52,8 @@
     <section class="proof-strip" aria-label="Research profile">
       <div class="section-shell proof-grid">
         <div>
-          <strong>{{ publicationCount }}+</strong>
-          <span>Peer-reviewed works</span>
+          <strong>{{ publicationCount }}</strong>
+          <span>Publications and preprints</span>
         </div>
         <div>
           <strong>TDHF</strong>
@@ -72,7 +73,6 @@
     <section class="section-shell focus-section">
       <div class="section-heading">
         <div>
-          <span class="eyebrow">Selected focus</span>
           <h2>Research at the edge of<br>models and machines.</h2>
         </div>
         <p>
@@ -120,10 +120,11 @@
             <figure class="simulation-preview">
               <img
                 :src="simulation.thumbnail"
+                :srcset="`${simulation.thumbnail.replace('.png', '-640.webp')} 640w, ${simulation.thumbnail.replace('.png', '-1280.webp')} 1280w`"
+                sizes="(max-width: 860px) calc(100vw - 80px), 560px"
                 :alt="simulation.thumbnailAlt"
                 loading="lazy"
               />
-              <span>Live interface</span>
             </figure>
             <h3>{{ simulation.title }}</h3>
             <p>{{ simulation.description }}</p>
@@ -134,7 +135,6 @@
     </section>
 
     <section class="section-shell perspective-section">
-      <span class="eyebrow">Working perspective</span>
       <blockquote>
         “The most useful computation is not merely faster. It makes a difficult physical question
         <em>clear enough to test.</em>”

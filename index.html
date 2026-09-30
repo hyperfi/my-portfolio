@@ -13,13 +13,19 @@
     <meta property="og:title" content="Dr Abhishek | Nuclear Physicist & Quantum Researcher" />
     <meta property="og:description" content="Research at the edge of nuclear many-body physics, quantum algorithms, and scientific computing." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/og.png" />
+    <meta property="og:image" content="https://www.dr-abhishek.com/og.png" />
+    <meta property="og:url" content="https://www.dr-abhishek.com/" />
+    <link rel="canonical" href="https://www.dr-abhishek.com/" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="/og.png" />
+    <meta name="twitter:image" content="https://www.dr-abhishek.com/og.png" />
     <title>Dr Abhishek | Nuclear Physicist & Quantum Researcher</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+    <script>
+      try {
+        const theme = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+        document.documentElement.style.colorScheme = theme;
+      } catch {}
+    </script>
   </head>
   <body>
     <div id="app"></div>

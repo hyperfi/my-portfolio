@@ -1,5 +1,5 @@
 <template>
-  <RouterLink to="/" class="brand brand-logo" aria-label="Dr Abhishek, home">
+  <RouterLink to="/" class="brand brand-logo" title="Home">
     <svg
       class="brand-logo__mark"
       viewBox="0 0 128 128"

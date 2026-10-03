@@ -28,15 +28,7 @@
           </figure>
         </a>
       </div>
-      <div class="practice-grid">
-        <article v-for="practice in practices" :key="practice.title" class="practice-card">
-          <div class="practice-card-top">
-            <span>{{ practice.type }}</span>
-          </div>
-          <h3>{{ practice.title }}</h3>
-          <p>{{ practice.description }}</p>
-        </article>
-      </div>
+      <CreativePractice :practices="practices" />
     </section>
 
     <section class="app-section">
@@ -133,6 +125,8 @@
 </template>
 
 <script setup>
+import CreativePractice from '../components/CreativePractice.vue'
+
 const creativeWork = [
   { title: 'Wave packets in motion', caption: 'An interactive teaching tool for scattering and tunnelling.', image: '/images/demos/tdse-1d.png', alt: 'My TDSE simulator displaying the evolution of a quantum wave packet', url: 'https://hyperfi.github.io/Time-Dependent-Schrodinger-Equation-1D/' },
   { title: 'Making nuclear landscapes visible', caption: 'Visual exploration of shell corrections and deformation.', image: '/images/demos/pes-visualizer.png', alt: 'My potential energy surface visualizer displaying a nuclear deformation landscape', url: 'https://hyperfi.github.io/PES-Visualizer/' }
@@ -178,36 +172,42 @@ const apps = [
 
 const practices = [
   {
-    type: 'Image',
-    icon: 'camera',
+    key: 'photography',
+    label: 'Photography',
+    href: 'https://www.instagram.com/hyperfinephotos',
+    linkLabel: 'Explore my photography',
     title: 'Photography',
     description: 'I photograph night skies, landscapes, and urban scenes, using long exposures to make time and light visible.',
     tags: ['Astrophotography', 'Landscape', 'Long exposure']
   },
   {
-    type: 'Code',
-    icon: 'code',
+    key: 'computation',
+    label: 'Creative computation',
+    href: 'https://github.com/hyperfi?tab=repositories',
+    linkLabel: 'Explore my code',
     title: 'Creative computation',
     description: 'I build interactive simulations and data visualizations that let people explore an idea instead of only reading about it.',
     tags: ['WebGL', 'Data visualization', 'Open source']
   },
   {
-    type: 'Communication',
-    icon: 'communication',
+    key: 'communication',
+    label: 'Science communication',
+    href: 'https://www.youtube.com/@abiuniverse',
+    linkLabel: 'Visit Abi Universe',
     title: 'Making difficult physics accessible',
     description: 'Through teaching resources, writing, video, and 3D animation, I translate technical ideas without flattening their depth.',
     tags: ['Teaching', '3D animation', 'Writing']
   },
   {
-    type: 'Field',
-    icon: 'mountain',
+    key: 'outdoors',
+    label: 'The outdoors',
     title: 'Hiking and the outdoors',
     description: 'Mountain trails offer a slower mode of observation: long horizons, changing systems, and space to think clearly.',
     tags: ['Mountains', 'Exploration', 'Landscape']
   },
   {
-    type: 'Observation',
-    icon: 'telescope',
+    key: 'astronomy',
+    label: 'Amateur astronomy',
     title: 'Amateur astronomy',
     description: 'Stargazing reconnects formal physics with the direct experience of scale, uncertainty, and wonder.',
     tags: ['Night sky', 'Telescopes', 'Cosmos']

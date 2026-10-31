@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { ref } from 'vue'
+import { createRouteRecovery } from '../lib/routeRecovery'
 import Home from '../views/Home.vue'
 import pageMeta from '../data/page-meta.json'
 
@@ -29,7 +31,18 @@ const router = createRouter({
   }
 })
 
-router.afterEach((to) => {
+export const navigationIssue = ref(null)
+
+router.onError(createRouteRecovery({
+  location: window.location,
+  getStorage: () => window.sessionStorage,
+  isOnline: () => navigator.onLine !== false,
+  onFailure: (issue) => { navigationIssue.value = issue }
+}))
+
+router.afterEach((to, from, failure) => {
+  if (failure) return
+  navigationIssue.value = null
   const meta = pageMeta[to.path] || pageMeta['/']
   document.title = meta.title
   const canonical = `https://www.dr-abhishek.com${to.path}`

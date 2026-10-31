@@ -2,7 +2,6 @@
   <footer class="site-footer">
     <div class="footer-shell">
       <div class="footer-intro">
-        <span class="eyebrow">Open to collaboration</span>
         <h2>Get in touch.</h2>
         <p>For research collaborations, scientific software, or a question about my work.</p>
         <a href="mailto:abhishek@ph.iitr.ac.in" class="text-link">abhishek@ph.iitr.ac.in <span>↗</span></a>

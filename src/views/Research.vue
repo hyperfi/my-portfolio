@@ -5,11 +5,11 @@
         <span class="page-number">Research</span>
         <div class="research-hero-content">
           <div class="research-hero-heading research-reveal">
-            <h1>Questions at the scale<br>of the nucleus.</h1>
+            <h1>Nuclear structure<br>and dynamics.</h1>
             <div class="page-hero-copy">
               <p>
                 I combine microscopic many-body theory, time-dependent simulation, and quantum information
-                science to understand collective nuclear dynamics and build better ways of computing them.
+                science to study collective nuclear dynamics.
               </p>
               <a href="#publications" class="text-link publication-jump">Browse publications <span>↓</span></a>
             </div>
@@ -38,7 +38,6 @@
       <div class="section-shell">
         <div class="inner-section-header research-reveal">
           <div>
-            <span class="eyebrow">Research record</span>
             <h2>Publications</h2>
           </div>
           <div class="publication-controls" role="tablist" aria-label="Publication categories">
@@ -123,8 +122,7 @@
 
     <section class="section-shell inner-section research-domain-section">
       <div class="inner-section-header research-reveal">
-        <h2>Core research domains</h2>
-        <span>Five connected directions</span>
+        <h2>Research areas</h2>
       </div>
 
       <div class="research-flow research-reveal" aria-label="Research workflow">
@@ -176,8 +174,7 @@
 
     <section class="section-shell inner-section">
       <div class="inner-section-header research-reveal">
-        <h2>Work in progress</h2>
-        <span>Current research programme</span>
+        <h2>Current projects</h2>
       </div>
 
       <div class="project-context research-reveal" aria-live="polite">

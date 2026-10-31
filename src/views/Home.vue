@@ -11,13 +11,12 @@
 
         <div class="hero-stage-grid">
           <div class="hero-copy">
-            <div class="eyebrow"><span></span>Theoretical physics × quantum computation</div>
             <div class="hero-identity">
               <img class="mobile-portrait" src="/images/Abhishek-mobile.webp" alt="Portrait of Dr Abhishek" width="80" height="96" fetchpriority="high" />
               <strong>Dr Abhishek</strong>
               <span>Nuclear physicist<br>& quantum researcher</span>
             </div>
-            <h1>Mapping the nucleus.<br><em>Reframing computation.</em></h1>
+            <h1>Mapping<br><em>the nucleus.</em></h1>
             <p class="hero-lede">
               I study collective motion in atomic nuclei and build computational methods, from many-body models
               to quantum algorithms, to understand their dynamics.
@@ -73,11 +72,11 @@
     <section class="section-shell focus-section">
       <div class="section-heading">
         <div>
-          <h2>Research at the edge of<br>models and machines.</h2>
+          <h2>Research</h2>
         </div>
         <p>
-          My work connects first-principles questions with usable computational systems. It turns dense
-          theoretical frameworks into predictions, tools, and experiments.
+          I work on collective nuclear motion, linear response, and quantum algorithms for
+          many-body systems.
         </p>
       </div>
 
@@ -98,7 +97,6 @@
       <div class="section-shell">
         <div class="section-heading section-heading-light">
           <div>
-            <span class="eyebrow">Open computational lab</span>
             <h2>Theory you can<br>interact with.</h2>
           </div>
           <p>Browser-based scientific tools for exploring nuclear, quantum, and atmospheric systems.</p>
@@ -134,16 +132,6 @@
       </div>
     </section>
 
-    <section class="section-shell perspective-section">
-      <blockquote>
-        “The most useful computation is not merely faster. It makes a difficult physical question
-        <em>clear enough to test.</em>”
-      </blockquote>
-      <div class="perspective-meta">
-        <span>Research philosophy</span>
-        <router-link to="/hobbies">Beyond the lab →</router-link>
-      </div>
-    </section>
   </div>
 </template>
 
@@ -162,7 +150,7 @@ const focusAreas = [
   {
     kicker: 'Quantum response',
     title: 'Algorithms for nuclear dynamics',
-    description: 'Designing quantum circuits that extract linear-response observables, moving beyond eigenvalues toward physically useful predictions.'
+    description: 'Designing quantum circuits to calculate nuclear linear-response observables.'
   },
   {
     kicker: 'Microscopic structure',
@@ -171,7 +159,7 @@ const focusAreas = [
   },
   {
     kicker: 'Scientific software',
-    title: 'High-fidelity many-body simulation',
+    title: 'Many-body simulation',
     description: 'Extending tools such as Sky3D to connect three-dimensional time evolution with experimental strength functions.'
   }
 ]

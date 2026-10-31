@@ -7,8 +7,7 @@
           <h1>A wider field<br>of view.</h1>
           <div class="page-hero-copy">
             <p>
-              Photography, creative coding, and science communication are not detours from my research.
-              They sharpen the same habits: patience, visual thinking, and curiosity about hidden structure.
+              I photograph night skies and landscapes, build apps, and make physics visualizations.
             </p>
           </div>
         </div>
@@ -18,7 +17,6 @@
     <section class="section-shell inner-section">
       <div class="inner-section-header">
         <h2>Creative practice</h2>
-        <span>What keeps me looking closely</span>
       </div>
       <div class="creative-work-grid">
         <a v-for="work in creativeWork" :key="work.title" :href="work.url" target="_blank" rel="noopener noreferrer" class="creative-work">
@@ -35,7 +33,6 @@
       <div class="section-shell">
         <div class="inner-section-header app-section-header">
           <div>
-            <span class="eyebrow">Published products</span>
             <h2>Apps on Google Play</h2>
           </div>
           <span>Designed and built by Dr Abhishek</span>
@@ -84,8 +81,7 @@
 
     <section class="section-shell inner-section">
       <div class="inner-section-header">
-        <h2>Open channels</h2>
-        <span>Code, images, and ideas</span>
+        <h2>Elsewhere</h2>
       </div>
       <div class="channel-grid">
         <a
@@ -104,7 +100,7 @@
 
     <section class="section-shell inner-section">
       <div class="skill-layout">
-        <h2>Tools I think<br>and build with.</h2>
+        <h2>Tools I use</h2>
         <div class="skill-columns">
           <div class="skill-column">
             <h3>Scientific & technical</h3>
@@ -195,21 +191,21 @@ const practices = [
     href: 'https://www.youtube.com/@abiuniverse',
     linkLabel: 'Visit Abi Universe',
     title: 'Making difficult physics accessible',
-    description: 'Through teaching resources, writing, video, and 3D animation, I translate technical ideas without flattening their depth.',
+    description: 'I use teaching resources, writing, video, and 3D animation to explain physics.',
     tags: ['Teaching', '3D animation', 'Writing']
   },
   {
     key: 'outdoors',
     label: 'The outdoors',
     title: 'Hiking and the outdoors',
-    description: 'Mountain trails offer a slower mode of observation: long horizons, changing systems, and space to think clearly.',
+    description: 'Hiking gives me time outdoors and space to think.',
     tags: ['Mountains', 'Exploration', 'Landscape']
   },
   {
     key: 'astronomy',
     label: 'Amateur astronomy',
     title: 'Amateur astronomy',
-    description: 'Stargazing reconnects formal physics with the direct experience of scale, uncertainty, and wonder.',
+    description: 'I enjoy stargazing and the sense of scale that comes with looking at the night sky.',
     tags: ['Night sky', 'Telescopes', 'Cosmos']
   }
 ]

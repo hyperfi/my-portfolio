@@ -51,7 +51,6 @@ function navigateTabs(event, index) {
         <span>{{ practice.label }}</span>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" /></svg>
       </button>
-      <p>Different ways of looking.<br>The same curiosity.</p>
     </div>
 
     <div class="practice-guide__stage">
@@ -91,7 +90,6 @@ function navigateTabs(event, index) {
 .practice-guide__index button svg { flex: 0 0 24px; width: 24px; height: 24px; opacity: 0; transform: translateX(-4px); transition: opacity 180ms ease, transform 180ms ease; }
 .practice-guide__index button[aria-selected='true'] svg { opacity: 1; transform: none; color: var(--accent); }
 .practice-guide svg { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-.practice-guide__index > p { margin: auto 0 0; padding-top: 40px; color: var(--muted); font-size: .85rem; line-height: 1.7; }
 .practice-guide__stage { min-width: 0; border-left: 1px solid var(--line); background: var(--surface); }
 .practice-guide__panel { min-height: 568px; }
 .practice-guide__copy { padding: 8px 40px 40px; }
@@ -108,7 +106,7 @@ function navigateTabs(event, index) {
   .practice-guide__index { flex-direction: row; flex-wrap: wrap; gap: 8px; padding: 20px 0; }
   .practice-guide__index button { justify-content: center; min-height: 44px; padding: 10px 14px; border: 1px solid var(--line); font-size: .85rem; }
   .practice-guide__index button[aria-selected='true'] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
-  .practice-guide__index button svg, .practice-guide__index > p { display: none; }
+  .practice-guide__index button svg { display: none; }
   .practice-guide__stage { border-left: 0; border-top: 1px solid var(--line); }
   .practice-guide__panel { min-height: 540px; }
 }

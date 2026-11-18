@@ -131,8 +131,8 @@ const apps = [
   {
     name: 'EverMove: Video Live Wallpaper',
     category: 'Personalization',
-    description: 'Turn a video from your gallery into a live wallpaper, then shape it with Looks, framing, trim, speed, looping, resting frames, sound, and collection controls. Videos remain on your device, and Pro is a one-time unlock with no subscription.',
-    facts: ['5K+ downloads', 'Updated Sep 2026', 'One-time Pro unlock', 'No data collected'],
+    description: 'Turn videos from your gallery into live wallpapers. Trim and frame clips, save custom Looks, or rotate a collection of favorites. Videos stay on your device. The one-time Pro unlock includes per-video frame rate limits that preserve playback speed and audio timing.',
+    facts: ['10K+ downloads', 'Updated Nov 8, 2026', 'One-time Pro unlock', 'No data collected'],
     url: 'https://play.google.com/store/apps/details?id=com.hyperfi.evermove',
     icon: '/images/apps/evermove-icon.png',
     screenshots: [
@@ -149,8 +149,8 @@ const apps = [
   {
     name: 'EigenSpace: Quantum Physics 3D',
     category: 'Education',
-    description: 'Make the Schrödinger equation visible by solving eigenvalue problems and exploring spectra, wavefunctions, probability densities, basis composition, orbitals, and custom potentials in interactive 2D and 3D workspaces. Pro adds research-ready exports through a one-time unlock.',
-    facts: ['100+ downloads', 'Updated Sep 2026', 'Ad-free', 'No data collected'],
+    description: 'Solve the Schrödinger equation and explore energy levels, wavefunctions, probability densities, and basis contributions in 2D and 3D. The one-time Pro unlock adds custom potentials, imports from supported orbital CSV and KSHELL files, and exports of plots and data.',
+    facts: ['100+ downloads', 'Updated Oct 15, 2026', 'Ad-free', 'No data collected'],
     url: 'https://play.google.com/store/apps/details?id=com.eigenspace.app',
     icon: '/images/apps/eigenspace-icon.png',
     screenshots: [

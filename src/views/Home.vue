@@ -12,11 +12,10 @@
         <div class="hero-stage-grid">
           <div class="hero-copy">
             <div class="hero-identity">
-              <img class="mobile-portrait" src="/images/Abhishek-mobile.webp" alt="Portrait of Dr Abhishek" width="80" height="96" fetchpriority="high" />
               <strong>Dr Abhishek</strong>
-              <span>Nuclear physicist<br>& quantum researcher</span>
+              <span>Nuclear physicist <br>& quantum researcher</span>
             </div>
-            <h1>Mapping<br><em>the nucleus.</em></h1>
+            <h1>Mapping <br><em>the nucleus.</em></h1>
             <p class="hero-lede">
               I study collective motion in atomic nuclei and build computational methods, from many-body models
               to quantum algorithms, to understand their dynamics.
@@ -29,7 +28,10 @@
 
           <figure class="hero-portrait">
             <div class="portrait-orbit" aria-hidden="true"></div>
-            <img src="/images/Abhishek-desktop.webp" alt="Portrait of Dr Abhishek" width="900" height="1080" loading="lazy" />
+            <picture>
+              <source media="(max-width: 860px)" srcset="/images/Abhishek-mobile.webp" />
+              <img src="/images/Abhishek-desktop.webp" alt="Portrait of Dr Abhishek" width="900" height="900" fetchpriority="high" />
+            </picture>
             <figcaption>
               <span>Research focus</span>
               <strong>Atomic nuclei / many-body dynamics / quantum information</strong>

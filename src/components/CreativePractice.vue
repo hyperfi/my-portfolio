@@ -1,6 +1,6 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref } from 'vue'
-import PracticeVisual from './PracticeVisual.vue'
+import PracticeFigure from './PracticeFigure.vue'
 
 const props = defineProps({ practices: { type: Array, required: true } })
 const activeIndex = ref(0)
@@ -64,7 +64,7 @@ function navigateTabs(event, index) {
           :aria-labelledby="`interest-${practice.key}`"
           tabindex="0"
         >
-          <PracticeVisual :kind="practice.key" />
+          <PracticeFigure v-if="activeIndex === index" :kind="practice.key" />
           <div class="practice-guide__copy">
             <h3>{{ practice.title }}</h3>
             <p>{{ practice.description }}</p>

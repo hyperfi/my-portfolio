@@ -14,7 +14,7 @@
       </div>
     </section>
 
-    <section class="section-shell inner-section">
+    <section id="creative-practice" class="section-shell inner-section">
       <div class="inner-section-header">
         <h2>Creative practice</h2>
       </div>
